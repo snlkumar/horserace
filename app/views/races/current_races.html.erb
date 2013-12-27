@@ -1,0 +1,92 @@
+
+   <div id="update_status">
+    <!-- bootstrap -->
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <!-- x-editable (bootstrap version) -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="../assets/bootstrap-editable.js"></script>
+    
+    <!-- main.js -->
+    <script src="../assets/main.js"></script>
+
+
+
+<h2>Current Races</h2>
+<%unless @races.empty?%>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Race Name</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Horse</th>
+			<th>Default Odds</th>
+			<%@tiers.each do |tier|%>	
+			  <th><%=tier.name%></th>			  
+			<%end%>
+			<%if current_user.admin?%>
+			<th>Action</th>
+			<%end%>
+		</tr>
+	</thead>
+	<tbody>
+		<%@races.each do |race|%>
+		<tr class="tr_bg_yellow">
+			<td><%=race.name%></td>
+			<td><%=race.date%></td>
+			<td><%=race.time.strftime("at %I:%M%p")%></td>
+			<td><%=race.horse%></td>
+			<td><%=number_to_currency(race.default_odd)%></td>
+			<%@tiers.each do |tier|%>
+			<%calculated=(race.default_odd*tier.weight)/100%>
+			  <td><%=number_to_currency(race.default_odd+calculated)%></td>			  
+			<%end%>	
+			<td>
+				<%if current_user.admin?%>
+				
+				<a href="#" id="status" race="<%=race.id%>">
+					<img src="../assets/edit_icon.png">
+				</a>
+				<%= link_to image_tag("../assets/view-icon.png"), race %> 
+				<%end%>
+				</td>
+			</tr>
+		<%end%>		
+	</tbody>
+</table>
+<%else%>
+<p>There is no current race yet</p>
+<%end%>
+</div>
+<%unless current_user.admin?%>
+<script>
+$(function() {
+$( "#datepicker" ).datepicker({
+	dateFormat:"yy-mm-dd",
+	onSelect: function(date) {
+		$('#LoadingImage').show();
+   $.get("/races/view_prev_races?date="+date,function(data){
+   	$(".pre_races").empty();
+   	$('#LoadingImage').hide();
+   	$(".pre_races").html(data);
+   });
+   }
+});
+});
+</script>
+<legend>Previous races</legend>
+ <div class="field">
+    <p><b>Select Date:</b>  <input type="text" id="datepicker"></p>
+  </div>
+  <div id="LoadingImage" style="display: none">
+	<img src="../assets/loading.gif" />
+  </div>
+<div class="pre_races">
+</div>
+<legend>
+<b>Available Balance: </b> <%=number_to_currency(current_user.balance)%>
+</legend>
+
+<%end%>
+

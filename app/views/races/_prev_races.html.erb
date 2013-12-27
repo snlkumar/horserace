@@ -1,0 +1,24 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Race Name</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Horse</th>
+			<th>Status</th>
+			<th>Default Odds</th>		
+		</tr>
+	</thead>
+	<tbody>
+		<%@races.each do |race|%>
+		<tr class="tr_bg_yellow">
+			<td><%=race.name%></td>
+			<td><%=race.date%></td>
+			<td><%=race.time.strftime("at %I:%M%p")%></td>
+			<td><%=race.horse%></td>
+			<td><%=race.status%></td>
+			<td>$<%=race.default_odd%></td>			
+			</tr>
+		<%end%>		
+	</tbody>
+</table>

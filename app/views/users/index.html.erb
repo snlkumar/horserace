@@ -1,0 +1,30 @@
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Balance</th>
+			<th>Tier</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%unless @users.empty?%>
+		<%@users.each_with_index do |user,index|%>
+	  <%@class="tr_bg_yellow"%>
+	
+		<tr class="<%=@class%>">
+			<td><strong><%=user.client_name%></strong></td>
+			<td><%=number_to_currency(user.balance)%></td>
+			<td><%=user.tier.id unless user.tier.nil?%></td>
+			<td><%=user.email%></td>
+			<td><%=user.phone%></td>
+			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(user) %> |
+              <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+		<%end%>
+		<%end%>	
+	</tbody>	
+</table>

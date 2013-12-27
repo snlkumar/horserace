@@ -1,0 +1,51 @@
+
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this tier from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="enter-client">
+  	<h2>Enter new Client</h2>
+  <div class="fields">
+   <div class="form-field-names"><%= f.label :client_name %></div>
+  <div class="form-field"><%= f.text_field :client_name, :autofocus => true,:placeholder=>"Enter client name",:required=>true %></div>
+  <div class="clr"></div></div>
+  <div class="fields">
+  	<div class="form-field-names"><%= f.label :balance %></div>
+  <div class="form-field"><%= f.text_field :balance,:placeholder=>"Balance should be in integer",:required=>true%></div>
+  <div class="clr"></div></div>
+  <div class="fields">
+  	<div class="form-field-names"><%= f.label :tier_id %></div>
+  	<div class="form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => true},:required=>true) %></div>
+  <!-- <%= f.text_field :tier_id%></div> -->
+  <div class="clr"></div></div>
+  <div class="fields">
+  	<div class="form-field-names"><%= f.label :phone %></div>
+  <div class="form-field"><%= f.text_field :phone,:placeholder=>'enter phone',:required=>true %></div>
+  <div class="clr"></div></div>
+  <div class="fields">
+  	<div class="form-field-names"><%= f.label :email %></div>
+  <div class="form-field"><%= f.email_field :email,:required=>true%></div>
+ <div class="clr"></div></div>
+  <div class="fields">
+  	<div class="form-field-names"><%= f.label :password %></div>
+  <div class="form-field"><%= f.password_field :password,:required=>true %></div>
+<div class="clr"></div></div>
+ <div class="fields">
+ 	<div class="form-field-names"><%= f.label :password_confirmation %></div>
+  <div class="form-field"><%= f.password_field :password_confirmation ,:required=>true%></div>
+<div class="clr"></div></div>
+  <div class="fields">
+  	<div class="form-field-names">&nbsp;</div>
+  	<div class="form-field"><%= f.submit "Save" %></div></div>
+  	<div class="clr"></div>
+<% end %>
+</div>

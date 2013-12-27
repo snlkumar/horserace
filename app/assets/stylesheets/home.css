@@ -1,0 +1,721 @@
+
+
+/*media query ends*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+margin:0;
+padding:0;
+border:0;
+outline:0;
+font-size:100%;
+vertical-align:baseline;
+background:transparent;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+display:block;
+}
+nav ul {
+list-style:none;
+}
+blockquote, q {
+quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content:'';
+content:none;
+}
+a {
+margin:0;
+padding:0;
+font-size:100%;
+vertical-align:baseline;
+background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+background-color:#ff9;
+color:#000;
+text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+background-color:#ff9;
+color:#000;
+font-style:italic;
+font-weight:bold;
+}
+del {
+text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+border-bottom:1px dotted;
+cursor:help;
+}
+table {
+border-collapse:collapse;
+border-spacing:0;
+}
+/* change border colour to suit your needs */
+hr {
+display:block;
+height:1px;
+border:0;
+border-top:1px solid #cccccc;
+margin:1em 0;
+padding:0;
+}
+input, select {
+vertical-align:middle;
+}
+img
+{
+	max-width:100%;
+}
+
+@font-face {
+    font-family: 'BikoRegular';
+    src: url('font/biko_regular.eot');
+    src: url('font/biko_regular.eot') format('embedded-opentype'),
+         url('font/biko_regular.woff') format('woff'),
+         url('font/biko_regular.ttf') format('truetype'),
+         url('font/biko_regular.svg#BikoRegular') format('svg');
+    }
+
+
+body {
+line-height:1;
+background:#e7e7e7;
+}
+#wrapper
+{
+	max-width:980px;
+	width:100%;
+	margin:0 auto;
+}
+.inner
+{
+	max-width:980px;
+	width:100%;
+	margin:0 auto;
+}
+#header{
+	background:url(../assets/header_bg.png) repeat-x;
+	width:100%;
+	margin:0;
+	height:70px;
+}
+#logo
+{
+	
+	position:absolute;
+	display:block;
+	left:43.2%;
+}
+
+	
+#nav
+{
+	width:100%;
+	float:left;
+	margin-top:19px;
+}
+#nav ul
+{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+#nav ul li
+{
+	float:left;
+	margin: 0 6px;
+	color:#f2b855;
+	text-transform:uppercase;
+	padding:12px 12px;
+	font-size:13px;
+	display:inline-block;
+}
+#nav ul li:first-child + li + li + li + li 
+{
+	margin-left:20.4%;
+}
+#nav ul li a
+{
+	color:#f2b855;
+	font-size:13px;
+	text-decoration:none;
+    font-family: 'BikoRegular';
+	text-transform:uppercase;
+	display:block;
+}
+#nav ul li.active, #nav ul li:hover
+{
+	background:#262525;
+	box-shadow:0 0 8px #000 inset;
+	    border:solid 0px #000000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+
+}
+
+#banner
+{
+width:100%;
+
+}
+#banner img
+{
+	width:100%;
+}
+
+#mid
+{
+	width:100%;
+	float:left;
+	margin:0 0 0 0;
+}
+#mid .box_cnt
+{
+	width:100%;
+	float:left;
+	padding:40px 0;
+	-moz-box-sizing: border-box;
+}
+
+#mid .box_cnt ul 
+{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+#mid .box_cnt ul li
+{
+   position: relative; 
+   width: 30%; /* for IE 6 */
+    float:left;	
+	margin:0;
+	padding:0;
+	display: inline-block;
+zoom: 1;
+*display: inline;
+
+}
+#mid .box_cnt ul li.first
+{
+	padding-right:4.8%;	
+}
+
+#mid .box_cnt ul li.third
+{
+	float:right;
+}
+#mid .box_cnt ul li img
+{
+	max-width:100%;
+}
+#mid .box_cnt ul li h2 { 
+   position: absolute; 
+   top: 64%; 
+   left: 0; 
+}
+#mid .box_cnt ul li h2 span { 
+   color: white; 
+ background: url("../assets/transpairent-bg.png") repeat-x scroll 0 0 ;
+  padding: 9px 11px; 
+   *z-index:9999;
+   float:left;
+   
+}
+#mid .box_cnt ul li h2 span a
+{
+	text-decoration:none;
+	font-family: 'BikoRegular';
+	font-size:15px;
+	color:#f89c00;
+	font-weight:normal;
+
+}
+#mid .box_cnt ul li h2 span a:hover
+{
+	color:#659a00;
+}
+
+#footer
+{
+	background:url(../assets/footer_bg.png) repeat-x;
+	width:100%;
+	float:left;
+	height:100px;
+	margin:0;
+}
+#footer ul
+{
+	width:100%;
+	text-align:center;
+	padding:0;
+	margin:30px 0 0 0;
+}
+#footer ul li
+{
+	
+	display:inline-block;
+	padding:0px 12px;
+	border-right:1px solid #fff;
+	color:#fff;
+	*display: inline;
+zoom: 1;
+	
+}
+#footer ul li:last-child
+{
+	border-right:none;
+}
+#footer ul li a
+{
+	color:#fff;
+	font-size:13px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	display:block;
+	
+}
+#footer ul li a:hover,
+#footer li.active a 
+
+{
+	color:#f1b855;
+}
+#footer .copyright
+{
+	width:100%;
+	float:left;
+	margin:10px 0 0 0;
+	text-align:center;
+	font-size:13px;
+	color:#aaaaaa;
+	font-family:Arial, Helvetica, sans-serif;
+	
+}
+
+
+/*-------login page css------------*/
+.clr{clear:both; line-height:0px;}
+
+.enter-client{
+	width:415px;
+	margin:70px auto;
+	background:#FFF;
+	padding:20px;
+}
+.enter-client h2{
+	margin:0px;
+	padding:0px;
+	float:left;
+	width:100%;
+	font-size:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+	border-bottom:1px solid #d6d6d6;
+	padding:0 0 10px;
+	margin:0 0 25px;
+}
+.form-field-names{
+	width:140px;
+	float:left;
+	font-size:15px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	margin:8px 0 0 0;
+}
+.fields{
+	margin:15px 0px 25px;
+}
+.form-field{
+	width:270px;
+	float:right;	
+}
+.form-field input[type="text"], .form-field input[type="password"]{
+	background:#fff;
+	padding:7px 5px;
+	border:1px solid #d6d6d6;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	border-radius:6px;
+	width:95%;
+}
+.form-field select{
+	background:#fff;
+	padding:7px 5px;
+	border:1px solid #d6d6d6;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	border-radius:6px;
+	width:100%;
+}
+.form-field input[type="submit"]{
+	padding:5px 15px;
+	font-size:20px;
+	font-weight:bold;
+	background:url(../assets/login_btn.png) repeat-x;
+	border:solid 1px;
+	border-radius:4px;
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.form-field input[type="submit"]:hover{
+	background:#D3A14A;
+	}
+
+.forgot_password{
+	font-size:11px;
+	color:#26469d;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	}
+	
+.forgot_password:hover{
+	text-decoration:none;
+	}
+	
+.remeber{
+	float:right;
+	margin:0 0 0 0px;
+	font-size:12px;
+	color:#282828;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+	
+.already {
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 10px 0 2px;
+    width: 100%;
+    }	
+	
+/*===================================================Categories Page Start Here=============================================*/	
+	
+.categories_outer{
+	float:left;
+	background:#FFF;
+	border:solid 1px #d2d2d2;
+	width:99%;
+	min-height:250px;
+	}
+
+.categories_outer h3{
+	background:#252525;
+	color:#f2b855;
+	font-size:18px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-transform:uppercase;
+	font-weight:normal;
+	margin:0 0 0 0px;
+	padding: 10px 14px;
+	}
+	
+.categorie_link {
+	margin:0 0 0 0px;
+	padding: 15px 8px 50px;
+	float:left;
+	width:94.5%;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+	
+.categorie_link li{
+	margin:0 0 0 0px;
+	list-style:none;
+	float:left;
+	border-bottom:dashed 1px #d7d7d7;
+	width:100%;
+	}
+	
+.categorie_link li a{
+	margin:0 0 0 0px;
+	font-size:15px;
+	float:left;
+	text-decoration:none;
+	color:#252525;
+	padding:12px;
+	}
+	
+.categorie_link li a:hover{
+	color:#F2B855;
+	}
+	
+.races_name{
+	float:right;
+	margin:70px 0 70px 0px;
+	width:65%;
+	}
+	
+.current_heading {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid;
+    color: #000000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    }
+	
+/* 
+	Generic Styling, for Desktops/Laptops 
+	*/
+	table { 
+		width: 100%; 
+		border-collapse: collapse;
+		background: #fff;
+		text-transform:uppercase; 
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	/* Zebra striping */
+	tr:nth-of-type(odd) { 
+		background: #fff; 
+	}
+	th { 
+		background: #000000; 
+		color: white;
+		font-size:14px;
+		border-right: 1px solid #A4A4A4 !important; 
+		font-weight: bold; 
+	}
+	td, th { 
+		padding:8px 5px; 
+		border: 1px solid #000; 
+		text-align: center; 
+	}
+	
+	td{
+		font-size:12px;
+		}
+		
+.bg_colour{
+	background:#7f7f7f;
+	color:#fff;
+	}		
+		
+	td strong{
+		color:#af8440;
+		font-size:12px;
+		}											
+
+/*===================================================Categories Page End Here=============================================*/
+
+.tr_bg_yellow {
+		background:#ffe8bd;
+		}
+.categorie_link2 {
+	margin:0 0 0 0px;
+	padding: 15px 8px 50px;
+	float:left;
+	width:94.5%;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+	
+.categorie_link2 li {
+	margin:0 0 0 0px;
+	list-style:none;
+	float:left;
+	border-bottom:dashed 1px #d7d7d7;
+	width:100%;
+	}
+	
+.categorie_link2 li a {
+	margin:0 0 0 0px;
+	font-size:15px;
+	float:left;
+	text-decoration:none;
+	color:#252525;
+	padding:12px;
+	width:91.5%;
+	}
+	
+.categorie_link2 li a:hover {
+	margin:0 0 0 0px;
+	font-size:15px;
+	float:left;
+	text-decoration:none;
+	color:#252525;
+	padding:12px;
+	width:91.5%;
+	background:#e7e7e7;
+	}
+.categorie_link2 li a.active {
+	background:#e7e7e7;
+	}	
+
+.current_bottom_link {
+		color:#2748d6;
+		text-align:left;
+		font-size:12px;
+		font-family:Arial, Helvetica, sans-serif;
+		padding:10px 0px 0px 0px;
+		text-transform:uppercase;
+		}
+.current_bottom_link a {
+		color:#2748d6;
+		text-decoration:underline;
+		}
+.current_bottom_link a:hover {
+		color:#2748d6;
+		text-decoration:none;
+		}
+		
+
+.change_password {
+    background: none repeat scroll 0 0 #FFFFFF;
+    float: left;
+    padding: 25px;
+    width: 92%;
+    }
+
+
+.change_password h2{
+	margin:0px;
+	padding:0px;
+	float:left;
+	width:100%;
+	font-size:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+	border-bottom:1px solid #d3d3d3;
+	padding:0 0 10px;
+	margin:0 0 25px;
+}
+.change_password h2 span {
+		float:right;
+		width:25%;
+		text-align:right;
+		font-size:13px;
+		color:#044fbf;
+		padding:5px 0px 0px 0px;
+		}
+.change_password h2 span a {
+		text-decoration:underline;
+		color:#044fbf;
+		}
+.change_password h2 span a:hover {
+		text-decoration:none;
+		color:#044fbf;
+		}
+.change_password_names{
+	width:180px;
+	float:left;
+	font-size:15px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	margin:8px 0 0 0;
+}
+.change_password_fields{
+	margin:15px 0px 25px;
+}
+.change_password_form-field {
+	width:270px;
+	float:left;	
+}
+.login_button {
+	width:270px;
+	float:left;
+	padding:0px 0px 0px 0px;	
+}
+
+.change_password_form-field input[type="text"], .change_password_form-field input[type="password"]{
+	background:#fff;
+	padding:7px 5px;
+	border:1px solid #d6d6d6;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	border-radius:6px;
+	width:95%;
+}
+
+.change_password_form-field2 {
+	width:270px;
+	float:left;	
+}
+.change_password_form-field2 input[type="text"], .change_password_form-field2 input[type="password"]{
+	background:#fff;
+	padding:7px 5px;
+	border:1px solid #d6d6d6;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	border-radius:6px;
+	width:43%;
+}
+
+.change_password_form-field2 select {
+	background:#fff;
+	padding:7px 5px;
+	border:1px solid #d6d6d6;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	border-radius:6px;
+}
+.year {
+		width:32%;
+		}
+.month {
+		width:42%;
+		}
+.date {
+		width:22%;
+		}
+
+.login_button input[type="submit"]{
+	padding:5px 15px;
+	font-size:20px;
+	font-weight:bold;
+	background:url(../assets/login_btn.png) repeat-x;
+	border:solid 1px;
+	border-radius:4px;
+	color:#FFF;	
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.login_button input[type="submit"]:hover{
+	background:#D3A14A;
+	}
+.change_password_names2 {
+	width:72px;
+	float:left;
+	font-size:15px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	margin:8px 0 0 0;
+}
+.left_area {
+		float:left;
+		width:30%;
+		padding:70px 0 70px 0px;
+		}
+.change_select {
+	width: 47%;
+}		

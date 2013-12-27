@@ -1,0 +1,23 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%unless @users.empty?%>
+		<%@users.each do |user|%>
+		<tr class="tr_bg_yellow">
+			<td><%=user.client_name%></td>
+			<td><%=user.email%></td>
+			<td><%=user.phone%></td>
+			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(user) %> </td>
+           <!-- <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td> -->
+		</tr>
+		<%end%>
+		<%end%>
+	</tbody>
+</table>

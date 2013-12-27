@@ -1,0 +1,9 @@
+<%=form_for @race,:url=>{:action=>'update_status',:id=>@race.id} do |f|%>
+<div class="field">
+	<%=f.label :status%>
+	<%=f.select :status,['win','lost'] %>
+</div>
+<div class="actions">
+	<%=f.submit%>
+</div>
+<%end%>

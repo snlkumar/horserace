@@ -1,0 +1,27 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Balance Before Bet</th>
+			<th>Tier</th>
+			<th>bet Amount</th>
+			<th>Balance After Bet</th>
+			<th>Potential Win</th>
+			<th>potential Loss</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@users.each do |user|%>
+		   <tr class="tr_bg_yellow">
+			<td><%=user.client_name%></td>
+			<td><%=number_to_currency(user.balance)%></td>
+			<td><%=user.tier_id%></td>
+			<td><%=number_to_currency(user.bet_amount) unless user.balance.nil?%></td>		
+			<td><%=number_to_currency(user.balance_after_bet) unless user.balance.nil?%></td>
+			<td><%=number_to_currency(user.potential_win) unless user.balance.nil?%></td>
+			<td><%=number_to_currency(user.potential_loss(@race)) unless user.balance.nil?%></td>
+		   </tr>
+			<%end%>
+		
+	</tbody>
+</table>

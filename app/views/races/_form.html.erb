@@ -1,0 +1,55 @@
+
+<%= form_for(@race) do |f| %>
+  <% if @race.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@race.errors.count, "error") %> prohibited this race from being saved:</h2>
+
+      <ul>
+      <% @race.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :name%></div>
+    <div class="change_password_form-field"><%= f.text_field :name,:required=>true%></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :date %></div>
+    <div class="change_password_form-field"><%= f.text_field :date%></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :time %></div>
+    <div class="change_password_form-field change_select"><%= f.time_select :time,:ignore_date=>false,:class=>"change_select" %></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :horse %></div>
+    <div class="change_password_form-field"><%= f.text_field :horse,:required=>true %></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :default_odd %></div>
+    <div class="change_password_form-field"><%= f.text_field :default_odd,:required=>true %></div>
+    <div class="clr"></div> 
+  </div>
+ 
+  <div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+     <div class="login_button"><%= f.submit "Create race"%></div>
+     <div class="clr"></div>
+  </div>
+<% end %>
+<script>
+$(function() {
+$( "#race_date" ).datepicker({
+	dateFormat:"dd-mm-yy",
+	onSelect: function(date) {
+	alert(data);
+   }
+});
+});
+</script>

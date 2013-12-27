@@ -1,0 +1,48 @@
+<div class="enter-client">
+  	<h2>Enter new Client</h2>
+
+<%= form_for @user do |f| %>
+  
+   <div class="fields">
+  	    <div class="form-field-names"><%= f.label :client_name %></div>
+    	<div class="form-field"><%= f.text_field :client_name, :autofocus => true,:required=>true %></div>
+  	    <div class="clr"></div>
+   </div>
+  <div class="fields">
+	   <div class="form-field-names"><%= f.label :balance %></div>
+	   <div class="form-field"><%= f.text_field :balance,:required=>true%></div>
+	  <div class="clr"></div>
+  </div>
+  <div class="fields">
+	   <div class="form-field-names"><%= f.label :tier_id %></div>
+	  <div class="form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, :required=>true) %></div>
+	  <div class="clr"></div>
+  </div>
+  <div class="fields">
+	   <div class="form-field-names"><%= f.label :phone %></div>
+	  <div class="form-field"><%= f.text_field :phone %></div>
+	  <div class="clr"></div>
+  </div>
+  <div class="fields">
+	   <div class="form-field-names"><%= f.label :email %></div>
+	  <div class="form-field"><%= f.email_field :email,:required=>true%></div>
+	<div class="clr"></div>
+</div>
+  <div class="fields">
+	   <div class="form-field-names"><% f.label :password %></div>
+	  <div class="form-field"><% f.password_field :password,:required=>true %></div>
+	 <div class="clr"></div>
+ </div>
+  <div class="fields">
+	   <div class="form-field-names"><% f.label :password_confirmation %></div>
+	  <div class="form-field"><% f.password_field :password_confirmation,:required=>true %></div>
+	 <div class="clr"></div>
+ </div>
+  <div class="fields">
+	  	<div class="form-field-names">&nbsp;</div>
+	 <div class="form-field"><%= f.submit "Update", :class=>'btn-inverse' %></div>
+	<div class="clr"></div>
+</div>
+	<% end %>
+
+</div>

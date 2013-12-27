@@ -1,0 +1,293 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (max-width:1100px){
+	
+.inner{
+	width:90%;
+	margin:0 auto;
+	overflow:hidden;
+    }
+	
+    }
+
+@media only screen and  (max-width:1024px){
+	
+#nav ul li:first-child + li + li + li {
+    margin-left: 22%;
+    }
+	
+	}
+
+@media only screen and  (max-width:980px){
+
+#mid {
+    margin: 0 auto;
+    width: 90%;
+	float: none;
+    }	
+		
+	}
+
+@media only screen and  (max-width:920px){
+
+#logo {
+    display: block;
+    left: 44.5%;
+    position: absolute;
+    width: 19%;
+    }
+	
+.inner{
+	width:90%;
+	}
+	
+#nav ul li{
+	padding: 12px 13.6px;
+	}
+	
+#nav ul li a{
+	font-size: 13px;
+	}
+
+    }
+	
+@media only screen and  (max-width:830px){
+		
+
+.change_password_fields {
+    margin: 0;
+    }
+	
+.change_password_form-field{
+	margin:10px 0px;
+	width:100%;
+	}
+	
+.change_password{
+	width:87%;
+	}
+	
+.change_password_form-field2{
+	width:100%;
+	margin:10px 0px;
+	}
+	
+.change_password_names2{
+	width:100%;
+	}			
+	
+	}
+
+@media only screen and  (max-width:721px){
+	
+#mid .box_cnt ul li h2 span a{
+	font-size:12px;
+	}
+		
+	}	
+	
+@media only screen and  (max-width:640px){
+#mid .box_cnt ul li h2 span a{
+	font-size:11px;
+	}
+		
+	}
+	
+@media only screen and (max-width:550px){
+
+.inner {
+    width: 62%;
+    }
+	
+#mid .box_cnt ul li{
+	width:100%;
+	margin-bottom:20px;
+	}
+	
+#mid .box_cnt ul li.first{
+	padding-right:0px;
+	}
+	
+#footer ul li{
+	margin:5px 0px;
+	}
+	
+.enter-client{
+	width:80%;
+	}
+	
+.fields {
+    margin: 0;
+    }
+	
+.form-field{
+	text-align:center;
+	width:100%;
+	margin:10px 0px;
+	}
+	
+.left_area {
+    padding: 25px 0;
+    width: 100%;
+    }
+	
+.races_name {
+    margin: 0 0 25px;
+    width: 100%;
+    }
+	
+.change_password{
+	width:82%;
+	}
+	
+.change_password_form-field{
+	width:100%;
+	margin:10px 0px;
+	}					
+	
+.change_password_fields {
+    margin: 0;
+    }
+	
+.login_button{
+	width:100%;
+	}
+	
+.login_button input[type="submit"]{
+	font-size:19px;
+	}
+	
+.change_password h2{
+	font-size:19px;
+	}
+	
+
+.change_password_form-field2 {
+    margin: 10px 0;
+    width: 100%;
+    }
+	
+.change_password_form-field2 input[type="text"], .change_password_form-field2 input[type="password"]{
+	width:41.6%;
+	}
+	
+.current_heading{
+	font-size:18px;
+	}
+	
+#logo {
+    display: block;
+    left: 32.5%;
+    position: absolute;
+    width: 35%;
+    }
+	
+#footer ul li a{
+	font-size:11px;
+	}	
+	
+#footer .copyright{
+	font-size:11px;
+	}														
+		
+	}
+	
+@media only screen and (max-width:425px){
+
+.inner{
+	width:75%;
+	margin:0 auto;
+	overflow:hidden;
+    }
+	
+.login_button input[type="submit"]{
+	font-size:17.6px;
+	}	
+	
+   }
+	
+@media only screen and (max-width:350px){
+.inner{
+	width:90%;
+	margin:0 auto;
+	overflow:hidden;
+    }
+	
+    }
+	
+	
+@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {
+	
+/* Force table to not be like tables anymore */
+table, thead, tbody, th, td, tr { 
+	display: block; 
+	}
+		
+/* Hide table headers (but not display: none;, for accessibility) */
+thead tr { 
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+	}
+		
+tr { border: 1px solid #000; }
+		
+td { 
+			/* Behave  like a "row" */
+	border: none;
+	border-bottom: 1px solid #000; 
+	position: relative;
+	padding-left: 50%; 
+	}
+		
+td:before { 
+			/* Now like a table header */
+	position: absolute;
+			/* Top/left values mimic padding */
+	top: 9px;
+	left: 6px;
+	width: 45%; 
+	padding-right: 10px; 
+	white-space: nowrap;
+	}
+		
+/*
+Label the data
+*/
+	#upcoming td:nth-of-type(1):before { content: "Race Name"; }
+	#upcoming td:nth-of-type(2):before { content: "Race Date"; }
+	#upcoming td:nth-of-type(3):before { content: "Race Time"; }
+	#upcoming td:nth-of-type(4):before { content: "Default Odds"; }
+	#upcoming td:nth-of-type(5):before { content: "Horse Picked"; }
+	#upcoming td:nth-of-type(6):before { content: ""; }
+	
+	
+	#current_races td:nth-of-type(1):before { content: "Race Name"; }
+	#current_races td:nth-of-type(2):before { content: "Date"; }
+	#current_races td:nth-of-type(3):before { content: "Time"; }
+	#current_races td:nth-of-type(4):before { content: "Horse"; }
+	#current_races td:nth-of-type(5):before { content: "Default Odds"; }
+	#current_races td:nth-of-type(6):before { content: "ACTION"; }
+	
+	#contact_client td:nth-of-type(1):before { content: "client name"; }
+	#contact_client td:nth-of-type(2):before { content: "Email"; }
+	#contact_client td:nth-of-type(3):before { content: "Phone"; }
+	#contact_client td:nth-of-type(4):before { content: "Action"; }
+	
+	#user_balance td:nth-of-type(1):before { content: "client name"; }
+	#user_balance td:nth-of-type(2):before { content: "Balance"; }
+	
+	#user_list td:nth-of-type(1):before { content: "client name"; }
+	#user_list td:nth-of-type(2):before { content: "balance"; }
+	#user_list td:nth-of-type(3):before { content: "tier"; }
+	#user_list td:nth-of-type(4):before { content: "Email"; }
+	#user_list td:nth-of-type(5):before { content: "Phone"; }
+	#user_list td:nth-of-type(6):before { content: "Action"; }
+	
+	}
+	
+	
+	
+	
+		

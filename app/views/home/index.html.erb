@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon" />
+<title>Instapunt :: Index</title>
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="../assets/meanmenu.css" media="all" />
+<link href="../assets/home.css" rel="stylesheet" type="text/css">
+<!--media-queries-->
+<link href="../assets/media-queries.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header">
+<div class="inner">
+    <a href="#" id="logo"><img src="../assets/logo.png" alt=""></a>
+
+    <div id="nav">
+    <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">ABOUT US</a></li>
+        <li><%=link_to 'Client Area',new_user_session_path%></li>
+        <li ><%=link_to 'Admin Area',admin_new_user_session_path%></li>
+        <li><a href="#">CONTACT US</a></li>
+    </ul>
+    </div>
+<!--nav end here-->
+
+</div>
+
+</div>
+<!--header end here-->
+
+
+<div id="banner"><img src="../assets/banner_pic1.jpg"></div>
+<!--benner end here-->
+
+
+<div id="mid">
+    <div class="inner">
+    <div class="box_cnt">
+    
+    <ul>
+        <li class="first"><img src="../assets/about_img.jpg" alt="" />
+            <h2><span><a href="#">ABOUT INSTAPUNT</a></span></h2>
+        </li>              
+        <li><img src="../assets/client_login.jpg" alt="" />
+            <h2><span><%=link_to 'Client Area',new_user_session_path%></span></h2>
+         </li>
+         <li class="third">  <img src="../assets/admin_login.jpg" alt="" />
+            <h2><span><%=link_to 'Admin Login',admin_new_user_session_path%></span></h2>
+        </li>
+    </ul>
+    
+    
+    </div>
+    <!--box cnt end here-->
+    
+    </div>
+<!--inner end-->
+
+</div>
+<!--mid end here-->
+
+
+<!--footer start from here-->
+<div id="footer">
+    <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Client Area</a></li>
+        <li><a href="#">Admin Area</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+
+<p class="copyright">Copyright © 2013 Instapunt.com All Rights Reserved.</p>
+
+</div>
+<!--footer end here-->
+
+
+<script src="../assets/menu/responsive.js"></script> 
+<script src="../assets/menu/jquery.meanmenu.js"></script> 
+<script>
+jQuery(document).ready(function () {
+    jQuery('#nav').meanmenu();
+});
+</script>
+</body>
+</html>

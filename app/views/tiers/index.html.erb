@@ -1,0 +1,40 @@
+<%unless @tier.nil?%>
+<% if @tier.errors.any? %>
+"gdfgdfgdgdfgfggdfgdfgdfg"
+    <div id="error_explanation">
+      <h2><%= pluralize(@tier.errors.count, "error") %> prohibited this tier from being saved:</h2>
+
+      <ul>
+      <% @tier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%end%>
+
+<h1>Listing tiers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Weight</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tiers.each do |tier| %>
+  <tr>
+    <td><%= tier.name %></td>
+    <td><%= tier.weight %></td>
+    <td><%= link_to 'Show', tier %></td>
+    <td><%= link_to 'Edit', edit_tier_path(tier) %></td>
+    <td><%= link_to 'Destroy', tier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tier', new_tier_path %>
