@@ -62,7 +62,7 @@ $(document).on("click","#create-user",function(){
 			          	}, 
 			            dataType: "json",
 			            success: function(data){
-			            	if (data.html != "You are not a valid user for update balance"){
+			            	if (data.html != "You are not a valid user to update balance"){
 			                $(".ui-dialog-buttonpane button:contains('confirm') span").text("Update");
 			                $( "#dialog-form" ).empty();
 			            	$( "#dialog-form" ).html(data.html);
