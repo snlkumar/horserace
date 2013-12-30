@@ -19,13 +19,13 @@ pre {
 }
 
 a {
-  color: #000;
+ 
   &:visited {
     color: #666;
   }
   &:hover {
     color: #fff;
-    background-color: #000;
+    
   }
 }
 
@@ -46,8 +46,8 @@ div {
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  
+  
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;

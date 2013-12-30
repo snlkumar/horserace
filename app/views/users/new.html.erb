@@ -1,19 +1,18 @@
 
 
 <%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this tier from being saved:</h2>
-
-      <ul>
+  
+  <div class="enter-client">
+  	<h2>Enter new Client</h2>
+  	<% if @user.errors.any? %>
+    <div id="custom_error_class">
+    	      <ul class="custom_error_class">
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="enter-client">
-  	<h2>Enter new Client</h2>
   <div class="fields">
    <div class="form-field-names"><%= f.label :client_name %></div>
   <div class="form-field"><%= f.text_field :client_name, :autofocus => true,:placeholder=>"Enter client name",:required=>true %></div>
@@ -33,7 +32,7 @@
   <div class="clr"></div></div>
   <div class="fields">
   	<div class="form-field-names"><%= f.label :email %></div>
-  <div class="form-field"><%= f.email_field :email,:required=>true%></div>
+  <div class="form-field"><%= f.email_field :email,:required=>true,:class=>"text_class"%></div>
  <div class="clr"></div></div>
   <div class="fields">
   	<div class="form-field-names"><%= f.label :password %></div>

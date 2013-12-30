@@ -3,6 +3,30 @@
 
         <script type="text/javascript" src="../assets/jquery.editinplace.js"></script>
         <script type="text/javascript" src="../assets/demo.js"></script>
+       <script type="text/javascript">
+       	$(document).ready(function(){
+	
+	
+var token= $('meta[name="csrf-token"]').attr('content');
+var data={
+		"authenticity_token": token
+	};
+
+	// A select input field so we can limit our options
+	$(".editme3").editInPlace({
+		url: '/races/update_status?',
+		field_type: "select",
+		select_options: "win, lost",	
+		params: data,
+		success: function(response) {
+        $("#update_status").empty();
+        $("#update_status").html(response);
+        }
+	});
+
+	
+});
+       </script>
         
 
 <h2>Current Races</h2>
@@ -37,12 +61,13 @@
 			<%end%>	
 			<td>
 				<%if current_user.admin?%>
-				<p id="editme3" onclick="alert("kjjj");">
-                change me
-            </p>
-				<a href="#" id="status" race="<%=race.id%>" onclick="alert("sfdfdd");">
+				<p class="editme3" race="<%=race.id%>">					
+                <img src="../assets/edit_icon.png">
+                </p>
+           
+				<!-- <a href="#" id="status" race="<%=race.id%>">
 					<img src="../assets/edit_icon.png">
-				</a>
+				</a> -->
 				<%= link_to image_tag("../assets/view-icon.png"), race %> 
 				<%end%>
 				</td>
@@ -51,7 +76,7 @@
 	</tbody>
 </table>
 <%else%>
-<p>There is no current race yet</p>
+There is no current race yet
 <%end%>
 </div>
 <%unless current_user.admin?%>

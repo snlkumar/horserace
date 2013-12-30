@@ -14,21 +14,3 @@
  * http://code.google.com/p/jquery-in-place-editor/
  *
  */
-$(document).ready(function(){
-	
-	
-var token= $('meta[name="csrf-token"]').attr('content');
-var data={
-		"authenticity_token": token
-	};
-	
-	// A select input field so we can limit our options
-	$("#editme3").editInPlace({
-		url: '/races/update_status?',
-		field_type: "select",
-		select_options: "win, lost",
-		params: data
-	});
-
-	
-});

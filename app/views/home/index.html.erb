@@ -16,7 +16,7 @@
 <div class="inner">
     <a href="#" id="logo"><img src="../assets/logo.png" alt=""></a>
 
-    <div id="nav">
+    <div class="home_nav">
     <ul>
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">ABOUT US</a></li>
@@ -69,8 +69,8 @@
     <ul>
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
-        <li><a href="#">Client Area</a></li>
-        <li><a href="#">Admin Area</a></li>
+        <li><%=link_to 'Client Login',new_user_session_path%></li>
+        <li><%=link_to 'Admin Login',admin_new_user_session_path%></li>
         <li><a href="#">Contact Us</a></li>
     </ul>
 

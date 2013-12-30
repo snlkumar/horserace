@@ -39,7 +39,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     end
     
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated User."
+      flash[:notice] = "User Successfully updated ."
       redirect_to users_path
     else
       render :action => 'edit'
@@ -70,7 +70,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
    if current_user.valid_password?(params[:password])
      @html=render_to_string(:partial => 'change_balance')
    else
-    @html=render_to_string(:text => 'You are not a valid user for update balance')
+    @html=render_to_string(:text => 'You are not a valid user to update balance')
    end
    
    respond_to do |format|
@@ -81,7 +81,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
    @user=User.find params[:id]
  
    @user.update_attributes(params[:user])
-   flash[:notice] = "Successfully updated User."
+   flash[:notice] = "User Successfully updated."
    redirect_to view_clients_balance_races_path
   end
 end

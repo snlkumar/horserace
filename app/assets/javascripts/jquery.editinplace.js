@@ -249,8 +249,11 @@ InlineEditor.prototype = {
 	},
 	
 	saveOriginalValue: function () {
+		var race_id=this.dom.attr("race");
+		this.dom.html(race_id);
 		if (this.settings.use_html) {
-			this.originalValue = this.dom.html();
+			// this.originalValue = this.dom.html();
+			this.originalValue=race_id;
 		} else {
 			this.originalValue = trim(this.dom.text());
 		}

@@ -17,10 +17,11 @@ class RacesController < InheritedResources::Base
     render 'change_status' 
   end
   def update_status
-     @race=Race.find(params[:id])  
+    puts "i am with params#{params}"
+     @race=Race.find(params[:original_value])  
      @tiers=Tier.all
      @users=User.where(:admin => false)
-     @race.update_attributes(:status=>params[:value])
+     @race.update_attributes(:status=>params[:update_value])
      render 'race_result',:layout=>false
   end
   
