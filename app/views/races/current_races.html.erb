@@ -1,19 +1,9 @@
 
    <div id="update_status">
-   	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <!-- bootstrap -->
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 
-    <!-- x-editable (bootstrap version) -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-    <script src="../assets/bootstrap-editable.js"></script>
-    
-    <!-- main.js -->
-    <script src="../assets/main.js"></script>
-
-
+        <script type="text/javascript" src="../assets/jquery.editinplace.js"></script>
+        <script type="text/javascript" src="../assets/demo.js"></script>
+        
 
 <h2>Current Races</h2>
 <%unless @races.empty?%>
@@ -47,8 +37,10 @@
 			<%end%>	
 			<td>
 				<%if current_user.admin?%>
-				
-				<a href="#" id="status" race="<%=race.id%>">
+				<p id="editme3" onclick="alert("kjjj");">
+                change me
+            </p>
+				<a href="#" id="status" race="<%=race.id%>" onclick="alert("sfdfdd");">
 					<img src="../assets/edit_icon.png">
 				</a>
 				<%= link_to image_tag("../assets/view-icon.png"), race %> 
