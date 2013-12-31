@@ -42,8 +42,11 @@
   <header id="header">
 <section class="inner">
 <a href="#" id="logo"><img src="../assets/logo.png" alt="" border="0"></a>
-
+<%unless current_user%>
+  <div class="home_nav">
+<%else%>
 <div id="nav">
+<%end%>
 <ul>
 <li class="active"><a href="/home/index">Home</a></li>
 <li><a href="#">ABOUT US</a></li>
