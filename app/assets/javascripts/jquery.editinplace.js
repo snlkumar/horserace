@@ -250,11 +250,14 @@ InlineEditor.prototype = {
 	
 	saveOriginalValue: function () {
 		var race_id=this.dom.attr("race");
-		this.dom.html(race_id);
+		this.dom.attr("id",race_id);
+		
+		// this.dom.html(race_id);
 		if (this.settings.use_html) {
-			// this.originalValue = this.dom.html();
-			this.originalValue=race_id;
+			 this.originalValue = this.dom.html();
+			// this.originalValue=race_id;
 		} else {
+		
 			this.originalValue = trim(this.dom.text());
 		}
 	},
@@ -335,7 +338,7 @@ InlineEditor.prototype = {
 	},
 	
 	inputNameAndClass: function () {
-		return ' name="inplace_value" class="inplace_field" ';
+		return ' name="inplace_value" class="inplace_field inplace_select" ';
 	},
 	
 	createSelectEditor: function () {
@@ -805,17 +808,17 @@ $.fn.editInPlace.defaults = {
 	bg_out:				"transparent", // string: background color on restore from hover
 	auto_effects:   true,
 	hover_class:		"",  // string: class added to root element during hover. Will override bg_over and bg_out
-	show_buttons:		false, // boolean: will show the buttons: cancel or save; will automatically cancel out the onBlur functionality
+	show_buttons:		true, // boolean: will show the buttons: cancel or save; will automatically cancel out the onBlur functionality
 	extraHtml:      false,
 	save_button:		'<button class="inplace_save">Save</button>', // string: image button tag to use as Save button
 	cancel_button:		'<button class="inplace_cancel">Cancel</button>', // string: image button tag to use as Cancel button
 	params:					"", // string: example: first_name=dave&last_name=hauenstein extra paramters sent via the post request to the server
 	field_type:			"text", // string: "text", "textarea", or "select";  The type of form field that will appear on instantiation
-	default_text:		"(Click here to add text)", // string: text to show up if the element that has this functionality is empty
+	default_text:		'<img src="../assets/green-tick.png"><img src="../assets/cross.png">', // string: text to show up if the element that has this functionality is empty
 	use_html:			false, // boolean, set to true if the editor should use jQuery.fn.html() to extract the value to show from the dom node
 	textarea_rows:		10, // integer: set rows attribute of textarea, if field_type is set to textarea. Use CSS if possible though
 	textarea_cols:		25, // integer: set cols attribute of textarea, if field_type is set to textarea. Use CSS if possible though
-	select_text:		"Choose new value", // string: default text to show up in select box
+	select_text:		"Select Status", // string: default text to show up in select box
 	select_options:		"", // string or array: Used if field_type is set to 'select'. Can be comma delimited list of options 'textandValue,text:value', Array of options ['textAndValue', 'text:value'] or array of arrays ['textAndValue', ['text', 'value']]. The last form is especially usefull if your labels or values contain colons)
 	text_size:			null, // integer: set cols attribute of text input, if field_type is set to text. Use CSS if possible though
 	

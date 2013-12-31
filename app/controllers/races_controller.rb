@@ -5,6 +5,11 @@ class RacesController < InheritedResources::Base
     @users=User.where(:admin => false)    
   end
   
+  def create
+    super
+    flash[:notice]="Race successfully created"
+  end
+  
   def current_races
      @races=Race.where(:status=>nil)
      @tiers=Tier.all
@@ -16,7 +21,7 @@ class RacesController < InheritedResources::Base
     render 'change_status' 
   end
   def update_status
-     @race=Race.find(params[:original_value])  
+     @race=Race.find(params[:element_id])  
      @tiers=Tier.all
      @users=User.where(:admin => false)
      @race.update_attributes(:status=>params[:update_value])
