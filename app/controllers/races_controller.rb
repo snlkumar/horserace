@@ -2,8 +2,7 @@ class RacesController < InheritedResources::Base
   def show
     @race=Race.find(params[:id])
     @tiers=Tier.all
-    @users=User.where(:admin => false)
-    
+    @users=User.where(:admin => false)    
   end
   
   def current_races
@@ -17,7 +16,6 @@ class RacesController < InheritedResources::Base
     render 'change_status' 
   end
   def update_status
-    puts "i am with params#{params}"
      @race=Race.find(params[:original_value])  
      @tiers=Tier.all
      @users=User.where(:admin => false)

@@ -14,7 +14,7 @@
 	  <div class="clr"></div>
   </div>
   <div class="fields">
-	   <div class="form-field-names"><%= f.label :tier_id %></div>
+	  <div class="form-field-names"><%= f.label :tier_id %></div>
 	  <div class="form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, :required=>true) %></div>
 	  <div class="clr"></div>
   </div>
