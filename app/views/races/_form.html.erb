@@ -1,7 +1,7 @@
 
 <%= form_for(@race) do |f| %>
   <% if @race.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_exghhplanation">
       <h2><%= pluralize(@race.errors.count, "error") %> prohibited this race from being saved:</h2>
 
       <ul>
@@ -50,7 +50,8 @@ $( "#race_date" ).datepicker({
 	dateFormat:"dd-mm-yy",
 	onSelect: function(date) {
 	
-   }
+  },
+   minDate: 0
 });
 
 });
