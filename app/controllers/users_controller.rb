@@ -4,7 +4,7 @@ before_filter :authenticate_user!
 skip_before_filter :authenticate_user! , :only => [:reset_password]
 
   def index
-    @users=User.where(:admin=>false)
+    @users=User.where(:admin=>false).order('client_name ASC')
   end
 
   def new

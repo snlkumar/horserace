@@ -39,25 +39,15 @@
   <body>
   <header id="header">
 <section class="inner">
-<a href="#" id="logo"><img src="../assets/logo.png" alt="" border="0"></a>
+<a href="#" id="logo"><img src="/../assets/logo.png" alt="" border="0"></a>
 <%unless current_user%>
-  <div class="home_nav">
+  <%=render 'shared/top_nav'%>
+<%else if current_user.admin?%>
+<%=render 'shared/admin_nav'%>
 <%else%>
-<div id="nav">
+<%=render 'shared/client_nav'%>
 <%end%>
-<ul>
-<li class="active"><a href="/home/index">Home</a></li>
-<li><a href="#">ABOUT US</a></li>
-<li><%=link_to 'Client Area',new_user_session_path%></li>
-<li ><%=link_to 'Admin Area',admin_new_user_session_path%></li>
-<li><a href="#">CONTACT US</a></li>	
-<%if current_user%>
-<li>hello <%=current_user.client_name%></li>
-<li><%=  link_to 'Logout', destroy_user_session_path, :method => :delete%></li>
 <%end%>
-</ul>
-
-</div>
 
 <!--nav end here-->
 </section>
@@ -106,8 +96,8 @@
     <ul>
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
-        <li><%=link_to 'Client Area',new_user_session_path%></li>
-        <li><%=link_to 'Admin Area',admin_new_user_session_path%></li>
+        <li>Client Area<%link_to 'Client Area',new_user_session_path%></li>
+        <li>Admin Area<%link_to 'Admin Area',admin_new_user_session_path%></li>
         <li><a href="#">Contact Us</a></li>
     </ul>
 

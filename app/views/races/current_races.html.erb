@@ -1,6 +1,8 @@
 
    <div id="update_status">
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" src="../assets/jquery.editinplace.js"></script>
         <script type="text/javascript" src="../assets/demo.js"></script>
        <script type="text/javascript">
@@ -40,7 +42,6 @@ var data={
 			<th>Horse</th>
 			<th>Location</th>
 			<th>Default Odds</th>
-			
 			<%@tiers.each do |tier|%>	
 			  <th><%=tier.name%></th>			  
 			<%end%>
@@ -53,7 +54,7 @@ var data={
 		<%@races.each do |race|%>
 		<tr class="tr_bg_yellow">
 			<td><%=race.name%></td>
-			<td><%=race.date%></td>
+			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
 			<td><%=race.location%></td>
@@ -62,8 +63,9 @@ var data={
 			<%calculated=(race.default_odd*tier.weight)/100%>
 			  <td><%=number_to_currency(race.default_odd+calculated)%></td>			  
 			<%end%>	
-			<td>
+			
 				<%if current_user.admin?%>
+				<td>
 				<p class="editme3" race="<%=race.id%>">					
                 <a href="#"><img src="../assets/green-tick.png"><img src="../assets/cross.png"></a>
                 </p>
@@ -72,8 +74,10 @@ var data={
 					<img src="../assets/edit_icon.png">
 				</a> -->
 				<%= link_to image_tag("../assets/view-icon.png"), race %> 
-				<%end%>
 				</td>
+				<%end%>
+				
+			
 			</tr>
 		<%end%>		
 	</tbody>
@@ -86,10 +90,33 @@ There is no current race yet
 <script>
 $(function() {
 $( "#datepicker" ).datepicker({
-	dateFormat:"yy-mm-dd",
+	dateFormat:"dd-mm-yy",
 	onSelect: function(date) {
 		$('#LoadingImage').show();
-   $.get("/races/view_prev_races?date="+date,function(data){
+		var to=$('#todatepicker').val();
+		var data={
+			'from' : date,
+			'to' : to
+		}
+		$.get("/races/view_prev_races?",data,function(data){
+   	$(".pre_races").empty();
+   	$('#LoadingImage').hide();
+   	$(".pre_races").html(data);
+   });
+
+   }
+});
+$( "#todatepicker" ).datepicker({
+	dateFormat:"dd-mm-yy",
+	onSelect: function(date) {
+		$('#LoadingImage').show();
+		var from=$('#datepicker').val();
+		var data={
+			'from' : from,
+			'to' : date
+		}
+	
+   $.get("/races/view_prev_races?",data,function(data){
    	$(".pre_races").empty();
    	$('#LoadingImage').hide();
    	$(".pre_races").html(data);
@@ -100,7 +127,7 @@ $( "#datepicker" ).datepicker({
 </script>
 <legend>Previous races</legend>
  <div class="field">
-    <p><b>Select Date:</b>  <input type="text" id="datepicker"></p>
+    <p><b>From Date:</b>  <input type="text" id="datepicker"><b>  To Date:</b>  <input type="text" id="todatepicker"></p>
   </div>
   <div id="LoadingImage" style="display: none">
 	<img src="../assets/loading.gif" />

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102051218) do
+ActiveRecord::Schema.define(:version => 20140102124443) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -72,9 +72,20 @@ ActiveRecord::Schema.define(:version => 20140102051218) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.boolean  "admin",                  :default => false
+    t.string   "balance_after_bet"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "users_races", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "race_id"
+    t.float    "processing_balance"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "users_races", ["user_id", "race_id"], :name => "index_users_races_on_user_id_and_race_id"
 
 end

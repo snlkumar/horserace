@@ -18,7 +18,9 @@
 		<%@users.each do |user|%>
 		<tr class="tr_bg_yellow">
 			<td><%=user.client_name%></td>
+			
 			<td><%=number_to_currency(user.balance)%></td>
+			
 				<td><button id="create-user" class="btn-inverse" user_id="<%=user.id%>">Change balance</button></td>
 				<% link_to 'Edit', edit_user_path(user) if @final.nil?%>
 		</tr>

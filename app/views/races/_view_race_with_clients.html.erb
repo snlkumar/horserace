@@ -14,11 +14,11 @@
 		<%@users.each do |user|%>
 		   <tr class="tr_bg_yellow">
 			<td><%=user.client_name%></td>
-			<td><%=number_to_currency(user.balance)%></td>
+			<td><%=number_to_currency(user.balance_before_bet(@race))%></td>
 			<td><%=user.tier.name%></td>
-			<td><%=number_to_currency(user.bet_amount) unless user.balance.nil?%></td>		
-			<td><%=number_to_currency(user.balance_after_bet) unless user.balance.nil?%></td>
-			<td><%=number_to_currency(user.potential_win) unless user.balance.nil?%></td>
+			<td><%=number_to_currency(user.bet_amount(@race)) unless user.balance.nil?%></td>		
+			<td><%=number_to_currency(user.calculated_balance_after_bet(@race)) unless user.balance.nil?%></td>
+			<td><%=number_to_currency(user.potential_win(@race)) unless user.balance.nil?%></td>
 			<td><%=number_to_currency(user.potential_loss(@race)) unless user.balance.nil?%></td>
 		   </tr>
 			<%end%>
