@@ -15,7 +15,7 @@
 		   <tr class="tr_bg_yellow">
 			<td><%=user.client_name%></td>
 			<td><%=number_to_currency(user.balance)%></td>
-			<td><%=user.tier_id%></td>
+			<td><%=user.tier.name%></td>
 			<td><%=number_to_currency(user.bet_amount) unless user.balance.nil?%></td>		
 			<td><%=number_to_currency(user.balance_after_bet) unless user.balance.nil?%></td>
 			<td><%=number_to_currency(user.potential_win) unless user.balance.nil?%></td>
