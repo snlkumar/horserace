@@ -1,13 +1,11 @@
 
 <%= form_for(@race) do |f| %>
   <% if @race.errors.any? %>
-    <div id="custom_error_class">
-     <ul class="custom_error_class">
+     <ul class="alert fade in alert-error">
       <% @race.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
-    </div>
   <% end %>
  <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :name%></div>
