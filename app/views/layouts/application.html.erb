@@ -59,10 +59,11 @@
    	 <div class="inner">
    	<div class="left_area">
    		<div class="categories_outer">
-           <h3>Categories</h3>
-               <ul class="categorie_link2">
+           
    		<%if current_user%>
             	<%if current_user.admin?%>
+            	<h3>Categories</h3>
+               <ul class="categorie_link2">
             	<li><% link_to "New Tier", "/tiers/new"  %></li>
               <li><%= link_to "New Race", "/races/new"  %></li>
               <li><%= link_to "Current Races", "/races/current_races"  %></li>
@@ -71,14 +72,16 @@
               <li><%= link_to "Client Balances", view_clients_balance_races_path  %></li>
               <li><%= link_to "Contacts", contacts_races_path  %></li>
               <li><%= link_to "Change Password",edit_user_registration_path%></li>
-                         
+              </ul> 
                <%else%>
+               <h3>Settings</h3>
+               <ul class="categorie_link2">
                <li><%= link_to "Change Password",edit_user_registration_path%></li>
+               </ul>
             <%end%>
-            <%else%>
-            <li><%  link_to 'Login', new_user_session_path %></li>            
+           
             <%end%>
-            </ul></div>
+            </div>
    		</div>
    	<div class="races_name">
    		<%= bootstrap_flash %>
