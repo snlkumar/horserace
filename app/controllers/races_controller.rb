@@ -48,8 +48,7 @@ class RacesController < InheritedResources::Base
   end
   def view_prev_races
     from=params[:from]
-    to=params[:to]
-  
+    to=params[:to]  
     @races=Race.find(:all,:conditions =>["date BETWEEN ? AND ? ", Date.parse(from).strftime("%y/%m/%d"),Date.parse(to).strftime("%y/%m/%d")])
     
    render :partial=>'prev_races'

@@ -1,6 +1,13 @@
 <div class="enter-client">
   	<h2>Edit Client</h2>
-
+<% if @user.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    
+  <% end %>
 <%= form_for @user do |f| %>
   
    <div class="fields">

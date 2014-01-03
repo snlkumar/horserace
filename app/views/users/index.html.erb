@@ -1,4 +1,12 @@
-
+<%unless @user.blank?%>
+<% if @user.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+   <%end%> 
+  <% end %>
 <table class="table">
 	<thead>
 		<tr>

@@ -52,9 +52,11 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   def destroy
     redirect_to users_path and return if params[:cancel]
      @user=User.find(params[:id])
-    if @user.destroy
-      flash[:notice] = "#{ @user.client_name } successfully deleted."
-      redirect_to users_path
+     @users=User.where(:admin=>false).order('client_name ASC')   
+     @user.destroy
+     respond_to do |format|
+      format.html { render 'index' }
+      format.json { head :no_content }
     end
   end
   def reset_password

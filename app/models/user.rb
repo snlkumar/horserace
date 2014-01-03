@@ -10,10 +10,22 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password,:reset_password_token, :password_confirmation,:admin, :remember_me,:client_name,:balance,:balance_after_bet,:tier_id,:phone
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
+  validates :phone,:numericality =>true
   validates :balance,:presence=>true,:format => { :with => /^\d+??(?:\.\d{0,2})?$/ },:numericality =>{:greater_than => 0},:if =>:balance_changed?
   validates :tier_id,:presence=>true,:if =>:tier_id_changed?
   validates_format_of :client_name, :with => /^[a-zA-Z() ]+$/
-   has_and_belongs_to_many :races,:join_table => :users_races
+  has_and_belongs_to_many :races,:join_table => :users_races
+  before_destroy :check_for_races
+  
+  
+  def check_for_races
+   user_race= UsersRaces.find_by_user_id(self.id)
+   unless user_race.blank?     
+    self.errors[:base] << "Cannot delete user while its race exists."
+    return false   
+  end 
+  end
+  
  def balance_before_bet(race)
  processing_amount=UsersRaces.find_by_race_id_and_user_id(race.id,self.id).processing_balance
  return processing_amount
