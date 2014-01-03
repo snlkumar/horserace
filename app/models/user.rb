@@ -16,6 +16,19 @@ class User < ActiveRecord::Base
   validates_format_of :client_name, :with => /^[a-zA-Z() ]+$/
   has_and_belongs_to_many :races,:join_table => :users_races
   before_destroy :check_for_races
+  after_create :update_races
+  
+  
+  
+  def update_races 
+    @races=Race.where(:status=>nil) 
+    @races.each do |race|      
+    UsersRaces.create(:race_id=>race.id,:user_id=>self.id,:processing_balance=>self.balance)
+    User.update(self.id,:balance=>self.calculated_balance_after_bet(race))
+   end
+  end
+  
+  
   
   
   def check_for_races

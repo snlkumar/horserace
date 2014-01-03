@@ -93,6 +93,7 @@ $( "#datepicker" ).datepicker({
 	dateFormat:"dd-mm-yy",
 	maxDate: 0,
 	onSelect: function(date) {
+		$("#todatepicker").datepicker("option","minDate", date)
 		$('#LoadingImage').show();
 		var to=$('#todatepicker').val();
 		var data={
@@ -112,6 +113,7 @@ $( "#todatepicker" ).datepicker({
 	dateFormat:"dd-mm-yy",
 	maxDate: 0,
 	onSelect: function(date) {
+		$("#datepicker").datepicker("option","maxDate", date)
 		$('#LoadingImage').show();
 		var from=$('#datepicker').val();
 		var data={
@@ -131,7 +133,7 @@ $( "#todatepicker" ).datepicker({
 </script>
 <h2>Previous races</h2>
  <div class="field">
-    <p><b>From Date:</b>  <input type="text" id="datepicker"><b>  To Date:</b>  <input type="text" id="todatepicker"></p>
+    <p><b>From Date:</b>  <input type="text" id="datepicker" readonly="true"><b>  To Date:</b>  <input type="text" id="todatepicker" readonly="true"></p>
   </div>
   <div id="LoadingImage" style="display: none">
 	<img src="../assets/loading.gif" />
