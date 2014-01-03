@@ -92,4 +92,12 @@ $(document).on("click","#create-user",function(){
 		});
 	
 
+// $(document).on("focusout","#user_name",function(){
+	// var inp=$(this).val();
+	// if (isNaN(x)) 
+  // {
+    // alert("Must input numbers");
+    // return false;
+  // }
+// });
 

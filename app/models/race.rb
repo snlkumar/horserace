@@ -1,9 +1,10 @@
 class Race < ActiveRecord::Base
   attr_accessible :name, :date,:time, :horse, :default_odd,:status,:location,:users
   validates :name,:horse,:default_odd,:presence=>true
-  validates :default_odd,:presence=>true
+  validates :default_odd,:presence=>true,:format => { :with => /^\d+??(?:\.\d{0,2})?$/ },:numericality =>{:greater_than => 0}
   after_create :update_balance
   has_and_belongs_to_many :users,:join_table => :users_races
+  validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
   
   def update_balance 
     @users=User.where(:admin=>false) 

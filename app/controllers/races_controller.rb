@@ -6,8 +6,18 @@ class RacesController < InheritedResources::Base
   end
   
   def create
-    super
-    flash[:notice]="Race successfully created"
+    @race = Race.new(params[:race])
+
+    respond_to do |format|
+      if @race.save
+        format.html { redirect_to @race, notice: 'Race successfully created.' }
+        format.json { render json: @race, status: :created, location: @race }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @race.errors, status: :unprocessable_entity }
+      end
+    end
+    
   end
   
   def current_races
