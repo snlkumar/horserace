@@ -426,7 +426,7 @@ zoom: 1;
 	float:left;
 	background:#FFF;
 	border:solid 1px #d2d2d2;
-	width:99%;
+	width:100%;
 	min-height:250px;
 	}
 
@@ -473,7 +473,7 @@ zoom: 1;
 .races_name{
 	float:right;
 	margin:70px 0 70px 0px;
-	width:65%;
+	width:79%;
 	}
 	
 .current_heading {
@@ -539,7 +539,7 @@ zoom: 1;
 	margin:0 0 0 0px;
 	padding: 15px 8px 50px;
 	float:left;
-	width:94.5%;
+	width:100%;
 	font-family:Arial, Helvetica, sans-serif;
 	}
 	
@@ -718,9 +718,9 @@ zoom: 1;
 	margin:8px 0 0 0;
 }
 .left_area {
-		float:left;
-		width:30%;
-		padding:70px 0 70px 0px;
+	float: left;
+    padding: 70px 0;
+    width: 18%;
 		}
 .change_select {
 	width: 47%;
