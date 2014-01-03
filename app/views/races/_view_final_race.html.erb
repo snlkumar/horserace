@@ -1,3 +1,4 @@
+<%unless @users.blank?%>
 <table class="table">
 	<thead>
 		<tr>
@@ -31,3 +32,6 @@
 			<%end%>
 	</tbody>
 </table>
+<%else%>
+Sorry no record found.
+<%end%>

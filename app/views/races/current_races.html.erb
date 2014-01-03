@@ -83,7 +83,7 @@ var data={
 	</tbody>
 </table>
 <%else%>
-There is no current race yet
+There is no current race yet.
 <%end%>
 </div>
 <%unless current_user.admin?%>
@@ -129,7 +129,7 @@ $( "#todatepicker" ).datepicker({
 });
 });
 </script>
-<legend>Previous races</legend>
+<h2>Previous races</h2>
  <div class="field">
     <p><b>From Date:</b>  <input type="text" id="datepicker"><b>  To Date:</b>  <input type="text" id="todatepicker"></p>
   </div>

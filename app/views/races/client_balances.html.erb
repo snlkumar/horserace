@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<%unless @users.blank?%>
 <table class="table">
 	<thead>
 		<tr>
@@ -27,6 +28,9 @@
 			<%end%>
 	</tbody>
 </table>
+<%else%>
+Sorry no record found.
+<%end%>
 <div id="dialog-form" title="Enter Password to change user balance">
 <form>
 	<div class="user_error"></div>

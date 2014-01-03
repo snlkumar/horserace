@@ -7,6 +7,7 @@
       </ul>
    <%end%> 
   <% end %>
+  <%unless @users.empty?%>
 <table class="table">
 	<thead>
 		<tr>
@@ -19,10 +20,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%unless @users.empty?%>
+		
 		<%@users.each_with_index do |user,index|%>
 	  <%@class="tr_bg_yellow"%>
-	
 		<tr class="<%=@class%>">
 			<td><strong><%=user.client_name%></strong></td>
 			<td><%=number_to_currency(user.balance)%></td>
@@ -33,6 +33,9 @@
               <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure you want to delete?', method: :delete %></td>
 		</tr>
 		<%end%>
-		<%end%>	
+		
 	</tbody>	
 </table>
+<%else%>
+Sorry Record not found.
+<%end%>	
