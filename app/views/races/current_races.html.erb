@@ -91,6 +91,7 @@ There is no current race yet
 $(function() {
 $( "#datepicker" ).datepicker({
 	dateFormat:"dd-mm-yy",
+	maxDate: 0,
 	onSelect: function(date) {
 		$('#LoadingImage').show();
 		var to=$('#todatepicker').val();
@@ -109,6 +110,7 @@ $( "#datepicker" ).datepicker({
 });
 $( "#todatepicker" ).datepicker({
 	dateFormat:"dd-mm-yy",
+	maxDate: 0,
 	onSelect: function(date) {
 		$('#LoadingImage').show();
 		var from=$('#datepicker').val();

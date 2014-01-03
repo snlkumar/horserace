@@ -30,7 +30,7 @@
 			<td><%=user.email%></td>
 			<td><%=user.phone%></td>
 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(user) %> |
-              <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure?.Do you want to delete', method: :delete %></td>
+              <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure you want to delete?', method: :delete %></td>
 		</tr>
 		<%end%>
 		<%end%>	
