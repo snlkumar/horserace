@@ -98,12 +98,13 @@ $( "#datepicker" ).datepicker({
 			'from' : date,
 			'to' : to
 		}
+		if (to){
 		$.get("/races/view_prev_races?",data,function(data){
    	$(".pre_races").empty();
    	$('#LoadingImage').hide();
    	$(".pre_races").html(data);
    });
-
+    }
    }
 });
 $( "#todatepicker" ).datepicker({
@@ -115,13 +116,14 @@ $( "#todatepicker" ).datepicker({
 			'from' : from,
 			'to' : date
 		}
-	
+	if (from){
    $.get("/races/view_prev_races?",data,function(data){
    	$(".pre_races").empty();
    	$('#LoadingImage').hide();
    	$(".pre_races").html(data);
    });
    }
+  }
 });
 });
 </script>
