@@ -6,9 +6,9 @@ def index
    redirect_to new_user_path
 end
 
-# private
-# def authenticate_user!
-  # puts "authonticate user"
-# end
-
+def login_required
+ unless current_user
+ redirect_to root_path
+ end
+end
 end

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password,:reset_password_token, :password_confirmation,:admin, :remember_me,:client_name,:balance,:balance_after_bet,:tier_id,:phone
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
-  validates :phone,:numericality =>true
+  validates :phone,:numericality =>true,:unless=> :is_admin?
   validates :balance,:presence=>true,:format => { :with => /^\d+??(?:\.\d{0,2})?$/ },:numericality =>{:greater_than => 0},:if =>:balance_changed?
   validates :tier_id,:presence=>true,:if =>:tier_id_changed?
   validates_format_of :client_name, :with => /^[a-zA-Z() ]+$/
@@ -18,13 +18,17 @@ class User < ActiveRecord::Base
   before_destroy :check_for_races
   after_create :update_races
   
-  
+  def is_admin?
+    self.admin?    
+  end
   
   def update_races 
+    unless self.admin?
     @races=Race.where(:status=>nil) 
     @races.each do |race|      
     UsersRaces.create(:race_id=>race.id,:user_id=>self.id,:processing_balance=>self.balance)
     User.update(self.id,:balance=>self.calculated_balance_after_bet(race))
+   end
    end
   end
   

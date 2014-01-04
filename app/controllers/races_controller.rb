@@ -1,4 +1,5 @@
 class RacesController < InheritedResources::Base
+  before_filter :login_required
   def show
     @race=Race.find(params[:id])
     @tiers=Tier.all
