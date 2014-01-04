@@ -50,7 +50,9 @@ class RacesController < InheritedResources::Base
   def view_prev_races
     from=params[:from]
     to=params[:to]  
-    @races=Race.where('date >= ? AND date <= ?','2014-01-01','2014-01-03')
+    
+    puts Date.parse(from).strftime("Printed on %y/%m/%d")
+    @races=Race.where('date >= ? AND date <= ?',from,to)
     
    render :partial=>'prev_races'
   end
