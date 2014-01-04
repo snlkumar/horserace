@@ -31,7 +31,8 @@ var data={
        </script>
         
 
-<h2>Current Races</h2>
+<h1>Current Races</h1>
+<div class="clr"></div>
 <%unless @races.empty?%>
 <table class="table">
 	<thead>
@@ -131,7 +132,7 @@ $( "#todatepicker" ).datepicker({
 });
 });
 </script>
-<h2>Previous races</h2>
+<h1>Previous races</h1>
  <div class="field">
     <p><b>From Date:</b>  <input type="text" id="datepicker" readonly="true"><b>  To Date:</b>  <input type="text" id="todatepicker" readonly="true"></p>
   </div>

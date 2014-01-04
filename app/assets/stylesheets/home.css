@@ -550,7 +550,16 @@ zoom: 1;
 	border-bottom:dashed 1px #d7d7d7;
 	width:94%;
 	}
-	
+.races_name h1 {
+    border-bottom: 1px solid #D6D6D6;
+    color: #000000;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    margin: 10px 0 25px;
+    padding: 0 0 10px;
+    width: 100%;
+}
 .categorie_link2 li a {
 	margin:0 0 0 0px;
 	font-size:15px;

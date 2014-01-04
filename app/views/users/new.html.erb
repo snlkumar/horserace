@@ -2,8 +2,9 @@
 
 <%= form_for @user do |f| %>
   
-  <div class="enter-client">
-  	<h2>Enter new Client</h2>
+  
+  	<h1>Enter new Client</h1>
+  	<div class="clr"></div>
   	<% if @user.errors.any? %>   
       <ul class="alert fade in alert-error">
       <% @user.errors.full_messages.each do |msg| %>
@@ -12,38 +13,39 @@
       </ul>
     
   <% end %>
-  <div class="fields">
-   <div class="form-field-names"><%= f.label :client_name %></div>
-  <div class="form-field"><%= f.text_field :client_name, :autofocus => true,:placeholder=>"Enter client name",:required=>true %></div>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :client_name %></div>
+  <div class="change_password_form-field"><%= f.text_field :client_name, :autofocus => true,:placeholder=>"Enter client name",:required=>true %></div>
   <div class="clr"></div></div>
-  <div class="fields">
-  	<div class="form-field-names"><%= f.label :balance %></div>
-  <div class="form-field"><%= f.text_field :balance,:placeholder=>"Balance should be in integer",:required=>true%></div>
+  <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :balance %></div>
+  <div class="change_password_form-field"><%= f.text_field :balance,:placeholder=>"Balance should be in integer",:required=>true%></div>
   <div class="clr"></div></div>
-  <div class="fields">
-  	<div class="form-field-names"><%= f.label :tier_id %></div>
-  	<div class="form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => true},:required=>true) %></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :tier_id %></div>
+  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => true},:required=>true) %></div>
   <!-- <%= f.text_field :tier_id%></div> -->
   <div class="clr"></div></div>
-  <div class="fields">
-  	<div class="form-field-names"><%= f.label :phone %></div>
-  <div class="form-field"><%= f.text_field :phone,:placeholder=>'enter phone',:required=>true %></div>
+  <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :phone %></div>
+  <div class="change_password_form-field"><%= f.text_field :phone,:placeholder=>'enter phone',:required=>true %></div>
   <div class="clr"></div></div>
-  <div class="fields">
-  	<div class="form-field-names"><%= f.label :email %></div>
-  <div class="form-field"><%= f.email_field :email,:required=>true,:class=>"text_class"%></div>
+  <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :email %></div>
+  <div class="change_password_form-field"><%= f.email_field :email,:required=>true,:class=>"text_class"%></div>
  <div class="clr"></div></div>
-  <div class="fields">
-  	<div class="form-field-names"><%= f.label :password %></div>
-  <div class="form-field"><%= f.password_field :password,:required=>true %></div>
+  <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :password %></div>
+  <div class="change_password_form-field"><%= f.password_field :password,:required=>true %></div>
 <div class="clr"></div></div>
- <div class="fields">
- 	<div class="form-field-names"><%= f.label :password_confirmation %></div>
-  <div class="form-field"><%= f.password_field :password_confirmation ,:required=>true%></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names"><%= f.label :password_confirmation %></div>
+  <div class="change_password_form-field"><%= f.password_field :password_confirmation ,:required=>true%></div>
 <div class="clr"></div></div>
-  <div class="fields">
-  	<div class="form-field-names">&nbsp;</div>
-  	<div class="form-field"><%= f.submit "Save" %></div></div>
+  <div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+  	<div class="change_password_form-field"><%= f.submit "Save" %></div>
   	<div class="clr"></div>
+  	</div>
 <% end %>
-</div>
+
