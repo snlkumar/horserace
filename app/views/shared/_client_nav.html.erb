@@ -1,11 +1,10 @@
-<div id="nav">
+<div id="cnav" class="home_nav">
 <ul>
 <li class="active">Home</li>
 <li>ABOUT US</li>
 <li>Client Area<%link_to 'Client Area',new_user_session_path%></li>
 <li >Admin Area<%link_to 'Admin Area',admin_new_user_session_path%></li>
 <li>CONTACT US</li>	
-<li>hello <%=current_user.client_name%></li>
 <li><%=  link_to 'Logout', destroy_user_session_path, :method => :delete%></li>
 </ul>
 </div>
