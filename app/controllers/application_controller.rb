@@ -11,4 +11,9 @@ def login_required
  redirect_to root_path
  end
 end
+def admin_required
+ unless current_user and current_user.admin?
+ redirect_to root_path
+ end
+end
 end
