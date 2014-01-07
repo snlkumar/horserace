@@ -54,6 +54,15 @@ class RacesController < InheritedResources::Base
     
    render :partial=>'prev_races'
   end
+  def past_races
+    today= Date.today
+    @races=Race.where('date <= ?',today)
+  end
+  
+  def view_login
+    @users=User.where(:admin=>false)
+    render 'users/view_login'
+  end
   
   
 end

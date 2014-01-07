@@ -1,0 +1,46 @@
+<%unless @races.empty?%>
+<table id="upcoming" class="table">
+	<thead>
+		<tr>
+			<th>Race Name</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Horse</th>
+			<th>Location</th>
+			<th>Default Odds</th>
+			<%@tiers.each do |tier|%>	
+			  <th><%=tier.name%></th>			  
+			<%end%>
+			<th>Status</th>
+			<th>Action</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<%@races.each do |race|%>
+		<tr class="tr_bg_yellow">
+			<td><%=race.name%></td>
+			<td><%=race.date.strftime("%d/%m/%Y")%></td>
+			<td><%=race.time.strftime("%I:%M%p")%></td>
+			<td><%=race.horse%></td>
+			<td><%=race.location%></td>
+			<td><%=number_to_currency(race.default_odd)%></td>
+			<%@tiers.each do |tier|%>
+			<%calculated=(race.default_odd*tier.weight)/100%>
+			  <td><%=number_to_currency(race.default_odd+calculated)%></td>			  
+			<%end%>	
+			<td><%=race.status%></td>
+				
+				<td>
+				<p class="editme3" race="<%=race.id%>">					
+                <a href="#"><img src="../assets/green-tick.png"><img src="../assets/cross.png"></a>
+              </p> |
+           		<%= link_to image_tag("../assets/view-icon.png"), race %> | <%= link_to 'Edit', edit_race_path(race) %> 
+				</td>
+			</tr>
+		<%end%>		
+	</tbody>
+</table>
+<%else%>
+Record not found.
+<%end%>

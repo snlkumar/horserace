@@ -86,4 +86,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
    flash[:notice] = "User Successfully updated."
    redirect_to view_clients_balance_races_path
   end
+  
+  def view_login
+    puts 'i am in view_login'
+  end
 end

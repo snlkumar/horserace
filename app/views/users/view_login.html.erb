@@ -1,0 +1,30 @@
+<h1>Login List</h1>
+
+
+  <%unless @users.empty?%>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Sign in count</th>
+			<th>Current signin at</th>
+			<th>Last singin at</th>
+			</tr>
+	</thead>
+	<tbody>
+		
+		<%@users.each_with_index do |user,index|%>
+	  <%@class="tr_bg_yellow"%>
+		<tr class="<%=@class%>">
+			<td><strong><%=user.client_name%></strong></td>
+			<td><%=user.sign_in_count%></td>
+			<td><%=user.current_sign_in_at%></td>
+			<td><%=user.last_sign_in_at%></td>			
+		</tr>
+		<%end%>
+		
+	</tbody>	
+</table>
+<%else%>
+Sorry record not found.
+<%end%>	

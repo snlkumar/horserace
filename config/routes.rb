@@ -4,7 +4,7 @@ HorseRace::Application.routes.draw do
 
    resources :races do
      collection do
-       get :current_races,:change_status,:view_clients_balance,:contacts,:view_prev_races
+       get :current_races,:change_status,:view_clients_balance,:contacts,:view_prev_races,:past_races,:view_login
        put :update_status
      end
    end
@@ -43,7 +43,7 @@ HorseRace::Application.routes.draw do
     get 'confirm_password'=>'users#confirm_password'
     get 'sign_up'=>'devise/registrations#new',:as=>:new_user_registration
     post 'signin' => 'devise/sessions#create', :as => :user_session
-    
+   
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end 
   
