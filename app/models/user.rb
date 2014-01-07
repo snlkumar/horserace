@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   def update_races 
     unless self.admin?
-    @races=Race.where(:status=>nil) 
+    @races=Race.where(:status=>nil).order('created_at ASC') 
     @races.each do |race|      
     UsersRaces.create(:race_id=>race.id,:user_id=>self.id,:processing_balance=>self.balance)
     User.update(self.id,:balance=>self.calculated_balance_after_bet(race))
