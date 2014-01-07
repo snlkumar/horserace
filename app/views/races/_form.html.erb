@@ -24,6 +24,18 @@
     <div class="clr"></div>
   </div>
   <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :description %></div>
+    <div class="change_password_form-field"><%= f.text_area :description%></div>
+  
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :race_type %></div>
+    <div class="change_password_form-field"><%= f.select :race_type,['Gallop','Trots','Dogs'],:class=>'change_select'%></div>
+  
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :horse %></div>
     <div class="change_password_form-field"><%= f.text_field :horse,:required=>true %></div>
     <div class="clr"></div>

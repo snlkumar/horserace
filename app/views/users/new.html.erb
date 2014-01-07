@@ -23,7 +23,7 @@
   <div class="clr"></div></div>
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :tier_id %></div>
-  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => true},:required=>true,:class=>"tier_select") %></div>
+  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => 'default Odd'},:class=>"tier_select") %></div>
   <!-- <%= f.text_field :tier_id%></div> -->
   <div class="clr"></div></div>
   <div class="change_password_fields">
@@ -34,6 +34,23 @@
   	<div class="change_password_names"><%= f.label :email %></div>
   <div class="change_password_form-field"><%= f.email_field :email,:required=>true,:class=>"text_class"%></div>
  <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :status %></div>
+  <div class="change_password_form-field"><%= f.select :status, ['Active','Inactive'],:class=>"tier_select" %></div>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :is_this_trial %></div>
+  <div class="change_password_form-field"><%= f.check_box :is_this_trial%></div>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :trial_duration %></div>
+  <div class="change_password_form-field"><%= f.select :trail_duration,[3,4,5]%></div>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :trading_start_date %></div>
+  <div class="change_password_form-field"><%= f.text_field :trading_start_date,:required=>true,:readonly=>true%>
+ <div class="clr"></div></div>
+ 
   <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :password %></div>
   <div class="change_password_form-field"><%= f.password_field :password,:required=>true %></div>
@@ -45,7 +62,21 @@
   <div class="change_password_fields">
   	<div class="change_password_names">&nbsp;</div>
   	<div class="login_button"><%= f.submit "Save" %></div>
-  	<div class="clr"></div>
+  	<div class="clr"></div>	
   	</div>
 <% end %>
+<script>
+$(function() {
+$( "#user_trading_start_date" ).datepicker({
+	dateFormat:"dd-mm-yy",
+	onSelect: function(date) {
+	
+  },
+   minDate: 0
+});
 
+});
+</script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

@@ -19,7 +19,14 @@
 	<tbody>
 		<%@users.each do |user|%>
 		<tr class="tr_bg_yellow">
-			<td><strong><%=user.client_name%></strong></td>
+			<td><strong>
+				<%unless user.is_this_trial%>
+				<%=user.client_name %>
+				<%else%>
+				<%=user.client_name %>T
+				<%end%>
+				
+				</strong></td>
 			
 			<td><%=number_to_currency(user.balance)%></td>
 			

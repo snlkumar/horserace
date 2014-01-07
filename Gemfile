@@ -11,6 +11,7 @@ gem 'activeadmin'
 gem 'mysql2'
 gem 'execjs'
 gem 'therubyracer'
+gem 'whenever', :require => false 
 gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
