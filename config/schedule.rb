@@ -6,7 +6,9 @@
 # Example:
 #
  set :output, "home/Documents/cron_log/cron_log.log"
- job_type :runner,  "cd :path && rails runner -e :development ':task' :output"
+ # job_type :runner,  "cd :path && rails runner -e :development ':task' :output"
+ set :job_template, "/bin/bash -i -c ':job'"
+ 
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -17,7 +19,11 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-every 1.day, :at => '4:30 pm' do
+every 1.minute do
   runner "User.check_trail_duration"
 end
+
+# every 9.minutes do
+  # runner "Race.bet_reminder"
+# end
 # Learn more: http://github.com/javan/whenever
