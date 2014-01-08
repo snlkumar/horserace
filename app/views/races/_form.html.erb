@@ -7,6 +7,16 @@
       <% end %>
       </ul>
   <% end %>
+  <%unless Race.last.nil?%>
+  <%@tnumber=(Race.last.ticket_number).next%>
+  <%else%>
+  <%@tnumber=ENV['ticket_number']%>
+  <%end%>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :ticket_number%></div>
+    <div class="change_password_form-field"><%= f.text_field :ticket_number,:readonly=>true,:value=>@tnumber%></div>
+    <div class="clr"></div>
+  </div>
  <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :name%></div>
     <div class="change_password_form-field"><%= f.text_field :name,:required=>true%></div>
@@ -53,7 +63,7 @@
  
   <div class="change_password_fields">
   	<div class="change_password_names">&nbsp;</div>
-     <div class="login_button"><%= f.submit "Create race"%></div>
+     <div class="login_button"><%= f.submit "Save race"%></div>
      <div class="clr"></div>
   </div>
 <% end %>

@@ -1,0 +1,48 @@
+<%unless @user.races.blank?%>
+   <table id="table">
+   	<thead>
+   		<tr>
+   			
+   			Total Balance: <%=number_to_currency(@user.balance)%>
+   			</tr>
+   		<tr>
+   			<th>Bet Date/Time</th>
+   			<th>Ticket Number</th>
+   			<th>Description</th>
+   			<th>Bet Amount</th>
+   			<th>Bet Type</th>
+   			<th>Status</th>
+   			<th>Win</th>
+   			<th>Lost</th>
+   			<th>Processing Balance</th>
+   			
+   		</tr>
+   	</thead>
+   	<tbody>
+   		<%@user.races.each do |race|%>
+   		<%prev_race=UsersRaces.find_by_race_id_and_user_id(race.id,@user.id)%>
+   		<tr class="tr_bg_yellow">
+   			<td><%=race.date%></td>
+   			<td><%=race.ticket_number%></td>
+   			<td><%=race.description%></td>
+   			<td><%=number_to_currency(prev_race.bet_amount) unless prev_race.blank?%></td>
+   			<td><%=race.race_type%></td>
+   			<td><%=race.status%></td>
+ 			<td><%=number_to_currency(prev_race.win) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(prev_race.lost) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>
+   		</tr>
+   		
+   		
+   		
+   		<%end%>
+   		
+   	</tbody>
+   	
+   	
+   	
+   </table>
+
+<%else%>
+Sorry there is no record.
+<%end%>

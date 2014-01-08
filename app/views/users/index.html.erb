@@ -42,7 +42,9 @@
 			<td><%=user.phone%></td>
 			<td><%=user.status%></td>
 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(user) %> |
-              <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure you want to delete?', method: :delete %></td>
+              <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure you want to delete?', method: :delete %> | 
+              <%= link_to "View_report",:controller=>'users',:action=>'view_report',:id=>user.id %>
+              </td>
 		</tr>
 		<%end%>
 		

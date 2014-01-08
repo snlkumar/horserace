@@ -9,7 +9,9 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
 
   def new
     @user = User.new
+    @user.bank_details.build
     unless current_user.admin?
+      
       redirect_to current_races_races_path
     end
   end
@@ -87,7 +89,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
    redirect_to view_clients_balance_races_path
   end
   
-  def view_login
-    puts 'i am in view_login'
+  def view_report
+    @user=User.find params[:id]
+   puts @user.races.count
   end
 end

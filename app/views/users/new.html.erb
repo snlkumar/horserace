@@ -13,10 +13,17 @@
       </ul>
     
   <% end %>
+  
+  <%@cnumber=(User.last.client_number).next%>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :client_number %></div>
+    <div class="change_password_form-field"><%= f.text_field :client_number,:readonly=>true,:value=>@cnumber %></div>
+  <div class="clr"></div></div>
   <div class="change_password_fields">
    <div class="change_password_names"><%= f.label :client_name %></div>
   <div class="change_password_form-field"><%= f.text_field :client_name, :autofocus => true,:placeholder=>"Enter client name",:required=>true %></div>
   <div class="clr"></div></div>
+   
   <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :balance %></div>
   <div class="change_password_form-field"><%= f.text_field :balance,:placeholder=>"Balance should be in integer",:required=>true%></div>
@@ -33,6 +40,22 @@
   <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :email %></div>
   <div class="change_password_form-field"><%= f.email_field :email,:required=>true,:class=>"text_class"%></div>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :address %></div>
+  <div class="change_password_form-field"><%= f.text_field :address,:required=>true%></div>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label "date of birth" %></div>
+  <div class="change_password_form-field"><%= f.text_field :dob,:required=>true,:readonly=>true%>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :consultant_name %></div>
+  <div class="change_password_form-field"><%= f.text_field :consultant_name,:required=>true%></div>
+ <div class="clr"></div></div>
+ <div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :consultant_contact_number %></div>
+  <div class="change_password_form-field"><%= f.text_field :consultant_contact_number,:required=>true%></div>
  <div class="clr"></div></div>
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :status %></div>
@@ -59,6 +82,31 @@
  	<div class="change_password_names"><%= f.label :password_confirmation %></div>
   <div class="change_password_form-field"><%= f.password_field :password_confirmation ,:required=>true%></div>
 <div class="clr"></div></div>
+<%=f.fields_for :bank_details do |b|%>
+   <div class="change_password_fields">
+ 	<div class="change_password_names"><%= b.label :bsb %></div>
+  <div class="change_password_form-field"><%= b.text_field :bsb ,:required=>true%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names"><%= b.label :account %></div>
+  <div class="change_password_form-field"><%= b.text_field :account ,:required=>true%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names"><%= b.label :bank_name %></div>
+  <div class="change_password_form-field"><%= b.text_field :bank_name ,:required=>true%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names"><%= b.label :account_name %></div>
+  <div class="change_password_form-field"><%= b.text_field :account_name ,:required=>true%></div>
+<div class="clr"></div></div>
+
+
+
+
+<%end%>
+
+
+
   <div class="change_password_fields">
   	<div class="change_password_names">&nbsp;</div>
   	<div class="login_button"><%= f.submit "Save" %></div>
@@ -74,6 +122,14 @@ $( "#user_trading_start_date" ).datepicker({
   },
    minDate: 0
 });
+$( "#user_dob" ).datepicker({
+	dateFormat:"dd-mm-yy",
+	onSelect: function(date) {
+	
+  },
+   maxDate: "-18y"
+});
+
 
 });
 </script>

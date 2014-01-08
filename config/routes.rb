@@ -1,5 +1,8 @@
 HorseRace::Application.routes.draw do
  
+  resources :bank_details
+
+
   devise_for :members
 
    resources :races do
@@ -43,10 +46,11 @@ HorseRace::Application.routes.draw do
     get 'confirm_password'=>'users#confirm_password'
     get 'sign_up'=>'devise/registrations#new',:as=>:new_user_registration
     post 'signin' => 'devise/sessions#create', :as => :user_session
-   
+    get  'user/view_report' => 'users#view_report'
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end 
   
+
   resources :users do
     collection do
       get :reset_password,:confirm_password,:update_balance
