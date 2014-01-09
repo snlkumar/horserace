@@ -35,7 +35,9 @@ $(document).on("click","#status",function(){
 
 $(document).ready(function(){
 	$("#dialog-form").hide();
-	
+	$('input:radio[name=bank_details][value=current]').attr('checked', true);
+	$("#withdraw_bank_detail_id").val("");
+	$("#alter_bank").hide();	
 });
 		
 $(document).on("click","#create-user",function(){
@@ -87,17 +89,21 @@ $(document).on("click","#create-user",function(){
 	});
 	
 	
-		$(document).on("click",".left_link",function(){
-			$(this).attr("class","active");
+		$(document).on("click","#alternate",function(){
+			$("#current_bank").hide();	
+			$("#alter_bank").show();
+			$("#withdraw_bank_detail_id").val("");
+			$(this).attr('checked', true);
+		});
+		
+		$(document).on("click","#current",function(){
+			$("#alter_bank").hide();	
+			$("#current_bank").show();
+			$(this).attr('checked', true);
 		});
 	
 
-// $(document).on("focusout","#user_name",function(){
-	// var inp=$(this).val();
-	// if (isNaN(x)) 
-  // {
-    // alert("Must input numbers");
-    // return false;
-  // }
-// });
+$(document).on("change","#bank_id",function(){
+	$("#withdraw_bank_detail_id").val($(this).val());
+});
 

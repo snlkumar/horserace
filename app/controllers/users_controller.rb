@@ -90,7 +90,18 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   
   def view_report
-    @user=User.find params[:id]
+    @user=User.find params[:id]    
    puts @user.races.count
   end
-end
+  
+  def withdraw_request
+    @user=current_user
+    @withdraw=Withdraw.new(:user_id=>@user.id)
+  end
+  
+  def withdraw_history
+    @user=current_user
+  
+  end
+  
+  end

@@ -1,5 +1,8 @@
 HorseRace::Application.routes.draw do
  
+  resources :withdraws
+
+
   resources :bank_details
 
 
@@ -47,6 +50,9 @@ HorseRace::Application.routes.draw do
     get 'sign_up'=>'devise/registrations#new',:as=>:new_user_registration
     post 'signin' => 'devise/sessions#create', :as => :user_session
     get  'user/view_report' => 'users#view_report'
+    get  'user/withdraw_request' => 'users#withdraw_request'
+    post  'user/withdraw_request' => 'users#withdraw_request'
+    get  'user/withdraw_history' => 'users#withdraw_history'
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end 
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140108100555) do
+ActiveRecord::Schema.define(:version => 20140109045755) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -112,5 +112,13 @@ ActiveRecord::Schema.define(:version => 20140108100555) do
   end
 
   add_index "users_races", ["user_id", "race_id"], :name => "index_users_races_on_user_id_and_race_id"
+
+  create_table "withdraws", :force => true do |t|
+    t.float    "amount"
+    t.integer  "user_id"
+    t.integer  "bank_detail_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end

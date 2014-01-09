@@ -1,0 +1,60 @@
+
+
+<% if @withdraw.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @withdraw.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    
+  <% end %>
+<%=form_for @withdraw do |w|%>
+
+  
+	<div class="change_password_fields">
+	<div class="change_password_names">Avaialble Balance</div>
+	<div class="change_password_form-field"><%=current_user.balance%></div>
+	<div class="clr"></div></div>
+	<div class="change_password_fields">
+	<div class="change_password_names">Password</div>
+	<div class="change_password_form-field"><%=text_field_tag 'password','',:required=>true%></div>
+	<div class="clr"></div></div>
+     <div class="change_password_fields">
+	<div class="change_password_names"><%=w.label 'withdraw amount'%></div>
+     <div class="change_password_form-field"><%=w.text_field :amount,:required=>true%></div>
+     <div class="clr"></div></div> 
+     <div class="change_password_fields">
+	<div class="change_password_names"><label>Bank</label></div>
+     <div class="change_password_form-field"><input type="radio" name="bank_details" id="current" value="current"/><label>Current</label> <input type="radio" name="bank_details" value="alternate" id="alternate"/><label>Alternate</label></div>
+     <div class="clr"></div></div>
+     <div id="current_bank">
+     <%=select_tag 'bank_id', options_for_select(@user.bank_details.collect{ |u| [u.bank_name, u.id] }.insert(0, "Please Select"))%>
+     
+     </div>
+      <%=w.hidden_field :bank_detail_id%>
+     <%=w.hidden_field :user_id%>
+    <div id="alter_bank">
+    <div class="change_password_fields">
+ 	<div class="change_password_names">bsb</div>
+  <div class="change_password_form-field"><%= text_field_tag :bsb,''%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names">acount</div>
+  <div class="change_password_form-field"><%= text_field_tag :account,'' %></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names">bank name</div>
+  <div class="change_password_form-field"><%= text_field_tag :bank_name,''%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names">Account Name</div>
+  <div class="change_password_form-field"><%= text_field_tag :account_name,''%></div>
+<div class="clr"></div></div>
+</div>
+<div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+           <div class="login_button"><%=w.submit "Request"%></div>
+           <div class="clr"></div>	
+  	</div>
+
+<%end%>

@@ -112,6 +112,7 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.2)
     mysql2 (0.3.14)
+    nested_form (0.3.2)
     orm_adapter (0.5.0)
     pg (0.17.0)
     polyamorous (0.5.0)
@@ -186,6 +187,7 @@ DEPENDENCIES
   jquery-rails (~> 2.3.0)
   less-rails
   mysql2
+  nested_form
   pg
   rails (= 3.2.16)
   sass-rails (~> 3.2.3)

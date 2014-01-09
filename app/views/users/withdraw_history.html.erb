@@ -1,0 +1,35 @@
+<%unless @user.withdraws.blank?%>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>withdraw amount</th>			
+			<th>Bank</th>	
+			
+		</tr>
+	</thead>
+	<tbody>
+		<%@total_withdraw=0%>
+		<%@user.withdraws.each_with_index do |withdraw,index|%>
+	    <tr class="tr_bg_yellow">
+	    	<%@total_withdraw+=withdraw.amount unless withdraw.amount.nil? %>
+			<td><%=withdraw.created_at%></td>
+			<td><%=number_to_currency(withdraw.amount)%></td>
+			<td><%=withdraw.bank_detail.bank_name unless withdraw.bank_detail.blank? %></td>
+		</tr>
+		<%end%>
+		<thead>
+		<tr>
+			<th>Total</th>
+			<th><%=number_to_currency(@total_withdraw)%></th>			
+			<th></th>
+			
+			
+		</tr>
+	</thead>
+	</tbody>	
+</table>
+<%else%>
+Record not found
+
+<%end%>

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password,:reset_password_token, :password_confirmation,:admin, :remember_me,:client_name,:balance,:balance_after_bet,:tier_id,
-  :phone,:is_this_trial,:status,:trading_start_date,:trail_duration,:address,:ticket_number, :dob, :consultant_name, :consultant_contact_number,:client_number, :bank_details_attributes
+  :phone,:is_this_trial,:status,:trading_start_date,:trail_duration,:address,:ticket_number, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes, :bank_details_attributes
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
   validates :phone,:numericality =>true,:unless=> :is_admin?
@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   validates_format_of :client_name, :with => /^[a-zA-Z() ]+$/
   has_and_belongs_to_many :races,:join_table => :users_races
   has_many :bank_details
+  has_many :withdraws
+  accepts_nested_attributes_for :withdraws
   accepts_nested_attributes_for :bank_details
   before_destroy :check_for_races
   after_create :update_races
