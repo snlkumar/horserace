@@ -4,6 +4,6 @@ class AddColumnsClientNumberToUser < ActiveRecord::Migration
     add_column :users, :address, :string
     add_column :users, :dob, :date
     add_column :users, :consultant_name, :string
-    add_column :users, :consultant_contact_number, :integer
+    add_column :users, :consultant_contact_number, :string
   end
 end
