@@ -7,10 +7,14 @@
       <% end %>
       </ul>
   <% end %>
+  <%if @race.ticket_number.blank?%>
   <%unless Race.last.nil?%>
   <%@tnumber=(Race.last.ticket_number).next%>
   <%else%>
   <%@tnumber=ENV['ticket_number']%>
+  <%end%>
+  <%else%>
+  <%@tnumber=@race.ticket_number%>
   <%end%>
   <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :ticket_number%></div>

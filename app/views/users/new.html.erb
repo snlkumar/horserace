@@ -78,6 +78,7 @@
   	<div class="change_password_names"><%= f.label :password %></div>
   <div class="change_password_form-field"><%= f.password_field :password,:required=>true %></div>
 <div class="clr"></div></div>
+     <%=f.hidden_field :custom_password%>
  <div class="change_password_fields">
  	<div class="change_password_names"><%= f.label :password_confirmation %></div>
   <div class="change_password_form-field"><%= f.password_field :password_confirmation ,:required=>true%></div>

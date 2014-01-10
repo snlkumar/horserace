@@ -1,0 +1,18 @@
+<%=form_for @user do |f|%>
+<div class="change_password_fields">
+  	<div class="change_password_names"><%= f.label :respond_via %></div>
+  	
+  <div class="change_password_form-field"><%=select 'respond', 'select', ['Mobile','Email','Other'],:class=>"tier_select" %></div>
+ <div class="clr"></div></div>
+ <div id="respond_to">
+ <div class="change_password_fields">
+  	<div class="change_password_names"><label>Other</label></div>
+  <div class="change_password_form-field"><%= f.text_field :respond_via %></div>
+ <div class="clr"></div></div>
+ </div>
+ <div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+  	<div class="login_button"><%= f.submit "Save" %></div>
+  	<div class="clr"></div>	
+  	</div>
+<%end%>

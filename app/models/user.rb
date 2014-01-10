@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password,:reset_password_token, :password_confirmation,:admin, :remember_me,:client_name,:balance,:balance_after_bet,:tier_id,
-  :phone,:is_this_trial,:status,:trading_start_date,:trail_duration,:address,:ticket_number, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes, :bank_details_attributes
+  :phone,:is_this_trial,:status,:trading_start_date,:trail_duration,:address,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes, :bank_details_attributes
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
   validates :phone,:numericality =>true,:unless=> :is_admin?
@@ -22,12 +22,15 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :bank_details
   before_destroy :check_for_races
   after_create :update_races
+  validate :status,:update_races,:if =>:status_changed?,:on=>'update'
+  
   
   def is_admin?
     self.admin?    
   end
   
   def update_races 
+   
     unless self.admin? and self.status=="inactive"
     # @races=Race.where('status=? and date >= ?',nil,self.trading_start_date)
      @races=Race.where('date >=?',self.trading_start_date)

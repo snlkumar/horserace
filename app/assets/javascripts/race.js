@@ -37,7 +37,8 @@ $(document).ready(function(){
 	$("#dialog-form").hide();
 	$('input:radio[name=bank_details][value=current]').attr('checked', true);
 	$("#withdraw_bank_detail_id").val("");
-	$("#alter_bank").hide();	
+	$("#alter_bank").hide();
+	$("#respond_to").hide();	
 });
 		
 $(document).on("click","#create-user",function(){
@@ -106,4 +107,20 @@ $(document).on("click","#create-user",function(){
 $(document).on("change","#bank_id",function(){
 	$("#withdraw_bank_detail_id").val($(this).val());
 });
+$(document).on("change","#respond_select",function(){
+	var selected=$(this).val();
+	if (selected=="Other"){
+		$("#respond_to").show();
+	}else{
+		$("#respond_to").hide();
+		$("#user_respond_via").empty();
+		$("#user_respond_via").val(selected);
+	}
+	
+	
+});
 
+$(document).on("change","#user_password",function(){
+	var password=$(this).val();
+	$("#user_custom_password").val(password);
+});

@@ -53,6 +53,7 @@ HorseRace::Application.routes.draw do
     get  'user/withdraw_request' => 'users#withdraw_request'
     post  'user/withdraw_request' => 'users#withdraw_request'
     get  'user/withdraw_history' => 'users#withdraw_history'
+    get  'user/respond_way' => 'users#respond_way'
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end 
   

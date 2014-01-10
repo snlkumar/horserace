@@ -14,10 +14,12 @@
 	<thead>
 		<tr>
 			<th>Client Name</th>
+			<th>Password</th>
 			<th>Balance</th>
 			<th>Tier</th>
 			<th>Email</th>
 			<th>Phone</th>
+			<th>Date</th>
 			<th>Status</th>
 			<th>Action</th>
 		</tr>
@@ -32,6 +34,7 @@
 				<%else%>
 				<%=user.client_name %>T
 				<%end%></strong></td>
+				<td><%=user.custom_password%></td>
 			<td><%=number_to_currency(user.balance)%></td>
 			<td><% unless user.tier.nil? %>
 				<%=user.tier.name%>
@@ -40,6 +43,7 @@
 				<%end%></td>
 			<td><%=user.email%></td>
 			<td><%=user.phone%></td>
+			<td><%=user.created_at.strftime("%d-%m-%y")%></td>
 			<td><%=user.status%></td>
 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(user) %> |
               <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure you want to delete?', method: :delete %> | 

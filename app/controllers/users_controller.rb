@@ -101,7 +101,9 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   
   def withdraw_history
     @user=current_user
-  
+  end
+  def respond_way
+    @user=current_user
   end
   
   end
