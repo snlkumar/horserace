@@ -37,8 +37,20 @@ $(document).ready(function(){
 	$("#dialog-form").hide();
 	$('input:radio[name=bank_details][value=current]').attr('checked', true);
 	$("#withdraw_bank_detail_id").val("");
+	$("#user_trail_duration").attr("disabled",true);
 	$("#alter_bank").hide();
 	$("#respond_to").hide();	
+});
+
+
+$(document).on("change","#user_is_this_trial",function(){
+	attr=$("#user_trail_duration").attr("disabled");
+	
+	if (attr=="disabled"){
+	$("#user_trail_duration").attr("disabled",false);
+	}else{
+		$("#user_trail_duration").attr("disabled",true);
+	}
 });
 		
 $(document).on("click","#create-user",function(){
