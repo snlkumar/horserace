@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   
   def validate_balance
-    if self.balance < 500
+    if (self.balance < 500 unless self.balance.nil?)
       self.errors[:base] << "Balance should be equal or greater than $500"
      return false
     end
