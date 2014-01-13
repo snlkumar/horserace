@@ -22,8 +22,16 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :bank_details
   before_destroy :check_for_races
   after_create :update_races
+  before_save :validate_balance
   validate :status,:update_races,:if =>:status_changed?,:on=>'update'
   
+  
+  def validate_balance
+    if self.balance < 500
+      self.errors[:base] << "Balance should be equal or greater than $500"
+     return false
+    end
+  end
   
   def is_admin?
     self.admin?    
@@ -63,7 +71,7 @@ class User < ActiveRecord::Base
   def check_for_races
    user_race= UsersRaces.find_by_user_id(self.id)
    unless user_race.blank?     
-    self.errors[:base] << "Cannot delete user while its race exists."
+    self.errors[:base] << "Cannot delete user while it's race exists."
     return false   
   end 
   end

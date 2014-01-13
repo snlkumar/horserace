@@ -7,7 +7,8 @@ class Race < ActiveRecord::Base
   validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
   
   def update_users 
-    @users=User.where(:admin=>false,:status=>'active') 
+    @users=User.where('admin=? AND status=? AND balance>=?',false,'active',500)
+    # @users=User.where(:admin=>false,:status=>'active') 
     @users.each do |user|
       trading_date=user.trading_start_date
      
