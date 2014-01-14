@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140110065218) do
+ActiveRecord::Schema.define(:version => 20140114103608) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(:version => 20140110065218) do
     t.string   "ticket_number"
   end
 
+  create_table "resellers", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tiers", :force => true do |t|
     t.string   "name"
     t.float    "weight"
@@ -76,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20140110065218) do
     t.string   "client_name"
     t.float    "balance"
     t.integer  "tier_id"
+    t.integer  "reseller_id"
     t.string   "phone"
     t.integer  "sign_in_count",             :default => 0,          :null => false
     t.datetime "current_sign_in_at"
@@ -94,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20140110065218) do
     t.string   "address"
     t.date     "dob"
     t.string   "consultant_name"
-    t.integer  "consultant_contact_number"
+    t.string   "consultant_contact_number"
     t.string   "respond_via"
     t.string   "custom_password"
   end

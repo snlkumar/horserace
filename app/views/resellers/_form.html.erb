@@ -1,0 +1,38 @@
+<%= form_for(@reseller) do |f| %>
+  <% if @reseller.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reseller.errors.count, "error") %> prohibited this reseller from being saved:</h2>
+
+      <ul>
+      <% @reseller.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.fields_for :user do |u| %>
+    <div class="field">
+    <%= u.label :client_name %><br />
+    <%= u.text_field :client_name %>
+  </div>
+  
+  <div class="field">
+    <%= u.label :phone %><br />
+    <%= u.text_field :phone %>
+  </div>
+    <%= u.email_field :email, :required => true, :autofocus => true %>
+    <%= u.password_field :password, :required => true %>
+    <%= u.password_field :password_confirmation, :required => true %>
+    <% end %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

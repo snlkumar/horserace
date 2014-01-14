@@ -1,5 +1,8 @@
 HorseRace::Application.routes.draw do
  
+  resources :resellers
+
+
   resources :withdraws
 
 
@@ -56,6 +59,7 @@ HorseRace::Application.routes.draw do
     get  'user/respond_way' => 'users#respond_way'
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end 
+  
   
 
   resources :users do

@@ -14,6 +14,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :client_name
       t.float :balance
       t.references :tier
+      t.references :reseller
       t.string :phone
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false

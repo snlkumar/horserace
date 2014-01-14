@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @reseller.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @reseller.address %>
+</p>
+
+
+<%= link_to 'Edit', edit_reseller_path(@reseller) %> |
+<%= link_to 'Back', resellers_path %>

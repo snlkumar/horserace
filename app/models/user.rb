@@ -24,7 +24,13 @@ class User < ActiveRecord::Base
   after_create :update_races
   before_save :validate_balance
   validate :status,:update_races,:if =>:status_changed?,:on=>'update'
+  belongs_to :reseller
+  before_validation :validate_user
   
+  
+  def validate_user
+    puts self.reseller
+  end
   
   def validate_balance
     if (self.balance < 500 unless self.balance.nil?)
