@@ -1,5 +1,8 @@
 HorseRace::Application.routes.draw do
  
+  resources :transactions
+
+
   resources :resellers
 
 
@@ -55,6 +58,8 @@ HorseRace::Application.routes.draw do
     get  'user/view_report' => 'users#view_report'
     get  'user/withdraw_request' => 'users#withdraw_request'
     post  'user/withdraw_request' => 'users#withdraw_request'
+    get  'user/my_detail' => 'users#my_details'
+    post  'user/my_detail' => 'users#my_details'
     get  'user/withdraw_history' => 'users#withdraw_history'
     get  'user/respond_way' => 'users#respond_way'
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session

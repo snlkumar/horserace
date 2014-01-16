@@ -9,12 +9,14 @@
    			<th>Bet Date/Time</th>
    			<th>Ticket Number</th>
    			<th>Description</th>
+   			<th>Balance before bet</th>   			
    			<th>Bet Amount</th>
+   			<th>Balance after bet</th>
    			<th>Bet Type</th>
    			<th>Status</th>
    			<th>Win</th>
    			<th>Lost</th>
-   			<th>Processing Balance</th>
+   			<th>Balance after result</th>
    			
    		</tr>
    	</thead>
@@ -25,12 +27,21 @@
    			<td><%=race.date%></td>
    			<td><%=race.ticket_number%></td>
    			<td><%=race.description%></td>
+   			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.bet_amount) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(@user.calculated_balance_after_bet(race)) unless @user.balance.nil?%></td>
    			<td><%=race.race_type%></td>
-   			<td><%=race.status%></td>
+   			<td>
+   				<%unless race.status.blank?%>
+   				<%=race.status%>
+   				<%else%>
+   				pending
+   				<%end%>
+   				
+   			</td>
  			<td><%=number_to_currency(prev_race.win) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.lost) unless prev_race.blank?%></td>
-   			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>
+   			<td><%=prev_race.balance_after_result(race) unless prev_race.blank?%></td>
    		</tr>
    		
    		

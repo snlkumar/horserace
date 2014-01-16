@@ -1,0 +1,47 @@
+
+
+
+<label><b>30 Day History:</b></label><input type="text" value="<%=number_to_currency(current_user.thirty_day_history)%>" readonly="true"/>
+<table id="upcoming" class="table">
+	<thead>
+		<tr>
+			<th>Race Name</th>
+			<th>Race Name</th>
+			<th>Description</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Horse</th>
+			<th>Horse No</th>
+			<th>Location</th>
+			<th>Balance Before Bet</th>
+			<th>Balance after Bet</th>
+			</tr>
+	</thead>
+	<tbody>
+		<%@races.each do |race|%>
+		<tr class="tr_bg_yellow">
+			<td><%=race.name%></td>
+			<td><%=race.ticket_number%></td>
+			<td><%=race.description%></td>
+			<td><%=race.date.strftime("%d/%m/%Y")%></td>
+			<td><%=race.time.strftime("%I:%M%p")%></td>
+			<td><%=race.horse%></td>
+			<td><%=race.horse_no%></td>
+			<td><%=race.location%></td>
+			<td><%=number_to_currency(current_user.balance_before_bet(race))%></td>
+			<td><%=number_to_currency(current_user.calculated_balance_after_bet(race))%></td>
+			</tr>
+		<%end%>		
+	</tbody>
+</table>
+<h1>Previous Bets</h1>
+ <div class="field">
+    <p><b>From Date:</b>  <input type="text" id="datepicker" readonly="true"><b>  To Date:</b>  <input type="text" id="todatepicker" readonly="true"></p>
+  </div>
+  <div id="LoadingImage" style="display: none">
+	<img src="../assets/loading.gif" />
+  </div>
+<div class="pre_races"></div>
+<legend>
+<b>Available Balance: </b> <%=number_to_currency(current_user.balance)%>
+</legend>

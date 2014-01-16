@@ -30,7 +30,7 @@
   <div class="clr"></div></div>
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :tier_id %></div>
-  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => 'default Odd'},:class=>"tier_select") %></div>
+  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => 'Select'},:required=>true,:class=>"tier_select") %></div>
   <!-- <%= f.text_field :tier_id%></div> -->
   <div class="clr"></div></div>
   <div class="change_password_fields">
@@ -69,11 +69,11 @@
   	<div class="change_password_names"><%= f.label :trial_duration %></div>
   <div class="change_password_form-field"><%= f.select :trail_duration,[3,4,5]%></div>
  <div class="clr"></div></div>
- <div class="change_password_fields">
-  	<div class="change_password_names"><%= f.label :trading_start_date %></div>
-  <div class="change_password_form-field"><%= f.text_field :trading_start_date,:required=>true,:readonly=>true%></div>
+ <!-- <div class="change_password_fields">
+  	<div class="change_password_names"><% f.label :trading_start_date %></div>
+  <div class="change_password_form-field"><% f.text_field :trading_start_date,:readonly=>true%></div>
  <div class="clr"></div>
- </div>
+ </div> -->
  
  
   <div class="change_password_fields">
@@ -88,19 +88,19 @@
 <%=f.fields_for :bank_details do |b|%>
    <div class="change_password_fields">
  	<div class="change_password_names"><%= b.label :bsb %></div>
-  <div class="change_password_form-field"><%= b.text_field :bsb ,:required=>true%></div>
+  <div class="change_password_form-field"><%= b.text_field :bsb,:required=>true %></div>
 <div class="clr"></div></div>
  <div class="change_password_fields">
  	<div class="change_password_names"><%= b.label :account %></div>
-  <div class="change_password_form-field"><%= b.text_field :account ,:required=>true%></div>
+  <div class="change_password_form-field"><%= b.text_field :account,:required=>true%></div>
 <div class="clr"></div></div>
  <div class="change_password_fields">
  	<div class="change_password_names"><%= b.label :bank_name %></div>
-  <div class="change_password_form-field"><%= b.text_field :bank_name ,:required=>true%></div>
+  <div class="change_password_form-field"><%= b.text_field :bank_name,:required=>true %></div>
 <div class="clr"></div></div>
  <div class="change_password_fields">
  	<div class="change_password_names"><%= b.label :account_name %></div>
-  <div class="change_password_form-field"><%= b.text_field :account_name ,:required=>true%></div>
+  <div class="change_password_form-field"><%= b.text_field :account_name,:required=>true%></div>
 <div class="clr"></div></div>
 
 
@@ -127,6 +127,10 @@ $( "#user_trading_start_date" ).datepicker({
 });
 $( "#user_dob" ).datepicker({
 	dateFormat:"dd-mm-yy",
+	changeMonth: true,
+      changeYear: true,
+      numberOfMonths: 3,
+       yearRange: '1945:'+(new Date).getFullYear(), 
 	onSelect: function(date) {
 	
   },

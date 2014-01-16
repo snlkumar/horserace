@@ -76,10 +76,12 @@
                <%else%>
                <h3>Settings</h3>
                <ul class="categorie_link2">
+               	<li><%= link_to "Bets",current_races_races_path%></li>
                <li><%= link_to "Change Password",edit_user_registration_path%></li>
-               <li><%= link_to "Withdraw request",user_withdraw_request_path%></li>
+               <li><%= link_to "Deposit request",user_withdraw_request_path%></li>
                <li><%= link_to "View Withdraw/Deposit history",user_withdraw_history_path%></li>
-               <li><%= link_to "Best Way to respond",user_respond_way_path%></li>
+               <li><%= link_to "My Details",user_my_detail_path%></li>
+               <li><%= link_to "Contact",user_respond_way_path%></li>
                </ul>
             <%end%>          
             

@@ -5,6 +5,8 @@ class CreateRaces < ActiveRecord::Migration
       t.date :date
       t.time :time
       t.string :horse
+      t.string :horse_no
+      t.string :info
       t.string :status
       t.float :default_odd
 

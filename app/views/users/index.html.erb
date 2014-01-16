@@ -21,6 +21,8 @@
 			<th>Phone</th>
 			<th>Date</th>
 			<th>Status</th>
+			<th>Profit/Lost(%)</th>
+			<th>B(5%)</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -32,7 +34,7 @@
 			<td><strong><%unless user.is_this_trial?%>
 				<%=user.client_name %>
 				<%else%>
-				<%=user.client_name %>T
+				<%=user.client_name %>(T)
 				<%end%></strong></td>
 				<td><%=user.custom_password%></td>
 			<td><%=number_to_currency(user.balance)%></td>
@@ -45,6 +47,8 @@
 			<td><%=user.phone%></td>
 			<td><%=user.created_at.strftime("%d-%m-%y")%></td>
 			<td><%=user.status%></td>
+			<td><%=(user.profit_lost) unless user.profit_lost.blank?%></td>
+			<td><%=(user.b5) unless user.b5.blank?%></td>
 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(user) %> |
               <%= link_to image_tag('../assets/delete_icon.png').html_safe, user, confirm: 'Are you sure you want to delete?', method: :delete %> | 
               <%= link_to "View_report",:controller=>'users',:action=>'view_report',:id=>user.id %>

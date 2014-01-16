@@ -10,5 +10,6 @@ class CreateTiers < ActiveRecord::Migration
     Tier.create :name => "T2", :weight => 20
     Tier.create :name => "T3", :weight => 50
     Tier.create :name => "T4", :weight => 100
+    Tier.create :name => "T5", :weight => 150
   end
 end

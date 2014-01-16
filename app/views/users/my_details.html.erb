@@ -1,0 +1,47 @@
+
+
+<% if @user.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    
+  <% end %>
+<%=form_for @user do |f|%>
+
+  
+	<div class="change_password_fields">
+	<div class="change_password_names"><%=f.label :address%></div>
+	<div class="change_password_form-field"><%=f.text_field :address,:required=>true%></div>
+	<div class="clr"></div></div>
+     <div class="change_password_fields">
+	<div class="change_password_names"><%=f.label :phone%></div>
+     <div class="change_password_form-field"><%=f.text_field :phone%></div>
+     <div class="clr"></div></div>
+     <%=f.fields_for :bank_details do |b|%> 
+     
+    <div class="change_password_fields">
+ 	<div class="change_password_names">bsb</div>
+  <div class="change_password_form-field"><%=b.text_field :bsb%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names">acount</div>
+  <div class="change_password_form-field"><%= b.text_field :account %></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names">bank name</div>
+  <div class="change_password_form-field"><%=b.text_field :bank_name%></div>
+<div class="clr"></div></div>
+ <div class="change_password_fields">
+ 	<div class="change_password_names">Account Name</div>
+  <div class="change_password_form-field"><%=b.text_field :account_name%></div>
+  <%end%>
+<div class="clr"></div></div>
+<div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+           <div class="login_button"><%=f.submit "Request"%></div>
+           <div class="clr"></div>	
+  	</div>
+
+<%end%>

@@ -34,60 +34,16 @@ var data={
 <h1>Current Bets</h1>
 <div class="clr"></div>
 <%unless @races.empty?%>
-<table id="upcoming" class="table">
-	<thead>
-		<tr>
-			<th>Race Name</th>
-			<th>Date</th>
-			<th>Time</th>
-			<th>Horse</th>
-			<th>Location</th>
-			<th>Default Odds</th>
-			<%@tiers.each do |tier|%>	
-			  <th><%=tier.name%></th>			  
-			<%end%>
-			<%if current_user.admin?%>
-			<th>Action</th>
-			<%end%>
-		</tr>
-	</thead>
-	<tbody>
-		<%@races.each do |race|%>
-		<tr class="tr_bg_yellow">
-			<td><%=race.name%></td>
-			<td><%=race.date.strftime("%d/%m/%Y")%></td>
-			<td><%=race.time.strftime("%I:%M%p")%></td>
-			<td><%=race.horse%></td>
-			<td><%=race.location%></td>
-			<td><%=number_to_currency(race.default_odd)%></td>
-			<%@tiers.each do |tier|%>
-			<%calculated=(race.default_odd*tier.weight)/100%>
-			  <td><%=number_to_currency(race.default_odd+calculated)%></td>			  
-			<%end%>	
-			
-				<%if current_user.admin?%>
-				<td>
-				<p class="editme3" race="<%=race.id%>">					
-                <a href="#"><img src="../assets/green-tick.png"><img src="../assets/cross.png"></a>
-               </p>|<%= link_to image_tag("../assets/view-icon.png"), race %>|<%= link_to 'Edit', edit_race_path(race) %> 
-				</td>
-				<%end%>
-				
-			
-			</tr>
-		<%end%>		
-	</tbody>
-</table>
+	<%if current_user.admin?%>
+	<%=render 'admin_current_race'%>
+	<%else%>
+	<%=render 'client_current_race'%>
+	<%end%>
 <%else%>
-There is no current race yet.
-<%end%>
-<%if current_user.admin?%>
-<h1>Previous Bets</h1>
-<%@races=Race.where('status=? or status=?','win','lost')%>
-<%=render 'admin_prev_races' %>
+	There is no current race yet.
 <%end%>
 </div>
-<%unless current_user.admin?%>
+
 <script>
 $(function() {
 $( "#datepicker" ).datepicker({
@@ -132,17 +88,6 @@ $( "#todatepicker" ).datepicker({
 });
 });
 </script>
-<h1>Previous Bets</h1>
- <div class="field">
-    <p><b>From Date:</b>  <input type="text" id="datepicker" readonly="true"><b>  To Date:</b>  <input type="text" id="todatepicker" readonly="true"></p>
-  </div>
-  <div id="LoadingImage" style="display: none">
-	<img src="../assets/loading.gif" />
-  </div>
-<div class="pre_races">
-</div>
-<legend>
-<b>Available Balance: </b> <%=number_to_currency(current_user.balance)%>
-</legend>
-<%end%>
+
+
 

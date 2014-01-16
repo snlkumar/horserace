@@ -4,5 +4,22 @@ class UsersRaces < ActiveRecord::Base
   belongs_to :race
   
   
-  # attr_accessible :title, :body
+  def balance_after_result(race)
+  @balance= self.processing_balance-self.bet_amount
+   if self.win
+     @balance+=self.win
+   end
+   if self.lost
+     @balance-=self.lost
+   end 
+   unless race.status.blank?
+   return @balance
+   else
+     return "pending"
+   end
+  end
+  
+  
+  
+  
 end

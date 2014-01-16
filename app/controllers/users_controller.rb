@@ -82,9 +82,19 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
    end
   end
  def update_balance
-   @user=User.find params[:id]
- 
+   @user=User.find params[:id] 
+   @balance=params[:user][:balance]
+   @balance_before_update=@user.balance
+   @transaction=Transaction.new(:user_id=>@user.id)
    @user.update_attributes(params[:user])
+   if @user.balance > @balance_before_update
+   @transaction.deposit=@balance
+   else
+      @transaction.withdraw=@balance
+   end
+   @transaction.total=@user.balance
+   @transaction.owner=current_user.id
+   @transaction.save
    flash[:notice] = "User Successfully updated."
    redirect_to view_clients_balance_races_path
   end
@@ -96,13 +106,18 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   
   def withdraw_request
     @user=current_user
-    @withdraw=Withdraw.new(:user_id=>@user.id)
+    @transaction=Transaction.new(:user_id=>@user.id,:balance_before=>@user.balance)
   end
+   
   
   def withdraw_history
     @user=current_user
   end
   def respond_way
+    @user=current_user
+  end
+  
+  def my_details
     @user=current_user
   end
   

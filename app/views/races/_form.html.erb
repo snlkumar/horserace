@@ -7,12 +7,8 @@
       <% end %>
       </ul>
   <% end %>
-  <%if @race.ticket_number.blank?%>
-  <%unless Race.last.nil?%>
-  <%@tnumber=(Race.last.ticket_number).next%>
-  <%else%>
-  <%@tnumber=ENV['ticket_number']%>
-  <%end%>
+  <%if @race.ticket_number.blank?%>  
+  <%@tnumber= 'T'+rand(7 ** 8).to_s%>  
   <%else%>
   <%@tnumber=@race.ticket_number%>
   <%end%>
@@ -33,7 +29,7 @@
   </div>
   <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :time %></div>
-    <div class="change_password_form-field"><%= f.time_select :time,{:ampm => true},:class=>'w47'%></div>
+    <div class="change_password_form-field"><%= f.time_select :time,{:ampm => true,:default=>Time.now},:class=>'w47'%></div>
   
     <div class="clr"></div>
   </div>
@@ -46,12 +42,21 @@
   <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :race_type %></div>
     <div class="change_password_form-field"><%= f.select :race_type,['Gallop','Trots','Dogs'],:class=>'change_select'%></div>
-  
     <div class="clr"></div>
   </div>
   <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :info %></div>
+    <div class="change_password_form-field"><%= f.select :info,['Lay'],:class=>'change_select'%></div>
+    <div class="clr"></div>
+    </div>
+  <div class="change_password_fields">
     <div class="change_password_names"><%= f.label :horse %></div>
     <div class="change_password_form-field"><%= f.text_field :horse,:required=>true %></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+    <div class="change_password_names"><%= f.label :horse_no %></div>
+    <div class="change_password_form-field"><%= f.text_field :horse_no,:required=>true %></div>
     <div class="clr"></div>
   </div>
   <div class="change_password_fields">

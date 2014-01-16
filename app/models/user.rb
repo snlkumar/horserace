@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password,:reset_password_token, :password_confirmation,:admin, :remember_me,:client_name,:balance,:balance_after_bet,:tier_id,
-  :phone,:is_this_trial,:status,:trading_start_date,:trail_duration,:address,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes, :bank_details_attributes
+  :phone,:is_this_trial,:status,:enquiry,:trading_start_date,:trail_duration,:address,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes, :bank_details_attributes
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
   validates :phone,:numericality =>true,:unless=> :is_admin?
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :races,:join_table => :users_races
   has_many :bank_details
   has_many :withdraws
+  has_many :transactions
   accepts_nested_attributes_for :withdraws
   accepts_nested_attributes_for :bank_details
   before_destroy :check_for_races
@@ -25,12 +26,6 @@ class User < ActiveRecord::Base
   before_save :validate_balance
   validate :status,:update_races,:if =>:status_changed?,:on=>'update'
   belongs_to :reseller
-  before_validation :validate_user
-  
-  
-  def validate_user
-    puts self.reseller
-  end
   
   def validate_balance
     if (self.balance < 500 unless self.balance.nil?)
@@ -47,14 +42,18 @@ class User < ActiveRecord::Base
    
     unless self.admin? and self.status=="inactive"
     # @races=Race.where('status=? and date >= ?',nil,self.trading_start_date)
-     @races=Race.where('date >=?',self.trading_start_date)
-    @races.each do |race|     
+     #@races=Race.where('date >=?',self.trading_start_date)
+     @races=Race.where(:status=>nil)    
+     @races.each do |race|     
       
-   user_race= UsersRaces.create(:race_id=>race.id,:user_id=>self.id,:processing_balance=>self.balance)
-    UsersRaces.update(user_race.id,:bet_amount=>self.bet_amount(race))
-    User.update(self.id,:balance=>self.calculated_balance_after_bet(race))
-   
-   end
+     user_race= UsersRaces.create(:race_id=>race.id,:user_id=>self.id,:processing_balance=>self.balance)
+     UsersRaces.update(user_race.id,:bet_amount=>self.bet_amount(race))
+     User.update(self.id,:balance=>self.calculated_balance_after_bet(race))
+      unless user_race.nil?
+    ur=UsersRaces.find user_race.id
+     Transaction.create(:balance_before=>ur.processing_balance,:balance_after=>ur.processing_balance-ur.bet_amount,:withdraw=>ur.bet_amount,:race_id=>race.id,:user_id=>self.id,:bank_detail_id=>self.bank_details.last.id)
+     end
+    end
    end
   end
   
@@ -169,6 +168,7 @@ class User < ActiveRecord::Base
     if race.status=="win"
       User.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:win=>win,:bet_amount=>self.bet_amount(race))
+      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:deposit=>win,:race_id=>race.id,:user_id=>self.id,:bank_detail_id=>self.bank_details.last.id)
     end
   return win
   end
@@ -184,8 +184,40 @@ class User < ActiveRecord::Base
     if race.status=="lost"
       User.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:lost=>loss,:bet_amount=>self.bet_amount(race))
+      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:withdraw=>loss,:race_id=>race.id,:user_id=>self.id,:bank__detail_id=>self.bank_details.last.id)
     end
     return loss
    
   end
+  
+  def profit_lost
+    race=self.races.first
+    @user_races=UsersRaces.find_by_race_id_and_user_id(race.id,self.id) unless race.nil?
+    unless @user_races.nil?
+     return (self.balance-@user_races.processing_balance)/100
+    end
+  end
+  def b5
+    unless self.profit_lost.blank?
+    self.profit_lost*5/100
+  end
+  end
+  
+  def self.update_balance(user,balance)
+    User.update(user.id,:balance=>balance)
+      
+  end
+  
+  def thirty_day_history
+    @deposit=0.0
+    @withdraw=0.0
+    transactions=self.transactions.where('DATE(created_at)<? AND DATE(created_at)>? AND race_id IS NOT NULL',Date.today+1.day,Date.today-30.days)
+    transactions.each do |t|
+      @deposit+=t.deposit unless t.deposit.blank?
+      @withdraw+=t.withdraw unless t.withdraw.blank?
+    end
+    return @deposit-@withdraw
+    
+  end
+    
 end
