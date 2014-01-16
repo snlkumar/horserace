@@ -1,4 +1,9 @@
+<div id="time" style="alignment-adjust: right;">
+	
+	<b>Australian Time: <%=(Time.now.utc+ 11*60*60).strftime("%I:%M%p")%></b>  
+</div>
 <h1>New Bet</h1>
+
 <div class="error" id="form_error"></div>
 <%= render 'form' %>
 

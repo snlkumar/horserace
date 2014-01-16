@@ -57,13 +57,19 @@ class RacesController < InheritedResources::Base
   end
   def past_races
     today= Date.today
-    @races=Race.where('date <= ?',today)
+    @races=Race.where('status=? OR status=?','win','lost')
   end
   
   def view_login
     @users=User.where(:admin=>false)
     render 'users/view_login'
   end
+  def destroy
+    super
+    flash[:notice]="Succesfully deleted"
+    redirect_to current_races_races_path
+  end
+    
   
   
 end

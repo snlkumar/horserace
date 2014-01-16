@@ -16,7 +16,11 @@
 		<%@users.each_with_index do |user,index|%>
 	  <%@class="tr_bg_yellow"%>
 		<tr class="<%=@class%>">
-			<td><strong><%=user.client_name%></strong></td>
+			<td><strong><%unless user.is_this_trial?%>
+				<%=user.client_name %>
+				<%else%>
+				<%=user.client_name %>(T)
+				<%end%></strong></td>
 			<td><%=user.sign_in_count%></td>
 			<td><%=user.current_sign_in_at%></td>
 			<td><%=user.last_sign_in_at%></td>			

@@ -1,14 +1,14 @@
 
 
-<% if @withdraw.errors.any? %>   
+<% if @transaction.errors.any? %>   
       <ul class="alert fade in alert-error">
-      <% @withdraw.errors.full_messages.each do |msg| %>
+      <% @transaction.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     
   <% end %>
-<%=form_for @withdraw do |w|%>
+<%=form_for @transaction do |t|%>
 
   
 	<div class="change_password_fields">
@@ -20,8 +20,12 @@
 	<div class="change_password_form-field"><%=text_field_tag 'password','',:required=>true%></div>
 	<div class="clr"></div></div>
      <div class="change_password_fields">
-	<div class="change_password_names"><%=w.label 'withdraw amount'%></div>
-     <div class="change_password_form-field"><%=w.text_field :amount,:required=>true%></div>
+	<div class="change_password_names"><%=t.label 'withdraw amount'%></div>
+     <div class="change_password_form-field"><%=t.text_field :withdraw%></div>
+     <div class="clr"></div></div> 
+     <div class="change_password_fields">
+	<div class="change_password_names"><%=t.label 'Deposit amount'%></div>
+     <div class="change_password_form-field"><%=t.text_field :deposit%></div>
      <div class="clr"></div></div> 
      <div class="change_password_fields">
 	<div class="change_password_names"><label>Bank</label></div>
@@ -31,8 +35,9 @@
      <%=select_tag 'bank_id', options_for_select(@user.bank_details.collect{ |u| [u.bank_name, u.id] }.insert(0, "Please Select"))%>
      
      </div>
-      <%=w.hidden_field :bank_detail_id%>
-     <%=w.hidden_field :user_id%>
+      <%=t.hidden_field :bank_detail_id%>
+      <%=t.hidden_field :balance_before%>
+     <%=t.hidden_field :user_id%>
     <div id="alter_bank">
     <div class="change_password_fields">
  	<div class="change_password_names">bsb</div>
@@ -53,7 +58,7 @@
 </div>
 <div class="change_password_fields">
   	<div class="change_password_names">&nbsp;</div>
-           <div class="login_button"><%=w.submit "Request"%></div>
+           <div class="login_button"><%=t.submit "Request"%></div>
            <div class="clr"></div>	
   	</div>
 

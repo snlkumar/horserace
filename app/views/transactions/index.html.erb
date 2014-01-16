@@ -1,0 +1,21 @@
+<h1>Listing transations</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transations.each do |transation| %>
+  <tr>
+    <td><%= link_to 'Show', transation %></td>
+    <td><%= link_to 'Edit', edit_transation_path(transation) %></td>
+    <td><%= link_to 'Destroy', transation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transation', new_transation_path %>

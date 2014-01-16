@@ -1,4 +1,4 @@
-<%unless @users.blank?%>
+<%unless @race.users.blank?%>
 <table class="table">
 	<thead>
 		<tr>
@@ -16,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%@users.each do |user|%>
+		<%@race.users.each do |user|%>
 		<tr class="tr_bg_yellow">
 			<td><%=user.client_name%></td>
 			<td><%=number_to_currency(user.balance)%></td>

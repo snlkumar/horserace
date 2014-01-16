@@ -117,7 +117,7 @@ $(document).on("click","#create-user",function(){
 	
 
 $(document).on("change","#bank_id",function(){
-	$("#withdraw_bank_detail_id").val($(this).val());
+	$("#transaction_bank_detail_id").val($(this).val());
 });
 $(document).on("change","#respond_select",function(){
 	var selected=$(this).val();
