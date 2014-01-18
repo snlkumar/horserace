@@ -1,0 +1,33 @@
+<%unless @user.transactions.blank?%>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Date/Time</th>
+			<th>Balance before</th>			
+			<th>Deposit</th>
+			<th>Withdraw</th>
+			<th>Race</th>
+			<th>Balance after</th>
+			<th>Bank</th>	
+			
+		</tr>
+	</thead>
+	<tbody>
+		<%@total_withdraw=0%>
+		<%@user.transactions.each_with_index do |t,index|%>
+	    <tr class="tr_bg_yellow">
+  	        <td><%=t.created_at.strftime("%y-%m-%d %H:%M")%></td>
+			<td><%=number_to_currency(t.balance_before)%></td>
+			<td><%=number_to_currency(t.deposit)%></td>
+			<td><%=number_to_currency(t.withdraw)%></td>
+			<td><%=t.race.name unless t.race.blank?%></td>
+			<td><%=number_to_currency(t.balance_after)%></td>
+			<td><%=t.bank_detail.bank_name unless t.bank_detail.blank? %></td>
+		</tr>
+		<%end%>
+	</tbody>	
+</table>
+<%else%>
+Record not found
+
+<%end%>

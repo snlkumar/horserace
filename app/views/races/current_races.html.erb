@@ -36,8 +36,11 @@ var data={
 <%unless @races.empty?%>
 	<%if current_user.admin?%>
 	<%=render 'admin_current_race'%>
+	<%else if current_user.reseller%>
+	<%=render 'reseller_current_race'%>
 	<%else%>
 	<%=render 'client_current_race'%>
+	<%end%>
 	<%end%>
 <%else%>
 	There is no current race yet.

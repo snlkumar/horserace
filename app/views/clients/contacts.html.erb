@@ -1,0 +1,26 @@
+<%unless @users.empty?%>
+<table class="table">
+	<thead>
+		<tr style="background-color: gray;">
+			<th>Client Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>		
+		<%@users.each do |user|%>
+		<tr>
+			<td><%=user.client_name%></td>
+			<td><%=user.email%></td>
+			<td><%=user.phone%></td>
+			<td><%= link_to 'Edit', edit_user_path(user) %></td>
+           <!-- <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td> -->
+		</tr>
+		<%end%>
+	
+	</tbody>
+</table>
+<%else%>
+Sorry record not found.
+<%end%>

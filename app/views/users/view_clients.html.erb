@@ -1,0 +1,30 @@
+<h1>Client List</h1>
+
+<%unless @clients.blank?%>
+ <table class="table">
+ 	<thead>
+ 		<tr>
+ 			<th>Client Number</th>
+ 			<th>Client Name</th>
+ 			<th>Reseller</th>
+ 			<th>Balance</th>
+ 			<th>Races</th>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<%@clients.each do |client|%>
+ 		<tr>
+ 			<td><%=client.client_number%></td>
+ 			<td><%=client.client_name%></td>
+ 			<td><%=client.reseller.name%></td>
+ 			<td><%=client.balance%></td>
+ 			<%@races=[]%>
+ 			<%client.races.each do |race|%>
+ 			<%@races<<race.name%>
+ 			<%end%>
+ 			<td><%=@races%></td>
+ 		</tr>
+ 		<%end%>
+ 	</tbody>
+ </table>
+<%end%>

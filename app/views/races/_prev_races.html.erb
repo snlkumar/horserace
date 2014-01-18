@@ -48,7 +48,7 @@ Sorry record not found.
    	</thead>
    	<tbody>
    		<%@races.each do |race|%>
-   		<%prev_race=UsersRaces.find_by_race_id_and_user_id(race.id,current_user.id)%>
+   		<%prev_race=UsersRaces.find_by_race_id_and_client_id(race.id,current_user.client.id)%>
    		<tr class="tr_bg_yellow">
    			<td><%=race.date%></td>
    			<td><%=race.ticket_number%></td>

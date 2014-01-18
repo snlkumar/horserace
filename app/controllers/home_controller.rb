@@ -2,8 +2,12 @@ class HomeController < ApplicationController
   def index
     if current_user.nil?
     render :layout =>false
+    else if current_user.reseller
+      @reseller=current_user
+      redirect_to new_reseller_client_path(@reseller.reseller)
     else
       redirect_to current_races_races_path
+    end
     end
   end
   def change_password

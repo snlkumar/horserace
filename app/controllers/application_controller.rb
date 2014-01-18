@@ -16,4 +16,11 @@ def admin_required
  redirect_to root_path
  end
 end
+
+def reseller_required
+ unless current_user.reseller_id?
+   flash[:notice]="Sorry you are not allowed for this action"
+ redirect_to root_path
+ end
+end
 end

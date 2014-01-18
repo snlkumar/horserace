@@ -11,20 +11,21 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Rememberable
       t.datetime :remember_created_at
-      t.string :client_name
-      t.float :balance
-      t.references :tier
-      t.references :reseller
-      t.string :phone
-      t.string :custom_password
-      t.string :respond_via
+      # t.string :client_name
+      # t.float :balance
+      # t.references :tier
+      # t.references :reseller
+      # t.string :phone
+      # t.string :custom_password
+      # t.string :respond_via
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false
       t.datetime :current_sign_in_at
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
-
+      t.references :reseller
+      t.references :client
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at

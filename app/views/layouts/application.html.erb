@@ -41,6 +41,7 @@
  <div id="header">
 <div class="inner">
 <a href="#" id="logo"><img src="/../assets/logo.png" alt="" border="0"></a>
+
 <%unless current_user%>
   <%=render 'shared/top_nav'%>
 <%else if current_user.admin?%>
@@ -67,24 +68,33 @@
               <li><%= link_to "Past Bets", "/races/past_races"  %></li>
               <li><%= link_to "View Login Activity", view_login_races_path  %></li>
               <li><%= link_to "Current Bets", "/races/current_races"  %></li>
-              <li><%= link_to "New Client", "/users/new"%></li>
-              <li><%= link_to "Client List", "/users"  %></li>
+              <li><% link_to "New Client", "/clients/new"%></li>
+              <li><%= link_to "New Reseller", new_reseller_path%></li>
+              <li><%= link_to "Client List", "/user/view_clients"  %></li>
               <li><%= link_to "Client Balances", view_clients_balance_races_path  %></li>
-              <li><%= link_to "Contacts", contacts_races_path  %></li>
+              <li><% link_to "Contacts", contacts_races_path  %></li>
               <li><%= link_to "Change Password",edit_user_registration_path%></li>
               </ul> 
+              <%else if current_user.reseller%>
+               <h3>Settings</h3>
+               <ul class="categorie_link2">
+               	<li><%= link_to "New Client",new_reseller_client_path(current_user.reseller)%></li>
+               <li><%= link_to "Client List",reseller_clients_path(current_user.reseller)%></li>
+               <li><%= link_to "Change Password",edit_user_registration_path%></li>
+               <li><%= link_to "Current Bets", "/races/current_races"  %></li>
+               </ul>
                <%else%>
                <h3>Settings</h3>
                <ul class="categorie_link2">
                	<li><%= link_to "Bets",current_races_races_path%></li>
                <li><%= link_to "Change Password",edit_user_registration_path%></li>
-               <li><%= link_to "Deposit request",user_withdraw_request_path%></li>
-               <li><%= link_to "View Withdraw/Deposit history",user_withdraw_history_path%></li>
-               <li><%= link_to "My Details",user_my_detail_path%></li>
-               <li><%= link_to "Contact",user_respond_way_path%></li>
+               <li><%= link_to "Deposit request",withdraw_request_reseller_clients_path(current_user.client.reseller)%></li>
+               <li><%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(current_user.client.reseller)%></li>
+               <li><%= link_to "My Details",my_details_reseller_clients_path(current_user.client.reseller)%></li>
+               <li><%= link_to "Contact",respond_way_reseller_clients_path(current_user.client.reseller)%></li>
                </ul>
             <%end%>          
-            
+            <%end%>
             </div>
             </aside>
    		<!-- </div> -->

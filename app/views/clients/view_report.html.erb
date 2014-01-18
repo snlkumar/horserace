@@ -1,0 +1,59 @@
+<%unless @client.races.blank?%>
+   <table id="table">
+   	<thead>
+   		<tr>
+   			
+   			Total Balance: <%=number_to_currency(@client.balance)%>
+   			</tr>
+   		<tr>
+   			<th>Bet Date/Time</th>
+   			<th>Ticket Number</th>
+   			<th>Description</th>
+   			<th>Balance before bet</th>   			
+   			<th>Bet Amount</th>
+   			<th>Balance after bet</th>
+   			<th>Bet Type</th>
+   			<th>Status</th>
+   			<th>Win</th>
+   			<th>Lost</th>
+   			<th>Balance after result</th>
+   			
+   		</tr>
+   	</thead>
+   	<tbody>
+   		<%@client.races.each do |race|%>
+   		<%prev_race=UsersRaces.find_by_race_id_and_client_id(race.id,@client.id)%>
+   		<tr class="tr_bg_yellow">
+   			<td><%=race.date%></td>
+   			<td><%=race.ticket_number%></td>
+   			<td><%=race.description%></td>
+   			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(prev_race.bet_amount) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(@client.calculated_balance_after_bet(race)) unless @client.balance.nil?%></td>
+   			<td><%=race.race_type%></td>
+   			<td>
+   				<%unless race.status.blank?%>
+   				<%=race.status%>
+   				<%else%>
+   				pending
+   				<%end%>
+   				
+   			</td>
+ 			<td><%=number_to_currency(prev_race.win) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(prev_race.lost) unless prev_race.blank?%></td>
+   			<td><%=prev_race.balance_after_result(race) unless prev_race.blank?%></td>
+   		</tr>
+   		
+   		
+   		
+   		<%end%>
+   		
+   	</tbody>
+   	
+   	
+   	
+   </table>
+
+<%else%>
+Sorry there is no record.
+<%end%>

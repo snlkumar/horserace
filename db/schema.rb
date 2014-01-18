@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116120246) do
+ActiveRecord::Schema.define(:version => 20140117063853) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -33,9 +33,33 @@ ActiveRecord::Schema.define(:version => 20140116120246) do
     t.string   "account"
     t.string   "bank_name"
     t.string   "account_name"
-    t.integer  "user_id"
+    t.integer  "client_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "clients", :force => true do |t|
+    t.string   "client_name"
+    t.float    "balance"
+    t.integer  "tier_id"
+    t.integer  "reseller_id"
+    t.string   "phone"
+    t.string   "custom_password"
+    t.string   "respond_via"
+    t.boolean  "admin",                     :default => false
+    t.string   "balance_after_bet"
+    t.string   "status",                    :default => "active"
+    t.string   "trading_start_date"
+    t.boolean  "is_this_trial"
+    t.integer  "trail_duration"
+    t.string   "client_number"
+    t.string   "address"
+    t.string   "consultant_contact_number"
+    t.string   "consultant_name"
+    t.date     "dob"
+    t.string   "enquiry"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "posts", :force => true do |t|
@@ -82,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20140116120246) do
     t.integer  "owner"
     t.float    "balance_before"
     t.float    "balance_after"
-    t.integer  "user_id"
+    t.integer  "client_id"
     t.integer  "race_id"
     t.integer  "bank_detail_id"
     t.datetime "created_at",     :null => false
@@ -90,36 +114,22 @@ ActiveRecord::Schema.define(:version => 20140116120246) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                     :default => "",         :null => false
-    t.string   "encrypted_password",        :default => "",         :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string   "client_name"
-    t.float    "balance"
-    t.integer  "tier_id"
-    t.integer  "reseller_id"
-    t.string   "phone"
-    t.string   "custom_password"
-    t.string   "respond_via"
-    t.integer  "sign_in_count",             :default => 0,          :null => false
+    t.integer  "sign_in_count",          :default => 0,     :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
-    t.boolean  "admin",                     :default => false
+    t.integer  "reseller_id"
+    t.integer  "client_id"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.boolean  "admin",                  :default => false
     t.string   "balance_after_bet"
-    t.string   "status",                    :default => "inactive"
-    t.date     "trading_start_date"
-    t.boolean  "is_this_trial"
-    t.integer  "trail_duration"
-    t.string   "client_number"
-    t.string   "address"
-    t.date     "dob"
-    t.string   "consultant_name"
-    t.string   "consultant_contact_number"
     t.string   "enquiry"
   end
 
@@ -127,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20140116120246) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "users_races", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "client_id"
     t.integer  "race_id"
     t.float    "processing_balance"
     t.datetime "created_at",         :null => false
@@ -137,7 +147,7 @@ ActiveRecord::Schema.define(:version => 20140116120246) do
     t.float    "bet_amount"
   end
 
-  add_index "users_races", ["user_id", "race_id"], :name => "index_users_races_on_user_id_and_race_id"
+  add_index "users_races", ["client_id", "race_id"], :name => "index_users_races_on_user_id_and_race_id"
 
   create_table "withdraws", :force => true do |t|
     t.float    "amount"

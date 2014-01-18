@@ -1,7 +1,7 @@
 
 
-
-<label><b>30 Day History:</b></label><input type="text" value="<%=number_to_currency(current_user.thirty_day_history)%>" readonly="true"/>
+<%unless current_user.client.races.blank?%>
+<label><b>30 Day History:</b></label><input type="text" value="<%=number_to_currency(current_user.client.thirty_day_history)%>" readonly="true"/>
 <table id="upcoming" class="table">
 	<thead>
 		<tr>
@@ -18,7 +18,7 @@
 			</tr>
 	</thead>
 	<tbody>
-		<%@races.each do |race|%>
+		<%current_user.client.races.where(:status=>nil).each do |race|%>
 		<tr class="tr_bg_yellow">
 			<td><%=race.name%></td>
 			<td><%=race.ticket_number%></td>
@@ -28,12 +28,13 @@
 			<td><%=race.horse%></td>
 			<td><%=race.horse_no%></td>
 			<td><%=race.location%></td>
-			<td><%=number_to_currency(current_user.balance_before_bet(race))%></td>
-			<td><%=number_to_currency(current_user.calculated_balance_after_bet(race))%></td>
+			<td><%=number_to_currency(current_user.client.balance_before_bet(race))%></td>
+			<td><%=number_to_currency(current_user.client.calculated_balance_after_bet(race))%></td>
 			</tr>
 		<%end%>		
 	</tbody>
 </table>
+<%end%>
 <h1>Previous Bets</h1>
  <div class="field">
     <p><b>From Date:</b>  <input type="text" id="datepicker" readonly="true"><b>  To Date:</b>  <input type="text" id="todatepicker" readonly="true"></p>
@@ -43,5 +44,5 @@
   </div>
 <div class="pre_races"></div>
 <legend>
-<b>Available Balance: </b> <%=number_to_currency(current_user.balance)%>
+<b>Available Balance: </b> <%=number_to_currency(current_user.client.balance)%>
 </legend>

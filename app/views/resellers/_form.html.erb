@@ -1,38 +1,43 @@
 <%= form_for(@reseller) do |f| %>
-  <% if @reseller.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reseller.errors.count, "error") %> prohibited this reseller from being saved:</h2>
-
-      <ul>
+ <div class="clr"></div>
+  	<% if @reseller.errors.any? %>   
+      <ul class="alert fade in alert-error">
       <% @reseller.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
-    </div>
+    
   <% end %>
-    <%= f.fields_for :user do |u| %>
-    <div class="field">
-    <%= u.label :client_name %><br />
-    <%= u.text_field :client_name %>
-  </div>
-  
-  <div class="field">
-    <%= u.label :phone %><br />
-    <%= u.text_field :phone %>
-  </div>
-    <%= u.email_field :email, :required => true, :autofocus => true %>
-    <%= u.password_field :password, :required => true %>
-    <%= u.password_field :password_confirmation, :required => true %>
+    <%= f.fields_for :user do |u| %>  
+    <div class="change_password_fields">
+   <div class="change_password_names"><%=u.label :email%></div>
+    <div class="change_password_form-field"><%= u.email_field :email, :required => true, :autofocus => true,:class=>"text_class" %></div>
+    <div class="clr"></div>
+   </div>
+   <div class="change_password_fields">
+   <div class="change_password_names"><%=u.label :password%></div>
+    <div class="change_password_form-field"><%= u.password_field :password, :required => true %></div>
+    <div class="clr"></div>
+    </div>
+    <div class="change_password_fields">
+   <div class="change_password_names"><%=u.label :password_confirmation%></div>
+    <div class="change_password_form-field"><%= u.password_field :password_confirmation, :required => true %></div>
+    <div class="clr"></div>
+    </div>
     <% end %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :name %></div>
+    <div class="change_password_form-field"><%= f.text_field :name %></div>
+  <div class="clr"></div>
   </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :address %></div>
+    <div class="change_password_form-field"><%= f.text_field :address %></div>
+  <div class="clr"></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+  	<div class="login_button"><%= f.submit "Save" %></div>
+  	<div class="clr"></div>	
+  	</div>
 <% end %>

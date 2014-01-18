@@ -1,3 +1,4 @@
+<%unless @current_races.blank?%>
 <table id="upcoming" class="table">
 	<thead>
 		<tr>
@@ -15,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%@races.each do |race|%>
+		<%@current_races.each do |race|%>
 		<tr class="tr_bg_yellow">
 			<td><%=race.name%></td>
 			<td><%=race.description%></td>
@@ -38,6 +39,7 @@
 		<%end%>		
 	</tbody>
 </table>
+<%end%>
 <h1>Previous Bets</h1>
 <%@races=Race.where('status=? or status=?','win','lost')%>
 <%=render 'admin_prev_races' %>

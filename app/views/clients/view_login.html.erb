@@ -1,0 +1,34 @@
+<h1>Login List</h1>
+
+
+  <%unless @clients.blank?%>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Sign in count</th>
+			<th>Current signin at</th>
+			<th>Last singin at</th>
+			</tr>
+	</thead>
+	<tbody>
+		
+		<%@clients.each_with_index do |client,index|%>
+	  <%@class="tr_bg_yellow"%>
+		<tr class="<%=@class%>">
+			<td><strong><%unless client.is_this_trial?%>
+				<%=client.client_name %>
+				<%else%>
+				<%=client.client_name %>(T)
+				<%end%></strong></td>
+			<td><%=client.user.sign_in_count%></td>
+			<td><%=client.user.current_sign_in_at%></td>
+			<td><%=client.user.last_sign_in_at%></td>			
+		</tr>
+		<%end%>
+		
+	</tbody>	
+</table>
+<%else%>
+Sorry record not found.
+<%end%>	

@@ -1,9 +1,23 @@
 HorseRace::Application.routes.draw do
  
+  # resources :clients do
+    # collection do
+      # get :withdraw_request,:withdraw_history,:my_details,:respond_way
+    # end
+  # end
+
+
   resources :transactions
 
 
-  resources :resellers
+  resources :resellers do
+      resources :clients do
+          collection do
+            get :withdraw_request,:withdraw_history,:my_details,:respond_way
+            put :update_details,:respond_way
+        end
+    end
+  end
 
 
   resources :withdraws
@@ -12,7 +26,7 @@ HorseRace::Application.routes.draw do
   resources :bank_details
 
 
-  devise_for :members
+  
 
    resources :races do
      collection do
@@ -53,25 +67,25 @@ HorseRace::Application.routes.draw do
     get 'edit_user'=>'devise/registrations#edit',:as=>:edit_user_registration
     get 'reset_password'=>'users#reset_password',:as=>:reset_password_users
     get 'confirm_password'=>'users#confirm_password'
-    get 'sign_up'=>'devise/registrations#new',:as=>:new_user_registration
+    # get 'sign_up'=>'devise/registrations#new',:as=>:new_user_registration
     post 'signin' => 'devise/sessions#create', :as => :user_session
-    get  'user/view_report' => 'users#view_report'
-    get  'user/withdraw_request' => 'users#withdraw_request'
-    post  'user/withdraw_request' => 'users#withdraw_request'
-    get  'user/my_detail' => 'users#my_details'
-    post  'user/my_detail' => 'users#my_details'
-    get  'user/withdraw_history' => 'users#withdraw_history'
-    get  'user/respond_way' => 'users#respond_way'
+    get  'user/view_clients' => 'users#view_clients'
+    # get  'user/withdraw_request' => 'users#withdraw_request'
+    # post  'user/withdraw_request' => 'users#withdraw_request'
+    # get  'user/my_detail' => 'users#my_details'
+    # post  'user/my_detail' => 'users#my_details'
+    # get  'user/withdraw_history' => 'users#withdraw_history'
+    # get  'user/respond_way' => 'users#respond_way'
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end 
   
   
 
-  resources :users do
-    collection do
-      get :reset_password,:confirm_password,:update_balance
-    end
-  end
+  # resources :users do
+    # collection do
+      # get :reset_password,:confirm_password,:update_balance
+    # end
+  # end
   
   
      

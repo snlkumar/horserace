@@ -65,7 +65,7 @@ $(document).on("click","#create-user",function(){
 				text: "confirm",
 				type: "submit",
 				click: function() {
-					var user_balance=$("#user_balance").val();
+					var user_balance=$("#client_balance").val();
 					var balance_password=$("#balance_password").val();
 					if (balance_password){
 					   $.ajax({
@@ -122,11 +122,12 @@ $(document).on("change","#bank_id",function(){
 $(document).on("change","#respond_select",function(){
 	var selected=$(this).val();
 	if (selected=="Other"){
+		$("#client_respond_via").empty();
 		$("#respond_to").show();
 	}else{
 		$("#respond_to").hide();
-		$("#user_respond_via").empty();
-		$("#user_respond_via").val(selected);
+		$("#client_respond_via").empty();
+		$("#client_respond_via").val(selected);
 	}
 	
 	

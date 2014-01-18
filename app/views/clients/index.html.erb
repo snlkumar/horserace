@@ -1,14 +1,14 @@
 <h1>Client List</h1>
-
-<%unless @clients.blank?%>
-<% if @clients.errors.any? %>   
+<%unless @client.blank?%>
+<% if @client.errors.any? %>   
       <ul class="alert fade in alert-error">
-      <% @clients.errors.full_messages.each do |msg| %>
+      <% @client.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
    <%end%> 
   <% end %>
+
   <%unless @clients.empty?%>
 <table class="table">
 	<thead>
@@ -44,14 +44,14 @@
 				Default Odds
 				<%end%></td>
 			<td><%=client.user.email%></td>
-			<td><%=client.user.phone%></td>
+			<td><%=client.phone%></td>
 			<td><%=client.created_at.strftime("%d-%m-%y")%></td>
 			<td><%=client.status%></td>
 			<td><%=(client.profit_lost) unless client.profit_lost.blank?%></td>
 			<td><%=(client.b5) unless client.b5.blank?%></td>
-			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_user_path(client) %> |
-              <%= link_to image_tag('../assets/delete_icon.png').html_safe, client, confirm: 'Are you sure you want to delete?', method: :delete %> | 
-              <%= link_to "View_report",:controller=>'users',:action=>'view_report',:id=>user.id %>
+			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_reseller_client_path(@reseller,client) %> |
+              <%= link_to image_tag('../assets/delete_icon.png').html_safe, [@reseller,client], confirm: 'Are you sure you want to delete?', method: :delete %> | 
+              <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>
               </td>
 		</tr>
 		<%end%>
