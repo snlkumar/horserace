@@ -50,9 +50,10 @@ class ClientsController < InheritedResources::Base
   end
   
   def destroy
-    redirect_to clients_path and return if params[:cancel]
+    @reseller=Reseller.find params[:reseller_id]
+    redirect_to reseller_clients_path(@reseller) and return if params[:cancel]
      @client=Client.find(params[:id])
-     @clients=Client.all.order('client_name ASC')   
+     @clients=Client.order('client_name ASC')   
      @client.destroy
      respond_to do |format|
       format.html { render 'index' }
