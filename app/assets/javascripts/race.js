@@ -37,7 +37,7 @@ $(document).ready(function(){
 	$("#dialog-form").hide();
 	$('input:radio[name=bank_details][value=current]').attr('checked', true);
 	$("#withdraw_bank_detail_id").val("");
-	$("#user_trail_duration").attr("disabled",true);
+	$("#client_trail_duration").attr("disabled",true);
 	$("#alter_bank").hide();
 	$("#respond_to").hide();	
 });

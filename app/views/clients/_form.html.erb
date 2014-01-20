@@ -15,7 +15,7 @@
 <%if @client.client_number.blank?%>  
   <%@cnumber= 'C'+rand(7 ** 8).to_s%>  
   <%else%>
-  <%@cnumber=@race.ticket_number%>
+  <%@cnumber=@client.client_number%>
   <%end%>
   <div class="change_password_fields">
    <div class="change_password_names"><%= f.label :client_number %></div>

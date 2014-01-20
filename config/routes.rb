@@ -71,7 +71,7 @@ HorseRace::Application.routes.draw do
     post 'signin' => 'devise/sessions#create', :as => :user_session
     get  'user/view_clients' => 'users#view_clients'
     get  'user/edit_client' => 'users#edit_client'
-    # post  'user/withdraw_request' => 'users#withdraw_request'
+    put  'user/update_client' => 'users#update_client'
     # get  'user/my_detail' => 'users#my_details'
     # post  'user/my_detail' => 'users#my_details'
     # get  'user/withdraw_history' => 'users#withdraw_history'

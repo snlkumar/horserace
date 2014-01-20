@@ -3,5 +3,5 @@ class BankDetail < ActiveRecord::Base
   belongs_to :client
   has_many :withdraws
   validates_format_of :account_name,:bank_name, :with => /^[a-zA-Z() ]+$/
-  validates :bank_name,:presence=>true,:uniqueness=>true
+  validates :account_name,:presence=>true,:uniqueness=>true
 end

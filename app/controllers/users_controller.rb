@@ -45,7 +45,16 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   @clients=Client.all   
   end
   def edit_client
-    @user=Client.find(params[:id])
+    @client=Client.find(params[:id])
+  end
+  def update_client
+    @client=Client.find(params[:id])
+   if @client.update_attributes(params[:client])
+      flash[:notice] = "Client Successfully updated ."
+      redirect_to user_view_clients_path
+    else
+      redirect_to user_edit_client_path(:id=>@client)
+    end
   end
   
  end

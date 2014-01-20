@@ -1,13 +1,11 @@
 
 
-<%= form_for @user do |f| %>
-  
-  
-  	<h1>Enter new Client</h1>
+<%= form_for @client,:url=>user_update_client_path(:id=>@client) do |f| %>
+  <h1>Edit Client</h1>
   	<div class="clr"></div>
-  	<% if @user.errors.any? %>   
+  	<% if @client.errors.any? %>   
       <ul class="alert fade in alert-error">
-      <% @user.errors.full_messages.each do |msg| %>
+      <% @client.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -37,10 +35,7 @@
   	<div class="change_password_names"><%= f.label :phone %></div>
   <div class="change_password_form-field"><%= f.text_field :phone,:placeholder=>'enter phone',:required=>true %></div>
   <div class="clr"></div></div>
-  <div class="change_password_fields">
-  	<div class="change_password_names"><%= f.label :email %></div>
-  <div class="change_password_form-field"><%= f.email_field :email,:required=>true,:class=>"text_class"%></div>
- <div class="clr"></div></div>
+
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :address %></div>
   <div class="change_password_form-field"><%= f.text_field :address,:required=>true%></div>
@@ -69,10 +64,7 @@
   	<div class="change_password_names"><%= f.label :trial_duration %></div>
   <div class="change_password_form-field"><%= f.select :trail_duration,[3,4,5]%></div>
  <div class="clr"></div></div>
- <div class="change_password_fields">
-  	<div class="change_password_names"><%= f.label :trading_start_date %></div>
-  <div class="change_password_form-field"><%= f.text_field :trading_start_date,:required=>true,:readonly=>true%></div>
- <div class="clr"></div></div>  
+
 <%=f.fields_for :bank_details do |b|%>
    <div class="change_password_fields">
  	<div class="change_password_names"><%= b.label :bsb %></div>
@@ -109,7 +101,7 @@ $( "#user_trading_start_date" ).datepicker({
   },
    minDate: 0
 });
-$( "#user_dob" ).datepicker({
+$( "#client_dob" ).datepicker({
 	dateFormat:"dd-mm-yy",
 	onSelect: function(date) {
 	

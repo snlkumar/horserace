@@ -21,6 +21,7 @@ class ClientsController < InheritedResources::Base
   end
   
   def create
+    @reseller=Reseller.find params[:reseller_id]
     @client = Client.new(params[:client])
     if @client.save
       flash[:notice] = "#{@client.client_name} successfully created"
@@ -35,12 +36,12 @@ class ClientsController < InheritedResources::Base
     params[:client].delete(:password) if params[:client][:password].blank?
     params[:client].delete(:password_confirmation) if params[:client][:password].blank? and params[:client][:password_confirmation].blank?
     if params[:id]=="password"
-      @user=current_user
+      @client=current_user
     else
-     @user=Client.find(params[:id])  
+     @client=Client.find(params[:id])  
     end
     
-    if @user.update_attributes(params[:client])
+    if @client.update_attributes(params[:client])
       flash[:notice] = "Client Successfully updated ."
       redirect_to reseller_clients_path(@reseller)
     else
