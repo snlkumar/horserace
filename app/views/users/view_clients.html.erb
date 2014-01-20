@@ -9,10 +9,12 @@
  			<th>Reseller</th>
  			<th>Balance</th>
  			<th>Races</th>
+ 			<th>Action</th>
  		</tr>
  	</thead>
  	<tbody>
  		<%@clients.each do |client|%>
+ 		<%@reseller=client.reseller%>
  		<tr>
  			<td><%=client.client_number%></td>
  			<td><%=client.client_name%></td>
@@ -23,6 +25,7 @@
  			<%@races<<race.name%>
  			<%end%>
  			<td><%=@races%></td>
+ 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %>
  		</tr>
  		<%end%>
  	</tbody>

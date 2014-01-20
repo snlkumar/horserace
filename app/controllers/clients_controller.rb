@@ -1,7 +1,7 @@
 class ClientsController < InheritedResources::Base
   before_filter :login_required
-  before_filter :reseller_required ,:only=>[:new,:create,:update,:edit,:destroy]
-  
+  before_filter :reseller_required ,:only=>[:new,:create,:destroy]
+  before_filter :admin_or_reseller,:only=>[:edit,:update]
   def index
     @reseller=Reseller.find params[:reseller_id]
     @clients=@reseller.clients
@@ -31,7 +31,7 @@ class ClientsController < InheritedResources::Base
   end
   
   def update
-    
+    @reseller=Reseller.find params[:reseller_id]
     params[:client].delete(:password) if params[:client][:password].blank?
     params[:client].delete(:password_confirmation) if params[:client][:password].blank? and params[:client][:password_confirmation].blank?
     if params[:id]=="password"
@@ -42,7 +42,7 @@ class ClientsController < InheritedResources::Base
     
     if @user.update_attributes(params[:client])
       flash[:notice] = "Client Successfully updated ."
-      redirect_to reseller_clients_path(current_user.reseller)
+      redirect_to reseller_clients_path(@reseller)
     else
       render :action => 'edit'
     end

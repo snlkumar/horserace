@@ -44,5 +44,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   def view_clients
   @clients=Client.all   
   end
+  def edit_client
+    @user=Client.find(params[:id])
+  end
   
  end
