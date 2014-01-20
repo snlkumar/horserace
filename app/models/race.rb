@@ -8,13 +8,14 @@ class Race < ActiveRecord::Base
   validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
   validates :ticket_number,:uniqueness=>true
   def update_clients 
-    @clients=Client.where('status=? AND balance>=?','active',500)
+    @clients=Client.where(:status=>active)
     puts "the clients is#{@clients.count}"
     # @users=User.where(:admin=>false,:status=>'active') 
     @clients.each do |client|
       # trading_date=user.trading_start_date
 #      
-      # if trading_date <= self.date      
+      # if trading_date <= self.date     
+      unless client.balance < 500 
     user_race=UsersRaces.create(:race_id=>self.id,:client_id=>client.id,:processing_balance=>client.balance)
     UsersRaces.update(user_race.id,:bet_amount=>client.bet_amount(self))
     Client.update(client.id,:balance=>client.calculated_balance_after_bet(self))
@@ -22,6 +23,7 @@ class Race < ActiveRecord::Base
     ur=UsersRaces.find user_race.id
     Transaction.create(:balance_before=>ur.processing_balance,:balance_after=>ur.processing_balance-ur.bet_amount,:withdraw=>ur.bet_amount,:race_id=>self.id,:client_id=>client.id,:bank_detail_id=>client.bank_details.last.id)
       end
+   end
    end
   end
     
