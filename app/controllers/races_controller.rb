@@ -44,7 +44,7 @@ class RacesController < InheritedResources::Base
   
   def view_clients_balance
     @final=params[:id]
-    @users=Client.where(:status => 'Active').order('client_name ASC')
+    @users=Client.where(:status => 'Active')
     render 'client_balances'
   end
   def contacts
