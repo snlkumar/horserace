@@ -9,6 +9,7 @@ class Race < ActiveRecord::Base
   validates :ticket_number,:uniqueness=>true
   def update_clients 
     @clients=Client.where('status=? AND balance>=?','active',500)
+    puts "the clients is#{@clients.count}"
     # @users=User.where(:admin=>false,:status=>'active') 
     @clients.each do |client|
       # trading_date=user.trading_start_date
