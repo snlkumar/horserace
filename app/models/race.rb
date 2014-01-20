@@ -8,7 +8,7 @@ class Race < ActiveRecord::Base
   validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
   validates :ticket_number,:uniqueness=>true
   def update_clients 
-    @clients=Client.where(:status=>'active')
+    @clients=Client.where(:status=>'Active')
     puts "the clients is#{@clients.count}"
     # @users=User.where(:admin=>false,:status=>'active') 
     @clients.each do |client|
