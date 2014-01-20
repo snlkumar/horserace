@@ -1,6 +1,28 @@
 <h1>Editing reseller</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @reseller %> |
-<%= link_to 'Back', resellers_path %>
+<%= form_for(@reseller) do |f| %>
+ <div class="clr"></div>
+  	<% if @reseller.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @reseller.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    
+  <% end %>    
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :name %></div>
+    <div class="change_password_form-field"><%= f.text_field :name %></div>
+  <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :address %></div>
+    <div class="change_password_form-field"><%= f.text_field :address %></div>
+  <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+  	<div class="login_button"><%= f.submit "Save" %></div>
+  	<div class="clr"></div>	
+  	</div>
+<% end %>
