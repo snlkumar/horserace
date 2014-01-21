@@ -20,7 +20,8 @@ class Race < ActiveRecord::Base
     UsersRaces.update(user_race.id,:bet_amount=>client.bet_amount(self))
     Client.update(client.id,:balance=>client.calculated_balance_after_bet(self))
     unless user_race.nil?
-    ur=UsersRaces.find user_race.id
+    ur=UsersRaces.find_by_id(user_race.id)
+    puts "i am with#{ur.processing_balance} and-#{ur.bet_amount}"
     Transaction.create(:balance_before=>ur.processing_balance,:balance_after=>ur.processing_balance-ur.bet_amount,:withdraw=>ur.bet_amount,:race_id=>self.id,:client_id=>client.id,:bank_detail_id=>client.bank_details.last.id)
       end
    end
