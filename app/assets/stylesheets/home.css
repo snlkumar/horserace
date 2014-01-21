@@ -18,7 +18,7 @@ margin:0;
 padding:0;
 border:0;
 outline:0;
-font-size:100%;
+font-size:95%;
 vertical-align:baseline;
 background:transparent;
 }
@@ -492,7 +492,7 @@ zoom: 1;
 	Generic Styling, for Desktops/Laptops 
 	*/
 	table { 
-		width: 100%; 
+		width: 90%; 
 		border-collapse: collapse;
 		background: #fff;
 		text-transform:uppercase; 
@@ -505,28 +505,36 @@ zoom: 1;
 	th { 
 		background: #000000; 
 		color: white;
-		font-size:14px;
+		font-size:10px;
 		border-right: 1px solid #A4A4A4 !important; 
 		font-weight: bold; 
 	}
 	td, th { 
-		padding:8px 5px; 
+		padding:5px 3px; 
 		border: 1px solid #000; 
 		text-align: center; 
 	}
 	
 	td{
-		font-size:12px;
+		font-size:08px;
 		}
 		
 .bg_colour{
 	background:#7f7f7f;
 	color:#fff;
 	}		
+	
+.client_table th, .client_table td {
+    /*border-top: 1px solid #DDDDDD;
+    line-height: 20px;*/
+    padding: 4px;
+    /*text-align: left;
+    vertical-align: top;*/
+}
 		
 	td strong{
 		color:#af8440;
-		font-size:12px;
+		font-size:10px;
 		}											
 
 /*===================================================Categories Page End Here=============================================*/
@@ -561,7 +569,7 @@ zoom: 1;
 }
 .categorie_link2 li a {
 	margin:0 0 0 0px;
-	font-size:15px;
+	font-size:14px;
 	float:left;
 	text-decoration:none;
 	color:#252525;

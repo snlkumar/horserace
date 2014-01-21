@@ -133,7 +133,7 @@ $(document).on("change","#respond_select",function(){
 	
 });
 
-$(document).on("change","#client_password",function(){
+$(document).on("change","#client_user_attributes_password",function(){
 	var password=$(this).val();
 	$("#client_custom_password").val(password);
 });
