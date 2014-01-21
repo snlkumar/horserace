@@ -110,29 +110,30 @@ class Client < ActiveRecord::Base
      bet = 200 
      after_diff=processing_amount-25000
    reminder=(after_diff/500).to_f
-   case reminder
-    when 0.0..0.9
-      return bet+50*1
-    when 1.0..1.9
-      return bet+50*2  
-    when 2.0..2.9
-      return bet+50*3
-    when 3.0..3.9
-      return bet+50*4
-    when 4.0..4.9
-      return bet+50*5
-    when 5.0..5.9
-      return bet+50*6
-    when 6.0..6.9
-      return bet+50*7
-    when 7.0..7.9
-      return bet+50*8
-    when 8.0..8.9
-      return bet+50*9
-    when 9.0..9.9
-      return bet+50*10
-    end               
-    end
+   return bet+reminder*50
+   # case reminder
+    # when 0.0..0.9
+      # return bet+50*1
+    # when 1.0..1.9
+      # return bet+50*2  
+    # when 2.0..2.9
+      # return bet+50*3
+    # when 3.0..3.9
+      # return bet+50*4
+    # when 4.0..4.9
+      # return bet+50*5
+    # when 5.0..5.9
+      # return bet+50*6
+    # when 6.0..6.9
+      # return bet+50*7
+    # when 7.0..7.9
+      # return bet+50*8
+    # when 8.0..8.9
+      # return bet+50*9
+    # when 9.0..9.9
+      # return bet+50*10
+    # end               
+     end
     else
       return 5
     end
