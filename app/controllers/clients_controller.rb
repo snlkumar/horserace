@@ -4,7 +4,7 @@ class ClientsController < InheritedResources::Base
   before_filter :admin_or_reseller,:only=>[:edit,:update]
   def index
     @reseller=Reseller.find params[:reseller_id]
-    @clients=@reseller.clients
+    @clients=@reseller.clients.order('status DESC')
   end
   
   def new
@@ -24,7 +24,7 @@ class ClientsController < InheritedResources::Base
     @reseller=Reseller.find params[:reseller_id]
     @client = Client.new(params[:client])
     if @client.save
-      flash[:notice] = "#{@client.client_name} successfully created"
+      flash[:notice] = "Client successfully created"
       redirect_to reseller_clients_path(current_user.reseller)
     else
       render :action => 'new'

@@ -15,8 +15,7 @@
 		<tr>
 			<th>Client Name</th>
 			<th>Password</th>
-			<th>Balance</th>
-			<th>Tier</th>
+			<th>Balance</th>			
 			<th>Email</th>
 			<th>Phone</th>
 			<th>Date</th>
@@ -37,12 +36,7 @@
 				<%=client.client_name %>(T)
 				<%end%></strong></td>
 				<td><%=client.custom_password%></td>
-			<td><%=number_to_currency(client.balance)%></td>
-			<td><% unless client.tier.nil? %>
-				<%=client.tier.name%>
-				<%else%>
-				Default Odds
-				<%end%></td>
+			<td><%=number_to_currency(client.balance)%></td>			
 			<td><%=client.user.email%></td>
 			<td><%=client.phone%></td>
 			<td><%=client.created_at.strftime("%d-%m-%y")%></td>

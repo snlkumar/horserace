@@ -8,6 +8,7 @@
  			<th>Client Name</th>
  			<th>Reseller</th>
  			<th>Balance</th>
+ 			<th>Status</th>
  			<th>Races</th>
  			<th>Action</th>
  		</tr>
@@ -24,6 +25,7 @@
  			<%client.races.each do |race|%>
  			<%@races<<race.name%>
  			<%end%>
+ 			<td><%=client.status%></td>
  			<td><%=@races%></td>
  			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %>
  		</tr>

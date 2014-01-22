@@ -9,9 +9,7 @@
 			<th>Horse</th>
 			<th>Location</th>
 			<th>Default Odds</th>
-			<%@tiers.each do |tier|%>	
-			  <th><%=tier.name%></th>	  
-			<%end%>			
+				
 		</tr>
 	</thead>
 	<tbody>
@@ -24,10 +22,6 @@
 			<td><%=race.horse%></td>
 			<td><%=race.location%></td>
 			<td><%=number_to_currency(race.default_odd)%></td>
-			<%@tiers.each do |tier|%>
-			<%calculated=(race.default_odd*tier.weight)/100%>
-			  <td><%=number_to_currency(race.default_odd+calculated)%></td>			  
-			<%end%>	
 			</tr>
 		<%end%>		
 	</tbody>

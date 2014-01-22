@@ -10,7 +10,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :respond_via
       t.boolean :admin, :default=>false
       t.string :balance_after_bet
-      t.string :status,:default=>'active'
+      t.string :status,:default=>'Active'
       t.string :trading_start_date
       t.boolean :is_this_trial
       t.integer :trail_duration

@@ -42,7 +42,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   
   def view_clients
-  @clients=Client.all   
+  @clients=Client.order('status DESC')   
   end
   def edit_client
     @client=Client.find(params[:id])

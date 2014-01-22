@@ -31,11 +31,7 @@
   	<div class="change_password_names"><%= f.label :balance %></div>
   <div class="change_password_form-field"><%= f.text_field :balance,:placeholder=>"Balance should be in integer",:required=>true%></div>
   <div class="clr"></div></div>
- <div class="change_password_fields">
-  	<div class="change_password_names"><%= f.label :tier_id %></div>
-  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => 'Select'},:required=>true,:class=>"tier_select") %></div>
-  <!-- <%= f.text_field :tier_id%></div> -->
-  <div class="clr"></div></div>
+ 
   <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :phone %></div>
   <div class="change_password_form-field"><%= f.text_field :phone,:placeholder=>'enter phone',:required=>true %></div>
@@ -73,8 +69,8 @@
   <div class="change_password_form-field"><%= f.text_field :consultant_contact_number,:required=>true%></div>
  <div class="clr"></div></div>
  <div class="change_password_fields">
-  	<div class="change_password_names"><%= f.label :status %></div>
-  <div class="change_password_form-field"><%= f.select :status, ['Active','Inactive'],:class=>"tier_select" %></div>
+  	<div class="change_password_names"><% f.label :status %></div>
+  <div class="change_password_form-field"><% f.select :status, ['Active','Inactive'],:class=>"tier_select" %></div>
  <div class="clr"></div></div>
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :is_this_trial %></div>

@@ -16,9 +16,9 @@ class Client < ActiveRecord::Base
   accepts_nested_attributes_for :withdraws
   accepts_nested_attributes_for :bank_details
   before_destroy :check_for_races
-  after_create :update_races
+  # after_create :update_races
   before_save :validate_balance
-  validate :status,:update_races,:if =>:status_changed?,:on=>'update'
+  # validate :status,:update_races,:if =>:status_changed?,:on=>'update'
    has_one :user
    belongs_to :reseller
    accepts_nested_attributes_for :user
@@ -34,8 +34,9 @@ class Client < ActiveRecord::Base
   
   
   def update_races 
+    puts "i am in update#{self.status}"
    
-    unless self.status=="inactive"
+    unless self.status=="Inactive"
     # @races=Race.where('status=? and date >= ?',nil,self.trading_start_date)
      #@races=Race.where('date >=?',self.trading_start_date)
      @races=Race.where(:status=>nil)    

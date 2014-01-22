@@ -8,12 +8,9 @@
 			<th>Time</th>
 			<th>Horse</th>
 			<th>Location</th>
-			<th>Default Odds</th>
-			<%@tiers.each do |tier|%>	
-			  <th><%=tier.name%></th>			  
-			<%end%>
+			<th>Default Odds</th>			
 			<th>Status</th>
-			 <th>Action</th>
+			 <!-- <th>Action</th> -->
 			
 		</tr>
 	</thead>
@@ -26,15 +23,11 @@
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
 			<td><%=race.location%></td>
-			<td><%=number_to_currency(race.default_odd)%></td>
-			<%@tiers.each do |tier|%>
-			<%calculated=(race.default_odd*tier.weight)/100%>
-			  <td><%=number_to_currency(race.default_odd+calculated)%></td>			  
-			<%end%>	
+			<td><%=number_to_currency(race.default_odd)%></td>			
 			<td><%=race.status%></td>
-			<td>
-			<%= link_to image_tag("../assets/view-icon.png"), race %> 
-			</td>					
+			<!-- <td>
+			<% link_to image_tag("../assets/view-icon.png"), race %> 
+			</td>	 -->				
 			</tr>
 		<%end%>		
 	</tbody>
