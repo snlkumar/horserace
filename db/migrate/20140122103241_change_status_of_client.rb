@@ -3,3 +3,4 @@ class ChangeStatusOfClient < ActiveRecord::Migration
      change_column :clients, :status, :default => 'Inactive'  
   end
 end
+ 
