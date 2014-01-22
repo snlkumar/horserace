@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
    belongs_to :client
    belongs_to :race
    belongs_to :bank_detail
-   validates :bank_detail,:presence=>true
+   # validates :bank_detail,:presence=>true
    before_create :validate_amount,:if=>:withdraw_changed?
 
  def validate_amount

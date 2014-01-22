@@ -46,7 +46,7 @@ class Client < ActiveRecord::Base
      Client.update(self.id,:balance=>self.calculated_balance_after_bet(race))
       unless user_race.nil?
     ur=UsersRaces.find user_race.id
-     Transaction.create(:balance_before=>ur.processing_balance,:balance_after=>ur.processing_balance-ur.bet_amount,:withdraw=>ur.bet_amount,:race_id=>race.id,:client_id=>self.id,:bank_detail_id=>self.bank_details.last.id)
+     Transaction.create(:balance_before=>ur.processing_balance,:balance_after=>ur.processing_balance-ur.bet_amount,:withdraw=>ur.bet_amount,:race_id=>race.id,:client_id=>self.id)
      end
     end
    end
@@ -165,7 +165,7 @@ class Client < ActiveRecord::Base
     if race.status=="win"
       Client.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:win=>win,:bet_amount=>self.bet_amount(race))
-      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:deposit=>win,:race_id=>race.id,:client_id=>self.id,:bank_detail_id=>self.bank_details.last.id)
+      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:deposit=>win,:race_id=>race.id,:client_id=>self.id)
     end
   return win
   end
@@ -181,7 +181,7 @@ class Client < ActiveRecord::Base
     if race.status=="lost"
       Client.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:lost=>loss,:bet_amount=>self.bet_amount(race))
-      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:withdraw=>loss,:race_id=>race.id,:client_id=>self.id,:bank__detail_id=>self.bank_details.last.id)
+      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:withdraw=>loss,:race_id=>race.id,:client_id=>self.id)
     end
     return loss
    
