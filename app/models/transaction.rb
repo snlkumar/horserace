@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-   attr_accessible :client_id,:total,:owner,:deposit,:withdraw,:race_id, :bank_detail_id,:balance_before,:balance_after
+   attr_accessible :client_id,:total,:owner,:race_status,:deposit,:withdraw,:race_id, :bank_detail_id,:balance_before,:balance_after
    belongs_to :client
    belongs_to :race
    belongs_to :bank_detail
@@ -9,7 +9,7 @@ class Transaction < ActiveRecord::Base
  def validate_amount
    user=Client.find self.client_id
    if user.balance<self.withdraw 
-     self.errors[:base] << "Amount should be equal or less than the available blance"
+     self.errors[:base] << "Amount should be equal or less than the available balance"
      return false
    end
  end

@@ -34,7 +34,7 @@ class TransactionsController < InheritedResources::Base
          user =Client.find current_user.client.id 
          @transaction.update_attributes(:balance_after=>user.balance)
      
-        format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Withdraw request received successfully.' }
+        format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Request received successfully.' }
         format.json { render json: @transaction, status: :created, location: @user }
       else
         format.html { render 'clients/withdraw_request',:user=>current_user.client, notice: @transaction.errors}

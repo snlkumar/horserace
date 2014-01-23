@@ -1,7 +1,8 @@
 
 
-<%unless current_user.client.races.blank?%>
+
 <label><b>30 Day History:</b></label><input type="text" value="<%=number_to_currency(current_user.client.thirty_day_history)%>" readonly="true"/>
+<%unless current_user.client.races.where(:status=>nil).blank?%>
 <table id="upcoming" class="table">
 	<thead>
 		<tr>

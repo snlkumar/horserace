@@ -99,6 +99,7 @@ class ClientsController < InheritedResources::Base
   end
   
   def view_report
+    puts "i am in view report"
     @client=Client.find params[:id]       
   end
   

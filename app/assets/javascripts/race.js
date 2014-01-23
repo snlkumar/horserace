@@ -40,6 +40,8 @@ $(document).ready(function(){
 	$("#client_trail_duration").attr("disabled",true);
 	$("#alter_bank").hide();
 	$("#respond_to").hide();	
+	$("#transaction_deposit").hide();	
+		$("#transaction_withdraw").hide();
 });
 
 
@@ -136,4 +138,13 @@ $(document).on("change","#respond_select",function(){
 $(document).on("change","#client_user_attributes_password",function(){
 	var password=$(this).val();
 	$("#client_custom_password").val(password);
+});
+
+$(document).on("click","#withdraw",function(){
+			$("#transaction_deposit").hide();	
+			$("#transaction_withdraw").show();
+	});
+$(document).on("click","#deposit",function(){
+		$("#transaction_deposit").show();	
+		$("#transaction_withdraw").hide();
 });

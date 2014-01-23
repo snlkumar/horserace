@@ -42,18 +42,33 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   
   def view_clients
-  @clients=Client.order('status DESC')   
+  @clients=Client.where(:status=>'Active').order('created_at DESC')   
+  end
+  def inactive_clients
+  @clients=Client.where(:status=>'Inactive').order('created_at DESC')
   end
   def edit_client
     @client=Client.find(params[:id])
   end
   def update_client
     @client=Client.find(params[:id])
+    @deposit=0.0
+    @withdraw=0.0
+    before_balance=@client.balance
+    balance=params[:client][:balance]
+    if before_balance<balance.to_f
+    @deposit=balance.to_f-before_balance
+    else
+    @withdraw=before_balance-balance.to_f  
+    end
    if @client.update_attributes(params[:client])
+      @transaction=Transaction.new(:client_id=>@client.id,:balance_before=>before_balance,:deposit=>@deposit,:withdraw=>@withdraw,:balance_after=>@client.balance)
+      @transaction.save
+      puts "the t error#{@transaction.errors.messages}"
       flash[:notice] = "Client Successfully updated ."
       redirect_to user_view_clients_path
-    else
-      redirect_to user_edit_client_path(:id=>@client)
+    else       
+      render 'edit_client'
     end
   end
   

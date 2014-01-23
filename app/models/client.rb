@@ -26,7 +26,7 @@ class Client < ActiveRecord::Base
    
   def validate_balance
     if (self.balance < 500 unless self.balance.nil?)
-      self.errors[:base] << "Balance should be equal or greater than $500"
+      self.errors[:base] << "The requested Balance should be equal or greater than $500"
      return false
     end
   end
@@ -80,7 +80,7 @@ class Client < ActiveRecord::Base
   end
   
  def balance_before_bet(race)
-   puts "i am in with#{race.id} and #{self.id}"
+  
  processing_amount=UsersRaces.find_by_race_id_and_client_id(race.id,self.id).processing_balance
  return processing_amount
  end
@@ -168,7 +168,8 @@ class Client < ActiveRecord::Base
     if race.status=="win"
       Client.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:win=>win,:bet_amount=>self.bet_amount(race))
-      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:deposit=>win,:race_id=>race.id,:client_id=>self.id)
+      trans=Transaction.find_by_client_id_and_race_id(self.id,race.id)
+      Transaction.create(:balance_before=>trans.balance_after,:balance_after=>actual_balance,:deposit=>win,:race_id=>race.id,:race_status=>'Win',:client_id=>self.id)
     end
   return win
   end
@@ -184,7 +185,8 @@ class Client < ActiveRecord::Base
     if race.status=="lost"
       Client.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:lost=>loss,:bet_amount=>self.bet_amount(race))
-      Transaction.create(:balance_before=>@user_races.processing_balance,:balance_after=>actual_balance,:withdraw=>loss,:race_id=>race.id,:client_id=>self.id)
+      trans=Transaction.find_by_client_id_and_race_id(self.id,race.id)
+      Transaction.create(:balance_before=>trans.balance_after,:balance_after=>actual_balance,:withdraw=>loss,:race_id=>race.id,:race_status=>'Lost',:client_id=>self.id)
     end
     return loss
    

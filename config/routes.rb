@@ -72,7 +72,7 @@ HorseRace::Application.routes.draw do
     get  'user/view_clients' => 'users#view_clients'
     get  'user/edit_client' => 'users#edit_client'
     put  'user/update_client' => 'users#update_client'
-    # get  'user/my_detail' => 'users#my_details'
+    get  'user/inactive_clients' => 'users#inactive_clients'
     # post  'user/my_detail' => 'users#my_details'
     # get  'user/withdraw_history' => 'users#withdraw_history'
     # get  'user/respond_way' => 'users#respond_way'

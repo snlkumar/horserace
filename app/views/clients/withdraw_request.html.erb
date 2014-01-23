@@ -17,12 +17,14 @@
 	<div class="change_password_names">Password</div>
 	<div class="change_password_form-field"><%=password_field_tag 'password','',:required=>true%></div>
 	<div class="clr"></div></div>
-     <div class="change_password_fields">
-	<div class="change_password_names"><%=t.label 'withdraw amount'%></div>
-     <div class="change_password_form-field"><%=t.text_field :withdraw%></div>
-     <div class="clr"></div></div> 
-     <div class="change_password_fields">
-	<div class="change_password_names"><%=t.label 'Deposit amount'%></div>
+	<div class="change_password_fields">
+	<div class="change_password_names">Amount To</div>
+		<div class="change_password_form-field"><input type="radio" name="amount_to" id="withdraw" value="withdraw"/><label>Withdrae</label> <input type="radio" name="amount_to" value="deposit" id="deposit"/><label>Deposit</label></div>
+	<div class="clr"></div>
+	</div>
+     <div class="change_password_fields">	
+     	<div class="change_password_names"></div>
+     <div class="change_password_form-field"><%=t.text_field :withdraw%></div>    
      <div class="change_password_form-field"><%=t.text_field :deposit%></div>
      <div class="clr"></div></div> 
      <div class="change_password_fields">

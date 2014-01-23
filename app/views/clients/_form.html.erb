@@ -88,7 +88,7 @@
  
  
   
-<%f.fields_for :bank_details do |b|%>
+<%=f.fields_for :bank_details do |b|%>
    <div class="change_password_fields">
  	<div class="change_password_names"><%= b.label :bsb %></div>
   <div class="change_password_form-field"><%= b.text_field :bsb %></div>

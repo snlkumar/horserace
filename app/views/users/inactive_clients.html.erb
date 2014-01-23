@@ -1,4 +1,4 @@
-<h1>Active Clients </h1>
+<h1>Inactive Clients</h1>
 
 <%unless @clients.blank?%>
  <table class="table">
@@ -10,7 +10,7 @@
  			<th>Reseller</th>
  			<th>Balance</th>
  			<th>Status</th>
- 			<th>Races</th>
+ 			
  			<th>Action</th>
  		</tr>
  	</thead>
@@ -28,9 +28,8 @@
  			<%@races<<race.name%>
  			<%end%>
  			<td><%=client.status%></td>
- 			<td><%=@races%></td>
- 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> | <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>
- 		</tr>
+ 			
+ 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> </tr>
  		<%end%>
  	</tbody>
  </table>

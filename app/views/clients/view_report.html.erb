@@ -43,7 +43,7 @@
    			</td>
  			<td><%=number_to_currency(prev_race.win) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.lost) unless prev_race.blank?%></td>
-   			<td><%=prev_race.balance_after_result(race) unless prev_race.blank?%></td>
+   			<td><%=number_to_currency(prev_race.balance_after_result(race)) unless prev_race.blank?%></td>
    		</tr>
    		
    		

@@ -4,9 +4,10 @@
 		<tr>
 			<th>Date/Time</th>
 			<th>Balance before</th>			
-			<th>Deposit</th>
-			<th>Withdraw</th>
+			<th>Credit</th>
+			<th>Debit</th>
 			<th>Race</th>
+			<th>Race Status</th>
 			<th>Balance after</th>
 			<th>Bank</th>	
 			
@@ -21,6 +22,7 @@
 			<td><%=number_to_currency(t.deposit)%></td>
 			<td><%=number_to_currency(t.withdraw)%></td>
 			<td><%=t.race.name unless t.race.blank?%></td>
+			<td><%=t.race_status%></td>
 			<td><%=number_to_currency(t.balance_after)%></td>
 			<td><%=t.bank_detail.bank_name unless t.bank_detail.blank? %></td>
 		</tr>
