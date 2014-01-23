@@ -1,4 +1,6 @@
 class ResellersController < InheritedResources::Base
+  before_filter :login_required
+  before_filter :admin_required
   def new
      @reseller = Reseller.new
      @reseller.build_user
