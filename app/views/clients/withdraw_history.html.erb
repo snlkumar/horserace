@@ -1,4 +1,4 @@
-<%unless @user.transactions.blank?%>
+<%unless @user.transactions.where(:owner=>1).blank?%>
 <table class="table">
 	<thead>
 		<tr>
@@ -15,7 +15,7 @@
 	</thead>
 	<tbody>
 		<%@total_withdraw=0%>
-		<%@user.transactions.each_with_index do |t,index|%>
+		<%@user.transactions.where(:owner=>1).each_with_index do |t,index|%>
 	    <tr class="tr_bg_yellow">
   	        <td><%=t.created_at.strftime("%y-%m-%d %H:%M")%></td>
 			<td><%=number_to_currency(t.balance_before)%></td>

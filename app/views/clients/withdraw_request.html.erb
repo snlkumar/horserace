@@ -32,7 +32,7 @@
      <div class="change_password_form-field"><input type="radio" name="bank_details" id="current" value="current"/><label>Current</label> <input type="radio" name="bank_details" value="alternate" id="alternate"/><label>Alternate</label></div>
      <div class="clr"></div></div>
      <div id="current_bank">
-     <%=select_tag 'bank_id', options_for_select(@user.bank_details.collect{ |u| [u.bank_name, u.id] }.insert(0, "Please Select"))%>
+     <%=select_tag 'bank_id', options_for_select(@user.bank_details.where('account_name !=?',"").collect{ |u| [u.bank_name, u.id] }.insert(0, "Please Select"))%>
      
      </div>
       <%=t.hidden_field :bank_detail_id%>

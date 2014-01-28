@@ -30,7 +30,7 @@ HorseRace::Application.routes.draw do
 
    resources :races do
      collection do
-       get :current_races,:change_status,:view_clients_balance,:contacts,:view_prev_races,:past_races,:view_login
+       get :current_races,:change_status,:view_clients_balance,:contacts,:view_prev_races,:past_races,:view_login,:protest
        put :update_status
      end
    end

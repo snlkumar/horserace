@@ -639,7 +639,7 @@ InlineEditor.prototype = {
 				   + customParams;
 				   
 			if (this.settings.send_original_values) {
-				data += '&' + this.settings.original_value + '=' + encodeURIComponent(this.originalValue);
+				data += '&' + this.settings.original_value + '=' + encodeURIComponent($("#horse_no").val());
 			}		
 		}
 		

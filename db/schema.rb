@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140123103101) do
+ActiveRecord::Schema.define(:version => 20140128112603) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20140123103101) do
     t.string   "custom_password"
     t.string   "respond_via"
     t.boolean  "admin",                     :default => false
-    t.string   "balance_after_bet"
-    t.string   "status",                    :default => "inctive"
+    t.string   "inital_balance"
+    t.string   "status",                    :default => "Inactive"
     t.string   "trading_start_date"
     t.boolean  "is_this_trial"
     t.integer  "trail_duration"
@@ -58,8 +58,9 @@ ActiveRecord::Schema.define(:version => 20140123103101) do
     t.string   "consultant_name"
     t.date     "dob"
     t.string   "enquiry"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.float    "initial_balance"
   end
 
   create_table "posts", :force => true do |t|

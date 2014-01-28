@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :client_name,:balance,:balance_after_bet,:tier_id,
-  :phone,:is_this_trial,:status,:enquiry,:trading_start_date,:trail_duration,:address,:reseller_id,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes,:user_attributes, :bank_details_attributes
+  :phone,:is_this_trial,:initial_balance,:status,:enquiry,:trading_start_date,:trail_duration,:address,:reseller_id,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes,:user_attributes, :bank_details_attributes
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
   validates :client_number,:uniqueness=>true
@@ -31,7 +31,7 @@ class Client < ActiveRecord::Base
     end
   end
   
-  def after_destroy
+  def delete_user
     self.user.delete
   end
   
@@ -112,9 +112,11 @@ class Client < ActiveRecord::Base
       
      bet = 200 
      after_diff=processing_amount-25000
-   reminder=(after_diff/5000).to_f
+     puts "the calculated value is#{(after_diff/5000).floor}"
+   reminder=(after_diff/5000).floor+1
+ 
    return bet+reminder*50
-   # case reminder
+    # case reminder
     # when 0.0..0.9
       # return bet+50*1
     # when 1.0..1.9
@@ -135,7 +137,7 @@ class Client < ActiveRecord::Base
       # return bet+50*9
     # when 9.0..9.9
       # return bet+50*10
-    # end               
+     # end               
      end
     else
       return 5
@@ -194,11 +196,48 @@ class Client < ActiveRecord::Base
   
   def profit_lost
     race=self.races.first
-    @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
-    unless @user_races.nil?
-     return (self.balance-@user_races.processing_balance)/100
+    @win=0.0
+    @lost=0.0
+    win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    unless win_races.blank?
+    win_races.each do |wr|
+      @win+=wr.win
+    end
+    end
+    unless lost_races.blank?
+    lost_races.each do |lr|
+      @lost+=lr.lost
+    end
+    end
+    puts "the win#{@win} and lost#{@lost}"
+    # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
+    unless @win.blank?
+     return (@win-@lost)*100/self.initial_balance unless self.initial_balance.blank?
     end
   end
+  
+  
+   def total_profit_lost
+    race=self.races.first
+    @win=0.0
+    @lost=0.0
+    win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    win_races.each do |wr|
+      @win+=wr.win
+    end
+    lost_races.each do |lr|
+      @lost+=lr.lost
+    end
+    puts "the win#{@win} and lost#{@lost}"
+    # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
+    unless @win.blank?
+     return (@win-@lost)
+    end
+  end
+  
+  
   def b5
     unless self.profit_lost.blank?
     self.profit_lost*5/100

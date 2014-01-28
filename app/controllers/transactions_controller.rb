@@ -29,10 +29,11 @@ class TransactionsController < InheritedResources::Base
         unless @transaction.deposit.blank?        
           @user =Client.find current_user.client.id  
           after_balance=@user.balance+@transaction.deposit          
-         Client.update_balance(@user,after_balance)         
+         Client.update_balance(@user,after_balance)  
+         Client.update(@user.id,:initial_balance=>after_balance)       
         end
          user =Client.find current_user.client.id 
-         @transaction.update_attributes(:balance_after=>user.balance)
+         @transaction.update_attributes(:balance_after=>user.balance,:owner=>user.id)
      
         format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Request received successfully.' }
         format.json { render json: @transaction, status: :created, location: @user }

@@ -62,7 +62,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     @withdraw=before_balance-balance.to_f  
     end
    if @client.update_attributes(params[:client])
-      @transaction=Transaction.new(:client_id=>@client.id,:balance_before=>before_balance,:deposit=>@deposit,:withdraw=>@withdraw,:balance_after=>@client.balance)
+      @transaction=Transaction.new(:client_id=>@client.id,:balance_before=>before_balance,:deposit=>@deposit,:owner=>current_user.id,:withdraw=>@withdraw,:balance_after=>@client.balance)
       @transaction.save
       puts "the t error#{@transaction.errors.messages}"
       flash[:notice] = "Client Successfully updated ."

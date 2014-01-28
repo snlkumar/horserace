@@ -7,6 +7,7 @@
  			<th>Client Number</th>
  			<th>Client Name</th>
  			<th>Client Tier</th>
+ 			<th>Profit/lost</th>
  			<th>Reseller</th>
  			<th>Balance</th>
  			<th>Status</th>
@@ -21,6 +22,7 @@
  			<td><%=client.client_number%></td>
  			<td><%=client.client_name%></td>
  			<td><%=client.tier.name unless client.tier.nil?%></td>
+             <td><%=number_to_currency(client.total_profit_lost)%></td> 	
  			<td><%=client.reseller.name%></td>
  			<td><%=client.balance%></td>
  			<%@races=[]%>

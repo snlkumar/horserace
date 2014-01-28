@@ -22,6 +22,7 @@ class ClientsController < InheritedResources::Base
   
   def create
     @reseller=Reseller.find params[:reseller_id]
+    params[:client][:initial_balance]=params[:client][:balance]
     @client = Client.new(params[:client])
     if @client.save
       flash[:notice] = "Client successfully created"

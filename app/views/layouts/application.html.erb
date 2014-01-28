@@ -91,7 +91,7 @@
                <ul class="categorie_link2">
                	<li><%= link_to "Bets",current_races_races_path%></li>
                <li><%= link_to "Change Password",edit_user_registration_path%></li>
-               <li><%= link_to "Deposit request",withdraw_request_reseller_clients_path(current_user.client.reseller)%></li>
+               <li><%= link_to "Deposit/Withdraw Funds",withdraw_request_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "My Details",my_details_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "Contact",respond_way_reseller_clients_path(current_user.client.reseller)%></li>

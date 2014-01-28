@@ -2,6 +2,9 @@
 
 
 <label><b>30 Day History:</b></label><input type="text" value="<%=number_to_currency(current_user.client.thirty_day_history)%>" readonly="true"/>
+<label><b>Profit since they started($):</b></label><input type="text" value="<%=number_to_currency(current_user.client.total_profit_lost)%>" readonly="true"/>
+<label><b>Profit since they started(%):</b></label><input type="text" value="<%=current_user.client.profit_lost%>" readonly="true"/>
+<label><b>Current Balance:</b></label><input type="text" value="<%=number_to_currency(current_user.client.balance)%>" readonly="true"/>
 <%unless current_user.client.races.where(:status=>nil).blank?%>
 <table id="upcoming" class="table">
 	<thead>

@@ -41,7 +41,7 @@
 			<td><%=client.phone%></td>
 			<td><%=client.created_at.strftime("%d-%m-%y")%></td>
 			<td><%=client.status%></td>
-			<td><%=(client.profit_lost).round unless client.profit_lost.blank?%></td>
+			<td><%=(client.profit_lost) unless client.profit_lost.blank?%></td>
 			<td><%=(client.b5).round unless client.b5.blank?%></td>
 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_reseller_client_path(@reseller,client) %> |
               <%= link_to image_tag('../assets/delete_icon.png').html_safe, [@reseller,client], confirm: 'Are you sure you want to delete?', method: :delete %> | 

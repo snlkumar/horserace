@@ -11,7 +11,8 @@
 			<th>Horse</th>
 			<th>Horse Number</th>
 			<th>Status</th>
-			<th>Default Odds</th>		
+			<th>Default Odds</th>	
+			<th>protest</th>	
 		</tr>
 	</thead>
 	<tbody>
@@ -23,7 +24,8 @@
 			<td><%=race.horse%></td>
 			<td><%=race.horse_no%></td>
 			<td><%=race.status%></td>
-			<td>$<%=race.default_odd%></td>			
+			<td>$<%=race.default_odd%></td>
+			<td><%=link_to 'Protest',protest_races_path(:id=>race.id)%></td>			
 			</tr>
 		<%end%>		
 	</tbody>

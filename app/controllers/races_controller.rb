@@ -38,7 +38,7 @@ class RacesController < InheritedResources::Base
      @race=Race.find(params[:element_id])  
      @tiers=Tier.all
      @users=User.where(:admin => false).order('client_name ASC')
-     @race.update_attributes(:status=>params[:update_value])
+     @race.update_attributes(:status=>params[:update_value],:horse_no=>params[:original_value])
      render 'race_result',:layout=>false
   end
   
@@ -69,8 +69,32 @@ class RacesController < InheritedResources::Base
   end
   def destroy
     @race=Race.find params[:id]
+   @ur= UsersRaces.where(:race_id=>@race.id)
+   @ur.each do |ur|
+     ur.delete
+   end
     @race.delete
+   
     flash[:notice]="Succesfully deleted"
+    redirect_to current_races_races_path
+  end
+  
+  def protest
+    @race=Race.find params[:id]
+    @clients=@race.clients
+    @clients.each do |client|
+    userrace=UsersRaces.find_by_client_id_and_race_id(client.id,@race.id)
+    @balance=client.balance
+    if userrace.win
+       @balance=@balance-userrace.win
+       UsersRaces.update(userrace.id,:win=>nil)
+    else      
+       @balance=@balance+userrace.lost
+       UsersRaces.update(userrace.id,:lost=>nil)
+    end
+    Race.update(@race.id,:status=>nil)
+    Client.update(client.id,:balance=>@balance)    
+    end
     redirect_to current_races_races_path
   end
     

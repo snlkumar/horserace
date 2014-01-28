@@ -7,6 +7,7 @@ class Race < ActiveRecord::Base
   has_many :transactions
   validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
   validates :ticket_number,:uniqueness=>true
+  before_destroy :delete_users_races
   def update_clients 
     @clients=Client.where(:status=>'Active')
    
@@ -40,4 +41,13 @@ class Race < ActiveRecord::Base
       end
     end
   end
+   
+  def delete_users_races
+    puts "i am in with#{self.id}"
+    @ur=UsersRaces.where(:race_id=>self.id)
+  @ur.each do |ur|
+    ur.delete
+  end
+  end
+  
 end

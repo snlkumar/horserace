@@ -10,8 +10,10 @@
 	
 	
 var token= $('meta[name="csrf-token"]').attr('content');
+var hn=$('#horse_no').val();
 var data={
-		"authenticity_token": token
+		"authenticity_token": token,
+		'horse_no': hn
 	};
 
 	// A select input field so we can limit our options
