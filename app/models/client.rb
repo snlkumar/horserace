@@ -224,11 +224,15 @@ class Client < ActiveRecord::Base
     @lost=0.0
     win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
     lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
+     unless win_races.blank?
     win_races.each do |wr|
       @win+=wr.win
     end
+    end
+     unless lost_races.blank?
     lost_races.each do |lr|
       @lost+=lr.lost
+    end
     end
     puts "the win#{@win} and lost#{@lost}"
     # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
@@ -239,8 +243,8 @@ class Client < ActiveRecord::Base
   
   
   def b5
-    unless self.profit_lost.blank?
-    self.profit_lost*5/100
+    unless self.total_profit_lost.blank?
+    self.total_profit_lost*5/100
   end
   end
   

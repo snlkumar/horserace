@@ -21,6 +21,7 @@ class ClientsController < InheritedResources::Base
   end
   
   def create
+    # params[:client].delete(:bank_details_attributes)
     @reseller=Reseller.find params[:reseller_id]
     params[:client][:initial_balance]=params[:client][:balance]
     @client = Client.new(params[:client])
