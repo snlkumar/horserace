@@ -7,7 +7,7 @@
 			<th>Date</th>
 			<th>Time</th>
 			<th>Horse</th>
-			<th>Horse No</th>
+			<th>Horse Place</th>
 			<th>Location</th>
 			<th>Default Odds</th>
 			<%@tiers.each do |tier|%>	
@@ -26,7 +26,7 @@
 			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
-			<td><%=race.horse_no%></td>
+			<td><%=race.horse_place%></td>
 			<td><%=race.location%></td>
 			<td><%=number_to_currency(race.default_odd)%></td>
 			<%@tiers.each do |tier|%>

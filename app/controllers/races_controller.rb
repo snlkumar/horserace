@@ -38,7 +38,7 @@ class RacesController < InheritedResources::Base
      @race=Race.find(params[:element_id])  
      @tiers=Tier.all
      @users=User.where(:admin => false).order('client_name ASC')
-     @race.update_attributes(:status=>params[:update_value],:horse_no=>params[:original_value])
+     @race.update_attributes(:status=>params[:update_value],:horse_place=>params[:original_value])
      render 'race_result',:layout=>false
   end
   

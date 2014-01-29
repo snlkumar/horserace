@@ -1,5 +1,5 @@
 class Race < ActiveRecord::Base
-  attr_accessible :name, :date,:time, :horse,:horse_no,:info, :default_odd,:status,:ticket_number,:location,:users,:race_type,:description
+  attr_accessible :name,:horse_place, :date,:time, :horse,:horse_no,:info, :default_odd,:status,:ticket_number,:location,:users,:race_type,:description
   validates :name,:horse,:default_odd,:presence=>true
   validates :default_odd,:presence=>true,:format => { :with => /^\d+??(?:\.\d{0,2})?$/ },:numericality =>{:greater_than => 0}
   after_create :update_clients

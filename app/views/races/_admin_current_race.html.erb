@@ -24,7 +24,7 @@
 			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
-			<td><input type="text" id="horse_no" class="edit_horse_no" value="<%=race.horse_no%>" size="5" /></td>
+			<td><input type="text" id="horse_no" class="edit_horse_no" value="<%=race.horse_place%>" size="5" /></td>
 			<td><%=race.location%></td>
 			<td><%=number_to_currency(race.default_odd)%></td>
 			<%@tiers.each do |tier|%>

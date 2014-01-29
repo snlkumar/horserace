@@ -9,7 +9,7 @@
 			<th>Date</th>
 			<th>Time</th>
 			<th>Horse</th>
-			<th>Horse Number</th>
+			<th>Horse Place</th>
 			<th>Status</th>
 			<th>Default Odds</th>	
 			<th>protest</th>	
@@ -22,10 +22,10 @@
 			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
-			<td><%=race.horse_no%></td>
+			<td><%=race.horse_place%></td>
 			<td><%=race.status%></td>
 			<td>$<%=race.default_odd%></td>
-			<td><%=link_to 'Protest',protest_races_path(:id=>race.id),confirm: 'Are you sure you want to delete?'%></td>			
+			<td><%=link_to 'Protest',protest_races_path(:id=>race.id),confirm: 'Do you want to rescind this race?'%></td>			
 			</tr>
 		<%end%>		
 	</tbody>
