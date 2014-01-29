@@ -22,7 +22,7 @@
 			<td><%=number_to_currency(@race.default_odd)%></td>
 			<%@tiers.each do |tier|%>
 			<%calculated=(@race.default_odd*tier.weight)/100%>
-			  <td><%=(@race.default_odd+calculated).round(2)%></td>			  
+			  <td>$<%=(@race.default_odd+calculated).round(2)%></td>			  
 			<%end%>	
 			</tr>
 		
