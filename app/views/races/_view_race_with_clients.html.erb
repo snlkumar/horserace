@@ -33,7 +33,7 @@
 			<td><%=number_to_currency(client.bet_amount(@race)) unless client.balance.nil?%></td>		
 			<td><%=number_to_currency(client.calculated_balance_after_bet(@race)) unless client.balance.nil?%></td>
 			<td><%=number_to_currency(client.potential_win(@race)) unless client.balance.nil?%></td>
-			<td><%=number_to_currency(client.potential_loss(@race)) unless client.balance.nil?%></td>
+			<td>$<%=client.potential_loss(@race).round(2) unless client.balance.nil?%></td>
 		   </tr>
 			<%end%>
 		

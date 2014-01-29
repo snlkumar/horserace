@@ -159,8 +159,12 @@ class Client < ActiveRecord::Base
     else
       @tier_odd=race.default_odd
     end 
-    loss=@tier_odd*self.bet_amount(race)
+    loss=(@tier_odd).round(2)*self.bet_amount(race)
      return loss   
+  end
+  
+  def race_potential_loss(race)
+    
   end
   
   def potential_win_and_update(race)
