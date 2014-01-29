@@ -9,6 +9,7 @@
 			<th>Date</th>
 			<th>Time</th>
 			<th>Horse</th>
+			<th>Horse No</th>
 			<th>Horse Place</th>
 			<th>Status</th>
 			<th>Default Odds</th>	
@@ -22,6 +23,7 @@
 			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
+			<td><%=race.horse_no%></td>
 			<td><%=race.horse_place%></td>
 			<td><%=race.status%></td>
 			<td>$<%=race.default_odd%></td>

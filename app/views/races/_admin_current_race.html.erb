@@ -7,6 +7,7 @@
 			<th>Date</th>
 			<th>Time</th>
 			<th>Horse</th>
+			<th>Horse No</th>
 			<th>Horse Place</th>
 			<th>Location</th>
 			<th>Default Odds</th>
@@ -24,6 +25,7 @@
 			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
+			<td><%=race.horse_no%></td>
 			<td><input type="text" id="horse_no" class="edit_horse_no" value="<%=race.horse_place%>" size="5" /></td>
 			<td><%=race.location%></td>
 			<td><%=number_to_currency(race.default_odd)%></td>
