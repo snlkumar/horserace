@@ -1,14 +1,43 @@
 <h1>Client Report</h1>
-
+ <table class="client_tablebjbj">
+   	<thead>   		
+   		<tr>   			
+   			<th>Client Name</th>
+   			<th>Email</th>
+   			<th>Contact Number</th>
+   			<th>Reseller/white label</th>
+   			<th>Current Balance</th>
+   			<th>Invested Balance</th>   			
+   			<th>Profit %</th>
+   			<th>Profit $</th>
+   			
+   			
+   		</tr>
+   	</thead>
+   	<tbody>
+   		<tr class="tr_bg_yellow">
+   			<td><%=@client.client_name%></td>
+   			<td><%=@client.user.email%></td>
+   			<td><%=@client.phone%></td>
+   			<td><%=@client.reseller.name%></td>
+   			<td><%=@client.balance%></td>
+   			<td><%=@client.initial_balance%></td>
+   			<td><%=@client.profit_lost%></td>
+   			<td><%=@client.total_profit_lost%></td>
+   		
+   		</tr>   		
+   		
+   	</tbody>
+   	
+   	
+   	
+   </table>
+<h1></h1>
 <%unless @client.races.blank?%>
    <table class="client_tablebjbj">
-   	<thead>
+   	<thead>   		
    		<tr>
-   			
-   			Total Balance: <%=number_to_currency(@client.balance)%>
-   			</tr>
-   		<tr>
-   			<th>Bet Date/Time</th>
+   			<th>Bet Date/Time</th>   			
    			<th>Ticket Number</th>
    			<th>Description</th>
    			<th>Balance before bet</th>   			
@@ -26,7 +55,7 @@
    		<%@client.races.each do |race|%>
    		<%prev_race=UsersRaces.find_by_race_id_and_client_id(race.id,@client.id)%>
    		<tr class="tr_bg_yellow">
-   			<td><%=race.date%></td>
+   			<td><%=race.date%></td>   			
    			<td><%=race.ticket_number%></td>
    			<td><%=race.description%></td>
    			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>
@@ -38,8 +67,7 @@
    				<%=race.status%>
    				<%else%>
    				pending
-   				<%end%>
-   				
+   				<%end%>   				
    			</td>
  			<td><%=number_to_currency(prev_race.win) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.lost) unless prev_race.blank?%></td>

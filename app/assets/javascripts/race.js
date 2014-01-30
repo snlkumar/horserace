@@ -41,7 +41,11 @@ $(document).ready(function(){
 	$("#alter_bank").hide();
 	$("#respond_to").hide();	
 	$("#transaction_deposit").hide();	
-		$("#transaction_withdraw").hide();
+    $("#transaction_withdraw").hide();
+    $("#deposit_form").hide();
+    $("#withdraw_bank").hide();
+     $(".deposit_error").hide();
+    
 });
 
 
@@ -142,9 +146,46 @@ $(document).on("change","#client_user_attributes_password",function(){
 
 $(document).on("click","#withdraw",function(){
 			$("#transaction_deposit").hide();	
+			$("#withdraw_bank").show();
+			$("#deposit_form").hide();
 			$("#transaction_withdraw").show();
 	});
 $(document).on("click","#deposit",function(){
-		$("#transaction_deposit").show();	
+	    $("#submit_fund").attr("disabled", true);
+		$("#transaction_deposit").show();
+		$("#withdraw_bank").hide();	
 		$("#transaction_withdraw").hide();
+		$("#deposit_form").show();
 });
+
+$(document).on("focusout","#deposit_phone",function(){
+	var phone=$(this).val();	
+	if (phone.length==0){		
+		$('ul.alert-error li').html("Please enter mobile");
+		$(".deposit_error").show();
+	}
+	
+});
+$(document).on("focusout","#deposit_messages",function(){
+	var phone=$(this).val();	
+	if (phone.length==0){		
+		$('ul.alert-error li').html("Please enter message");
+		$(".deposit_error").show();
+	}else{
+		$("#submit_fund").attr("disabled", false);
+	}
+	
+});
+// $(document).ready(function(){		
+     // $(".edit_horse_no").each(function(){
+      // var horse_place=$(this).val();
+      // var race = $(this).attr("race");
+      // var race_name = $(this).attr("race_name");
+	    // if(horse_place.length==0){
+	    	// var i = ("#race_"+race);	    	
+	       // $(i).parent("p").attr("class","class_changed");	
+	       // $('ul.alert-error li').html("Please place the horse for"+race_name+" before change the status");
+		   // $(".deposit_error").show();
+	    // }     	
+     // });
+// });
