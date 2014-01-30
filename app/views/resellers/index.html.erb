@@ -1,25 +1,25 @@
-<h1>Listing resellers</h1>
+<h1>Listing white labels</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Address</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Action</th>
   </tr>
 
 <% @resellers.each do |reseller| %>
   <tr>
     <td><%= reseller.name %></td>
     <td><%= reseller.address %></td>
-    <td><%= link_to 'Show', reseller %></td>
-    <td><%= link_to 'Edit', edit_reseller_path(reseller) %></td>
-    <td><%= link_to 'Destroy', reseller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%=reseller.user.email%></td>
+    <td></td>
+    <td><%= link_to 'Show', reseller %> | <%= link_to 'Edit', edit_reseller_path(reseller) %> | <%= link_to 'Destroy', reseller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<% link_to 'New Reseller', new_reseller_path %>
+<% link_to 'New white label', new_reseller_path %>

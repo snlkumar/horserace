@@ -242,7 +242,8 @@ class Client < ActiveRecord::Base
     # unless @win.blank?
      # return (@win-@lost)
     # end
-    return self.initial_balance-self.balance
+    puts "#{self.initial_balance} and #{self.balance}"
+    return self.balance-self.initial_balance
   end
   
   

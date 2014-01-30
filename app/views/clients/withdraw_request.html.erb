@@ -1,5 +1,7 @@
 
-
+<ul class="alert deposit_error fade in alert-error">
+	<li></li>
+</ul>
 <% if @transaction.errors.any? %>   
       <ul class="alert fade in alert-error">
       <% @transaction.errors.full_messages.each do |msg| %>
@@ -10,7 +12,7 @@
   <% end %>
 <%=form_for @transaction do |t|%>  
 	<div class="change_password_fields">
-	<div class="change_password_names">Avaialble Balance</div>
+	<div class="change_password_names">Available Balance</div>
 	<div class="change_password_form-field"><%=number_to_currency(current_user.client.balance)%></div>
 	<div class="clr"></div></div>
 	<div class="change_password_fields">
@@ -18,10 +20,11 @@
 	<div class="change_password_form-field"><%=password_field_tag 'password','',:required=>true%></div>
 	<div class="clr"></div></div>
 	<div class="change_password_fields">
-	<div class="change_password_names">Amount To</div>
+	<div class="change_password_names">Would you like to ?</div>
 		<div class="change_password_form-field"><input type="radio" name="amount_to" id="withdraw" value="withdraw"/><label>Withdraw</label> <input type="radio" name="amount_to" value="deposit" id="deposit"/><label>Deposit</label></div>
 	<div class="clr"></div>
 	</div>
+	 <div id="withdraw_bank">
      <div class="change_password_fields">	
      	<div class="change_password_names"></div>
      <div class="change_password_form-field"><%=t.text_field :withdraw%></div>    
@@ -33,7 +36,17 @@
      <div class="clr"></div></div>
      <div id="current_bank">
      <%=select_tag 'bank_id', options_for_select(@user.bank_details.where('account_name !=?',"").collect{ |u| [u.bank_name, u.id] }.insert(0, "Please Select"))%>
-     
+     </div>
+     </div>
+     <div id="deposit_form">
+     <div class="change_password_fields">	
+     	<div class="change_password_names"><label>Mobile</label></div>
+     <div class="change_password_form-field"><input type="text" name="deposit_phone" id="deposit_phone" /></div>
+     <div class="clr"></div></div>    
+      <div class="change_password_fields">
+     <div class="change_password_names"><label>Message</label></div>
+     <div class="change_password_form-field"><input type="text" name="deposit_messages" id="deposit_messages" placeholder="Enter your contact details and we will confirm your deposit"/></div>
+     <div class="clr"></div></div> 
      </div>
       <%=t.hidden_field :bank_detail_id%>
       <%=t.hidden_field :balance_before%>
@@ -58,7 +71,7 @@
 </div>
 <div class="change_password_fields">
   	<div class="change_password_names">&nbsp;</div>
-           <div class="login_button"><%=t.submit "Request"%></div>
+           <div class="login_button"><%=t.submit "Request",:id=>"submit_fund"%></div>
            <div class="clr"></div>	
   	</div>
 
