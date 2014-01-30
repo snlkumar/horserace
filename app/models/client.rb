@@ -215,10 +215,9 @@ class Client < ActiveRecord::Base
     end
     end
     puts "the win#{@win} and lost#{@lost}"
-    # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
-    unless @win.blank?
+    # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?    
      return (@win-@lost)*100/self.initial_balance unless self.initial_balance.blank?
-    end
+    
   end
   
   
