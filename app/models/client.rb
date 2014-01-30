@@ -199,49 +199,50 @@ class Client < ActiveRecord::Base
   end
   
   def profit_lost
-    race=self.races.first
-    @win=0.0
-    @lost=0.0
-    win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
-    lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
-    unless win_races.blank?
-    win_races.each do |wr|
-      @win+=wr.win
-    end
-    end
-    unless lost_races.blank?
-    lost_races.each do |lr|
-      @lost+=lr.lost
-    end
-    end
-    puts "the win#{@win} and lost#{@lost}"
+    # race=self.races.first
+    # @win=0.0
+    # @lost=0.0
+    # win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    # lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    # unless win_races.blank?
+    # win_races.each do |wr|
+      # @win+=wr.win
+    # end
+    # end
+    # unless lost_races.blank?
+    # lost_races.each do |lr|
+      # @lost+=lr.lost
+    # end
+    # end
+    # puts "the win#{@win} and lost#{@lost}"
     # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?    
-     return (@win-@lost)*100/self.initial_balance unless self.initial_balance.blank?
+     return total_profit_lost*100/self.initial_balance unless self.initial_balance.blank?
     
   end
   
   
    def total_profit_lost
-    race=self.races.first
-    @win=0.0
-    @lost=0.0
-    win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
-    lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
-     unless win_races.blank?
-    win_races.each do |wr|
-      @win+=wr.win
-    end
-    end
-     unless lost_races.blank?
-    lost_races.each do |lr|
-      @lost+=lr.lost
-    end
-    end
-    puts "the win#{@win} and lost#{@lost}"
-    # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
-    unless @win.blank?
-     return (@win-@lost)
-    end
+    # race=self.races.first
+    # @win=0.0
+    # @lost=0.0
+    # win_races=UsersRaces.where('win IS NOT NULL AND client_id=?',self.id) unless race.nil?
+    # lost_races=UsersRaces.where('lost IS NOT NULL AND client_id=?',self.id) unless race.nil?
+     # unless win_races.blank?
+    # win_races.each do |wr|
+      # @win+=wr.win
+    # end
+    # end
+     # unless lost_races.blank?
+    # lost_races.each do |lr|
+      # @lost+=lr.lost
+    # end
+    # end
+    # puts "the win#{@win} and lost#{@lost}"
+    # # @user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id) unless race.nil?
+    # unless @win.blank?
+     # return (@win-@lost)
+    # end
+    return self.initial_balance-self.balance
   end
   
   
