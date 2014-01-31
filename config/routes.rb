@@ -1,5 +1,8 @@
 HorseRace::Application.routes.draw do
  
+  resources :client_fees
+
+
   # resources :clients do
     # collection do
       # get :withdraw_request,:withdraw_history,:my_details,:respond_way
