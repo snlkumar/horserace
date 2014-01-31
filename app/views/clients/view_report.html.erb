@@ -10,6 +10,7 @@
    			<th>Invested Balance</th>   			
    			<th>Profit %</th>
    			<th>Profit $</th>
+   			<th>Total Fees Paid</th>
    			
    			
    		</tr>
@@ -20,11 +21,11 @@
    			<td><%=@client.user.email%></td>
    			<td><%=@client.phone%></td>
    			<td><%=@client.reseller.name%></td>
-   			<td><%=@client.balance%></td>
-   			<td><%=@client.initial_balance%></td>
-   			<td><%=@client.profit_lost%></td>
-   			<td><%=@client.total_profit_lost%></td>
-   		
+   			<td><%=number_to_currency(@client.balance)%></td>
+   			<td><%=number_to_currency(@client.initial_balance)%></td>
+   			<td><%=number_to_currency(@client.profit_lost)%></td>
+   			<td><%=number_to_currency(@client.total_profit_lost)%></td>
+   		    <td><%=number_to_currency(@client.total_fees_paid)%></td>
    		</tr>   		
    		
    	</tbody>

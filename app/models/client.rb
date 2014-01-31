@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :client_name,:balance,:balance_after_bet,:tier_id,
+  attr_accessible :client_name,:balance,:fee,:balance_after_bet,:tier_id,
   :phone,:is_this_trial,:initial_balance,:status,:enquiry,:trading_start_date,:trail_duration,:address,:reseller_id,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes,:user_attributes, :bank_details_attributes
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
@@ -12,17 +12,23 @@ class Client < ActiveRecord::Base
   has_and_belongs_to_many :races,:join_table => :users_races
   has_many :bank_details
   has_many :withdraws
+  has_many :client_fees
   has_many :transactions
   accepts_nested_attributes_for :withdraws
   accepts_nested_attributes_for :bank_details
   before_destroy :check_for_races
   after_destroy :delete_user
+  after_create :client_fee
   before_save :validate_balance
   # validate :status,:update_races,:if =>:status_changed?,:on=>'update'
    has_one :user
    belongs_to :reseller
    accepts_nested_attributes_for :user
    
+   
+  def client_fee
+    ClientFee.create(:client_id=>self.id,:month=>Date::MONTHNAMES[Date.today.month],:new_balance=>self.balance)
+  end 
    
   def validate_balance
     if (self.balance < 500 unless self.balance.nil?)
@@ -33,6 +39,11 @@ class Client < ActiveRecord::Base
   
   def delete_user
     self.user.delete
+    unless self.client_fees.blank?
+      self.client_fees.each do |cf|
+        cf.delete
+      end
+    end
   end
   
   def update_races 
@@ -269,5 +280,17 @@ class Client < ActiveRecord::Base
     return @deposit-@withdraw
     
   end
+   
+   def total_fees_paid
+     @total_fees=0.0
+     @clien_fees=self.client_fees
+     unless @clien_fees.blank?
+       @clien_fees.each do |cf|
+         @total_fees+=cf.fee unless cf.fee.nil?
+       end
+       return @total_fees
+     end
+   end
+   
    
 end

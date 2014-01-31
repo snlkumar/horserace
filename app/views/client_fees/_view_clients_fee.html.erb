@@ -1,0 +1,35 @@
+<h1><%=@month%></h1>
+<%unless @clients_fee.blank?%>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>White Label</th>
+			<th>Previous Balance</th>
+			<th>Balance Before Fee</th>
+			<th>Profit</th>
+			<th>Client Fee(%)</th>
+			<th>Fee</th>
+			<th>New Balance</th>			
+		</tr>
+	</thead>
+	<tbody>
+		<%@clients_fee.each do |cf|%>
+		<tr class="tr_bg_yellow">
+			<td><%=(cf.client.client_name)%></td>
+			<td><%=(cf.client.reseller.name)%></td>
+			<td><%=number_to_currency(cf.old_balance)%></td>
+			<td><%=number_to_currency(cf.balance_before_fee)%></td>
+			<td><%=number_to_currency(cf.profit)%></td>
+			<td><%=(cf.client.fee)%></td>
+			<td><%=number_to_currency(cf.fee)%></td>
+			<td><%=number_to_currency(cf.new_balance)%></td>
+				
+			</tr>
+		
+		<%end%>
+	</tbody>
+</table>
+<%else%>
+Sorry record not found.
+<%end%>

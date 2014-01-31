@@ -1,0 +1,44 @@
+
+<%unless @clients.blank?%>
+ <table class="table">
+ 	<thead>
+ 		<tr>
+ 			<th>Client Number</th>
+ 			<th>Client Name</th>
+ 			<th>Client Tier</th>
+ 			<th>Profit %</th>
+ 			<th>Profit/lost</th>
+ 			<th>White Label</th>
+ 			<th>Balance</th>
+ 			<th>Status</th>
+ 			<th>Races</th>
+ 			<th>Action</th>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<%@clients.each do |client|%>
+ 		<%@reseller=client.reseller%>
+ 		<tr>
+ 			<td><%=client.client_number%></td>
+ 			<td><%=client.client_name%></td>
+ 			<td><p class="tier_change" race=<%=client.id%>>					
+           <a href="#"><%=client.tier.name unless client.tier.nil?%></a>
+            </p> 
+ 			</td>
+ 			<td><%=client.profit_lost.round(2)%></td>
+             <td><%=number_to_currency(client.total_profit_lost)%></td> 	
+ 			<td><%=client.reseller.name%></td>
+ 			<td><%=client.balance%></td>
+ 			<%@races=[]%>
+ 			<%client.races.each do |race|%>
+ 			<%@races<<race.name%>
+ 			<%end%>
+ 			<td><%=client.status%></td>
+ 			<td><%=@races%></td>
+ 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> | <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>
+ 		</tr>
+ 		<%end%>
+ 	</tbody>
+ </table>
+<%end%>
+

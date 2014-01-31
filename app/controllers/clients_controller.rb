@@ -55,7 +55,7 @@ class ClientsController < InheritedResources::Base
     @reseller=Reseller.find params[:reseller_id]
     redirect_to reseller_clients_path(@reseller) and return if params[:cancel]
      @client=Client.find(params[:id])
-     @clients=Client.order('client_name ASC')   
+     @clients=@reseller.clients.order('client_name ASC')   
      @client.destroy
      respond_to do |format|
       format.html { render 'index' }

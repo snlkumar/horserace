@@ -1,21 +1,33 @@
-<h1>Listing client_fees</h1>
+<h1>Choose Month</h1>
+<div class="change_password_fields">
+    <div class="change_password_names">Month</div>
+    <div class="change_password_form-field"><input type="text" name="month" id="fee_month" readonly="true" /></div>
+    <div class="clr"></div>
+  </div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+ <div id="client_fee_report">
+ 	
+ </div>  
+  <script>
+$(function() {
+$( "#fee_month" ).datepicker({
+	dateFormat:"MM",
+	 changeMonth: true,
+        changeYear: false,        
+        showButtonPanel: false,
+	onSelect: function(date) {
+	   $.get("client_fees/clients_fee?month="+date,function(data){
+	   	 $("#client_fee_report").empty();
+	   	 $("#client_fee_report").html(data);
+	   	 
+	   });
+  },
+   minDate: 0
+});
 
-<% @client_fees.each do |client_fee| %>
-  <tr>
-    <td><%= link_to 'Show', client_fee %></td>
-    <td><%= link_to 'Edit', edit_client_fee_path(client_fee) %></td>
-    <td><%= link_to 'Destroy', client_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+});
+</script>
 
-<br />
-
-<%= link_to 'New Client fee', new_client_fee_path %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

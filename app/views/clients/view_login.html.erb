@@ -23,7 +23,7 @@
 				<%end%></strong></td>
 			<td><%=client.user.sign_in_count%></td>
 			<!-- <td><%=client.user.current_sign_in_at%></td> -->
-			<td><%=client.user.last_sign_in_at.strftime("%d/%m/%Y %H:%M")%></td>			
+			<td><%=client.user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") unless client.user.last_sign_in_at.blank? %></td>			
 		</tr>
 		<%end%>
 		
