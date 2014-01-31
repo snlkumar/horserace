@@ -27,4 +27,7 @@ end
 every 9.minutes do
   runner "Race.bet_reminder"
 end
+every 1.month, :at => 'end of the month at 22:59am' do
+  runner 'ClinetFee.calculate_fee'
+end
 # Learn more: http://github.com/javan/whenever

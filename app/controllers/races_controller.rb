@@ -98,6 +98,13 @@ class RacesController < InheritedResources::Base
     end
     redirect_to current_races_races_path
   end
+  
+ def update_horse_place
+   @race=Race.find(params[:element_id])
+   if @race.update_attributes(:horse_place=>params[:update_value])
+   render :text=>"updating..."   
+   end
+ end 
     
   
   

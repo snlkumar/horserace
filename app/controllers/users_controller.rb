@@ -42,7 +42,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   
   def view_clients
-  @clients=Client.where(:status=>'Active').order('created_at DESC')   
+   @clients=Client.where(:status=>'Active').order('created_at DESC')  
+   render "view_clients" 
   end
   def inactive_clients
   @clients=Client.where(:status=>'Inactive').order('created_at DESC')
@@ -64,12 +65,20 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
    if @client.update_attributes(params[:client])
       @transaction=Transaction.new(:client_id=>@client.id,:balance_before=>before_balance,:deposit=>@deposit,:owner=>current_user.id,:withdraw=>@withdraw,:balance_after=>@client.balance)
       @transaction.save
-      puts "the t error#{@transaction.errors.messages}"
       flash[:notice] = "Client Successfully updated ."
       redirect_to user_view_clients_path
     else       
       render 'edit_client'
     end
+  end
+  
+  def update_tier
+    @clients=Client.where(:status=>'Active').order('created_at DESC') 
+    @client=Client.find(params[:element_id])
+    tier=Tier.find_by_name(params[:update_value])
+    Client.update(@client.id,:tier_id=>tier.id)
+    flash[:notice] = "Tier successfully updated ."
+     render :partial=>'user_view_clients'
   end
   
  end

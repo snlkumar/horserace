@@ -10,10 +10,8 @@
 	
 	
 var token= $('meta[name="csrf-token"]').attr('content');
-var hn=$('#horse_no').val();
 var data={
-		"authenticity_token": token,
-		'horse_no': hn
+		"authenticity_token": token		
 	};
 
 	// A select input field so we can limit our options
@@ -27,6 +25,16 @@ var data={
         $("#update_status").html(response);
         }
 	});
+	$(".change_horse_place").editInPlace({
+		url: '/races/update_horse_place?',
+		field_type: "text",
+		params: data,
+		success: function(response) {
+	       if (response=="updating..."){
+	       	 window.location.reload();
+	        }
+        }
+	});
 
 	
 });
@@ -37,7 +45,9 @@ var data={
 <div class="clr"></div>
 <%unless @races.empty?%>
 	<%if current_user.admin?%>
+	<div id="ch_horse_place">
 	<%=render 'admin_current_race'%>
+	</div>
 	<%else if current_user.reseller%>
 	<%=render 'reseller_current_race'%>
 	<%else%>

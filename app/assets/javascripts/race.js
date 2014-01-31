@@ -1,4 +1,5 @@
 $(document).on("click","#status",function(){
+	
 	 $.fn.editable.defaults.mode = 'inline';
 	var token= $('meta[name="csrf-token"]').attr('content');
 	var race=$(this).attr("race");
@@ -188,4 +189,16 @@ $(document).on("focusout","#deposit_messages",function(){
 		   // $(".deposit_error").show();
 	    // }     	
      // });
+// });
+// 
+// $(document).on("focusout","#horse_no",function(){
+	// var phone=$(this).val();	
+	// var race = $(this).attr("race");
+	// if (phone.length>0){		
+		// $('ul.alert-error li').empty();
+		// var i = ("#race_"+race);	    	
+	       // $(i).parent("p").attr("class","editme3");
+// 		
+	// }
+// 	
 // });

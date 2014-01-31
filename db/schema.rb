@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140129060944) do
+ActiveRecord::Schema.define(:version => 20140131053101) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(:version => 20140129060944) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "client_fees", :force => true do |t|
+    t.integer  "client_id"
+    t.float    "old_balance"
+    t.float    "new_balance"
+    t.float    "profit"
+    t.float    "fee"
+    t.string   "month"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.float    "balance_before_fee"
+  end
+
   create_table "clients", :force => true do |t|
     t.string   "client_name"
     t.float    "balance"
@@ -62,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20140129060944) do
     t.datetime "updated_at",                                        :null => false
     t.float    "initial_balance"
     t.string   "horse_place"
+    t.float    "fee"
   end
 
   create_table "posts", :force => true do |t|
@@ -94,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20140129060944) do
     t.string   "address"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "phone"
   end
 
   create_table "tiers", :force => true do |t|

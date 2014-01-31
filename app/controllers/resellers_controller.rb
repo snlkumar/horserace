@@ -8,12 +8,16 @@ class ResellersController < InheritedResources::Base
   
   def create
     @reseller=Reseller.new(params[:reseller])
-    
     if @reseller.save
      redirect_to resellers_path
     else
       render 'new'
-    end
-    
+    end    
+  end
+  def update
+    @reseller=Reseller.find params[:id]
+    @reseller.update_attributes(params[:reseller])
+    flash[:notice]="Reseller updated successfully"
+    redirect_to resellers_path
   end
 end

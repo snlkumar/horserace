@@ -14,7 +14,7 @@
     <td><%= reseller.name %></td>
     <td><%= reseller.address %></td>
     <td><%=reseller.user.email%></td>
-    <td></td>
+    <td><%=reseller.phone%></td>
     <td><%= link_to 'Show', reseller %> | <%= link_to 'Edit', edit_reseller_path(reseller) %> | <%= link_to 'Destroy', reseller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

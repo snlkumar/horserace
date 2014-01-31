@@ -1,6 +1,10 @@
 HorseRace::Application.routes.draw do
  
-  resources :client_fees
+  resources :client_fees do
+    collection do
+      get :clients_fee
+    end
+  end
 
 
   # resources :clients do

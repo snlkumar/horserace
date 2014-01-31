@@ -69,8 +69,8 @@
   <div class="change_password_form-field"><%= f.text_field :consultant_contact_number,:required=>true%></div>
  <div class="clr"></div></div>
  <div class="change_password_fields">
-  	<div class="change_password_names"><% f.label :status %></div>
-  <div class="change_password_form-field"><% f.select :status, ['Active','Inactive'],:class=>"tier_select" %></div>
+  	<div class="change_password_names"><%= f.label :fee %>(%)</div>
+  <div class="change_password_form-field"><%= f.select :fee, [5,10,15],:class=>"tier_select",:required=>true %></div>
  <div class="clr"></div></div>
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :is_this_trial %></div>

@@ -491,7 +491,7 @@ zoom: 1;
 /* 
 	Generic Styling, for Desktops/Laptops 
 	*/
-	table { 
+	table.client_list { 
 		width: 90%; 
 		border-collapse: collapse;
 		background: #fff;
