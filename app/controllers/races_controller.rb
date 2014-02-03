@@ -73,8 +73,7 @@ class RacesController < InheritedResources::Base
    @ur.each do |ur|
      ur.delete
    end
-    @race.delete
-   
+    @race.delete   
     flash[:notice]="Succesfully deleted"
     redirect_to current_races_races_path
   end
