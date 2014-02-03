@@ -4,7 +4,7 @@ class ClientsController < InheritedResources::Base
   before_filter :admin_or_reseller,:only=>[:edit,:update]
   def index
     @reseller=Reseller.find params[:reseller_id]
-    @clients=@reseller.clients.order('status DESC')
+    @clients=@reseller.clients.paginate(:page => params[:page],:per_page   => 2).order('status DESC')
   end
   
   def new

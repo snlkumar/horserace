@@ -15,7 +15,7 @@ gem 'whenever'
 gem "less-rails"
 gem "nested_form"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
+gem 'will_paginate', '~> 3.0'
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'sass-rails',   '~> 3.2.3'

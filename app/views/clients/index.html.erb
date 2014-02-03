@@ -10,6 +10,7 @@
   <% end %>
 
   <%unless @clients.empty?%>
+  <%= will_paginate @clients %>
 <table class="client_table">
 	<thead>
 		<tr>
