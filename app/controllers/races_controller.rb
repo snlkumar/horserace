@@ -94,7 +94,7 @@ class RacesController < InheritedResources::Base
     end
     Race.update(@race.id,:status=>nil)
     Client.update(client.id,:balance=>@balance)  
-      (UserMailer.protest_mail(@race,client)).deliver  
+      # (UserMailer.protest_mail(@race,client)).deliver  
     end
     redirect_to current_races_races_path
   end
