@@ -1,5 +1,14 @@
+<script src="/../assets/jquery.dataTables.js"></script>
+<script src="/../assets/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){			
+    $('#sunil_datatable').dataTable();
+});
+</script> 
 <%unless @user.transactions.where(:owner=>1).blank?%>
-<table class="table">
+<h1>Client Transaction History</h1>
+<table class="table" id="sunil_datatable">
 	<thead>
 		<tr>
 			<th>Date/Time</th>
@@ -9,8 +18,7 @@
 			<th>Race</th>
 			<th>Race Status</th>
 			<th>Balance after</th>
-			<th>Bank</th>	
-			
+			<th>Bank</th>				
 		</tr>
 	</thead>
 	<tbody>

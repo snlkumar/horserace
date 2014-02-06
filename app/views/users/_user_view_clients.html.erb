@@ -1,6 +1,7 @@
 
 <%unless @clients.blank?%>
- <table class="table">
+
+ <table id="example1">
  	<thead>
  		<tr>
  			<th>Client Number</th>
@@ -25,17 +26,17 @@
            <a href="#"><%=client.tier.name unless client.tier.nil?%></a>
             </p> 
  			</td>
- 			<td><%=client.profit_lost.round(2)%></td>
+ 			<td>%<%=client.profit_lost.round(2)%></td>
              <td><%=number_to_currency(client.total_profit_lost)%></td> 	
  			<td><%=client.reseller.name%></td>
- 			<td><%=client.balance%></td>
+ 			<td><%=number_to_currency(client.balance)%></td>
  			<%@races=[]%>
  			<%client.races.each do |race|%>
  			<%@races<<race.name%>
  			<%end%>
  			<td><%=client.status%></td>
  			<td><%=@races%></td>
- 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> | <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>
+ 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> | <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>|<%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(client.reseller,{:id=>client})%></td>
  		</tr>
  		<%end%>
  	</tbody>

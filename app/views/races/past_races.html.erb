@@ -1,8 +1,13 @@
 <h1>Past Races</h1>
-
+<script src="../assets/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('#sunil_datatable').dataTable();
+});
+</script>
 
 <%unless @races.blank?%>
-<table class="table">
+<table class="table" id="sunil_datatable">
 	<thead>
 		<tr>
 			<th>Race Name</th>

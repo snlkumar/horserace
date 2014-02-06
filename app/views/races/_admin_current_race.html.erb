@@ -1,7 +1,14 @@
+<script src="/../assets/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('#sunil_datatable').dataTable();
+});
+</script>
+
 <h1>Current Bets</h1>
 
 <%unless @current_races.blank?%>
-<table id="upcoming">
+<table id="sunil_datatable">
 	<thead>
 		<tr>
 			<th>Race Name</th>

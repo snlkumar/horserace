@@ -1,4 +1,12 @@
 <h1>Client List</h1>
+<script src="/../assets/jquery.dataTables.js"></script>
+<script src="/../assets/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){			
+    $('#sunil_datatable').dataTable();
+});
+</script>
 <%unless @client.blank?%>
 <% if @client.errors.any? %>   
       <ul class="alert fade in alert-error">
@@ -10,8 +18,8 @@
   <% end %>
 
   <%unless @clients.empty?%>
-  <%= will_paginate @clients %>
-<table class="client_table">
+  
+<table class="client_table" id="sunil_datatable">
 	<thead>
 		<tr>
 			<th>Client Name</th>
@@ -42,7 +50,7 @@
 			<td><%=client.phone%></td>
 			<td><%=client.created_at.strftime("%d-%m-%y")%></td>
 			<td><%=client.status%></td>
-			<td><%=client.profit_lost.round(2) unless client.profit_lost.blank?%> %</td>
+			<td>%<%=client.profit_lost.round(2) unless client.profit_lost.blank?%></td>
 			<td>$<%=(client.b5).round(2) unless client.b5.blank?%></td>
 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe, edit_reseller_client_path(@reseller,client) %> |
               <%= link_to image_tag('../assets/delete_icon.png').html_safe, [@reseller,client], confirm: 'Are you sure you want to delete?', method: :delete %> | 

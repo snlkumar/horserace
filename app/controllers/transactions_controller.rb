@@ -16,7 +16,7 @@ class TransactionsController < InheritedResources::Base
                 format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Request received successfully.' }
                 format.json { render json: @transaction, status: :created, location: @user }
         else
-          if params[:transaction][:bank_detail_id].blank?
+          if params[:transaction][:bank_detail_id].blank? && !account_name.blank?
               bank_id= Transaction.create_bank(@transaction,bsb,acount,bank_name,account_name,current_user.client.id)
               @transaction.bank_detail_id=bank_id
               

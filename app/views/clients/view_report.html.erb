@@ -1,4 +1,6 @@
 <h1>Client Report</h1>
+
+ 
  <table class="client_tablebjbj">
    	<thead>   		
    		<tr>   			
@@ -10,7 +12,7 @@
    			<th>Invested Balance</th>   			
    			<th>Profit %</th>
    			<th>Profit $</th>
-   			<th>Total Fees Paid</th>
+   			<th>Accumulated Fees</th>
    			
    			
    		</tr>
@@ -23,7 +25,7 @@
    			<td><%=@client.reseller.name%></td>
    			<td><%=number_to_currency(@client.balance)%></td>
    			<td><%=number_to_currency(@client.initial_balance)%></td>
-   			<td><%=number_to_currency(@client.profit_lost)%></td>
+   			<td>%<%=@client.profit_lost.round(2)%></td>
    			<td><%=number_to_currency(@client.total_profit_lost)%></td>
    		    <td><%=number_to_currency(@client.total_fees_paid)%></td>
    		</tr>   		
@@ -35,12 +37,21 @@
    </table>
 <h1></h1>
 <%unless @client.races.blank?%>
-   <table class="client_tablebjbj">
+<script src="/../assets/jquery.dataTables.js"></script>
+<script src="/../assets/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){			
+    $('#sunil_datatable').dataTable();
+});
+</script> 
+   <table class="table" id="sunil_datatable">
    	<thead>   		
    		<tr>
    			<th>Bet Date/Time</th>   			
    			<th>Ticket Number</th>
    			<th>Description</th>
+   			<th>Category</th>
    			<th>Balance before bet</th>   			
    			<th>Bet Amount</th>
    			<th>Balance after bet</th>
@@ -59,6 +70,7 @@
    			<td><%=race.date%></td>   			
    			<td><%=race.ticket_number%></td>
    			<td><%=race.description%></td>
+   			<td><%=race.info%></td>
    			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.bet_amount) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(@client.calculated_balance_after_bet(race)) unless @client.balance.nil?%></td>

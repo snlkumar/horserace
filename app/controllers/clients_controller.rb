@@ -4,7 +4,7 @@ class ClientsController < InheritedResources::Base
   before_filter :admin_or_reseller,:only=>[:edit,:update]
   def index
     @reseller=Reseller.find params[:reseller_id]
-    @clients=@reseller.clients.paginate(:page => params[:page],:per_page   => 2).order('status DESC')
+    @clients=@reseller.clients.order('status DESC')
   end
   
   def new
@@ -112,7 +112,11 @@ class ClientsController < InheritedResources::Base
    
   
   def withdraw_history
+   unless current_user.admin
     @user=current_user.client
+    else
+      @user=Client.find params[:id]
+    end
   end
   def respond_way
     @client=current_user.client

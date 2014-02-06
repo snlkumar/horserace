@@ -1,8 +1,16 @@
 <h1>Login List</h1>
+<script src="../assets/jquery.dataTables.js"></script>
+<script src="../assets/jquery.dataTables.min.js"></script>
 
+<script type="text/javascript">
+	$(document).ready(function(){	
+		
+    $('#sunil_datatable').dataTable();
+});
+</script> 
 
   <%unless @clients.blank?%>
-<table class="table">
+<table class="table" id="sunil_datatable">
 	<thead>
 		<tr>
 			<th>Client Name</th>

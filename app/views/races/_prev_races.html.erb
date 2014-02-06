@@ -26,8 +26,14 @@
 <%else%>
 Sorry record not found.
 <%end%> -->
+<script src="../assets/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('#sunil_datatable').dataTable();
+});
+</script>
 <%unless @races.blank?%>
-   <table id="table">
+   <table id="sunil_datatable">
    	<thead>
    		<tr>
    			

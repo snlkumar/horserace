@@ -1,5 +1,11 @@
 <%unless @races.empty?%>
-<table id="upcoming">
+<script src="../assets/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('#sunil_daatatable').dataTable();
+});
+</script>
+<table id="sunil_daatatable">
 	<thead>
 		<tr>
 			<th>Race Name</th>
