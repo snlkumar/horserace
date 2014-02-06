@@ -3,9 +3,15 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/../assets/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('#sunil_datatable').dataTable();
+});
+</script>
 <h1>Client Balance</h1>
 <%unless @users.blank?%>
-<table id="table">
+<table id="sunil_datatable">
 	<thead>
 		<tr>
 			<th>Client Name</th>
