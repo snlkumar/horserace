@@ -447,9 +447,9 @@ InlineEditor.prototype = {
 		
 		// workaround for webkit nightlies where they won't submit at all on enter
 		// REFACT: find a way to just target the nightlies
-		if ($.browser.safari) {
-			this.bindSubmitOnEnterInInput();
-		}
+		// if ($.browser.safari) {
+			// this.bindSubmitOnEnterInInput();
+		// }
 		
 		
 		form.submit(saveEditorAction);

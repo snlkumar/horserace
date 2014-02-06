@@ -43,3 +43,33 @@
  </table>
 <%end%>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="../assets/jquery.editinplace.js"></script>
+        <script type="text/javascript" src="../assets/demo.js"></script>
+       	<script>
+       	$(document).ready(function(){
+	
+	
+var token= $('meta[name="csrf-token"]').attr('content');
+var data={
+		"authenticity_token": token,		
+	};
+
+	// A select input field so we can limit our options
+	$(".tier_change").editInPlace({
+		url: '/users/update_tier?',
+		field_type: "select",
+		select_options: "T1, T2,T3,T4,T5",	
+		params: data,
+		success: function(response) {
+        $("#user_view_client").empty();
+        $("#user_view_client").html(response);
+        
+        }
+	});
+
+	
+});
+       </script>
