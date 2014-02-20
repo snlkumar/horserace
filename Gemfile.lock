@@ -185,7 +185,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   execjs
-  jquery-rails (~> 2.3.0)
+  jquery-rails
   less-rails
   mysql2
   nested_form
