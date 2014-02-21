@@ -154,7 +154,7 @@ def generatePdf
   begin
     # create an API client instance
     client = Pdfcrowd::Client.new("sunil_trigma", "bb499efc2a960fe6f70b85d0118d3e61")
-  url="http://radiant-plains-8678.herokuapp.com/clients/view_report/12"
+  url='http://radiant-plains-8678.herokuapp.com/clients/view_report/#{id}'
     # convert a web page and store the generated PDF to a variable
     pdf = client.convertURI(url)
 
