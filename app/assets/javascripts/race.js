@@ -38,7 +38,7 @@ $(document).ready(function(){
 	$("#dialog-form").hide();
 	$('input:radio[name=bank_details][value=current]').attr('checked', true);
 	$("#withdraw_bank_detail_id").val("");
-	$("#client_trail_duration").attr("disabled",true);
+	// $("#client_trail_duration").attr("disabled",true);
 	$("#alter_bank").hide();
 	$("#respond_to").hide();	
 	$("#transaction_deposit").hide();	
@@ -50,15 +50,17 @@ $(document).ready(function(){
 });
 
 
-$(document).on("change","#client_is_this_trial",function(){
-	
-	attr=$("#client_trail_duration").attr("disabled");	
-	if (attr=="disabled"){
-	$("#client_trail_duration").attr("disabled",false);
-	}else{
-		$("#client_trail_duration").attr("disabled",true);
-	}
-});
+// $(document).on("change","#client_is_this_trial",function(){
+// 		
+	// attr=$("#client_trail_duration").attr("disabled");	
+	// alert(attr)
+	// if (attr=="disabled"){
+	// $("#client_trail_duration").attr("disabled",false);
+	// alert("kdjfkfjkj")
+	// }else{
+		// $("#client_trail_duration").attr("disabled",true);
+	// }
+// });
 		
 $(document).on("click","#create-user",function(){
 		var user_id=$(this).attr('user_id');
