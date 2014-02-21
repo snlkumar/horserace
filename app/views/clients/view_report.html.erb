@@ -1,6 +1,13 @@
 <h1>Client Report</h1>
-<a href='/clients/generatePdf?id=<%=@client.id%>'>Print</a>
- 
+<a href='javascript:printPage();'>Print</a>
+ <script type="text/javascript">
+ 	function printPage(){
+ 		$("#header").hide();
+ 		$('.left_area').hide();
+ 		$("#footer").hide();
+    window.print();
+}
+ </script>
  <table class="client_tablebjbj">
    	<thead>   		
    		<tr>   			
