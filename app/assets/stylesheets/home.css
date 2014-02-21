@@ -841,3 +841,25 @@ zoom: 1;
 .edit_horse_no{
  width: 15px;	
 }
+
+
+
+
+.top_wins {
+    background: none repeat scroll 0 0 #C5C5C5;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    font-family: arial;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 25px;
+    padding: 15px;
+    width: 95.5%;
+    }
+
+.win_input {
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    margin: 0 10px 0 10px;
+    padding: 4px 6px;
+    }
