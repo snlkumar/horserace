@@ -2,12 +2,15 @@
 <label><b>Client Number : <%=current_user.client.client_number%></b></label>
 <label><b>Client Name : <%=current_user.client.client_name%></b></label>
 <h1>Account Summary</h1>
+ <p><strong>Viewing this screen during the day, there are current trades in operation which will affect the profit/loss margin as well as the bonus dividend section. To see the true profit/loss and 5% bonus dividend, log in after 6pm EST when all trades will have been finalised.</strong></p>
 
 <label><b>Total Profit/Loss $:</b></label><input type="text" value="<%=number_to_currency(current_user.client.total_profit_lost)%>" readonly="true"/>
 <label><b>Total Profit/Loss %:</b></label><input type="text" value="% <%=current_user.client.profit_lost.round(2)%>" readonly="true"/>
 <label><b>Current Balance:</b></label><input type="text" value="<%=number_to_currency(current_user.client.balance)%>" readonly="true"/>
 <label><b> 5% Bonus Dividend:</b></label><input type="text" value="$<%=current_user.client.b5.round(2)%>" readonly="true"/>
-<label><b>Accumulated Fees:</b></label><input type="text" value="<%=number_to_currency(current_user.client.total_fees_paid)%>" readonly="true"/>
+<label><b>EOM Accumulated Fees- Previous Month $:</b></label><input type="text" value="<%=number_to_currency(current_user.client.prev_monthly_fees_paid)%>" readonly="true"/>
+<label><b>Current funds in trades $:</b></label><input type="text" value="<%=number_to_currency(current_user.client.fund_in_trades)%>" readonly="true"/>
+<h1>Pending Trades</h1>
 <%unless current_user.client.races.where(:status=>nil).blank?%>
 <script src="../assets/jquery.dataTables.js"></script>
 <script type="text/javascript">
@@ -18,17 +21,18 @@
 <table id="sunil_datatable" class="table">
 	<thead>
 		<tr>
-			<th>Bet Name</th>
+			<th>Trade Name</th>
 			<th>Ticket Number</th>
 			<th>Description</th>
-			<th>Bet Type</th>
+			<th>Trade Type</th>
+			<th>Trade info</th>
 			<th>Date</th>
 			<th>Time</th>
 			<th>Horse</th>
 			<th>Horse Place</th>
 			<th>Location</th>
-			<th>Balance Before Bet</th>
-			<th>Balance after Bet</th>
+			<th>Balance Before Trade</th>
+			<th>Balance after Trade</th>
 			</tr>
 	</thead>
 	<tbody>
@@ -38,6 +42,7 @@
 			<td><%=race.ticket_number%></td>
 			<td><%=race.description%></td>
 			<td><%=race.race_type%></td>
+			<td><%=race.info%></td>
 			<td><%=race.date.strftime("%d/%m/%Y")%></td>
 			<td><%=race.time.strftime("%I:%M%p")%></td>
 			<td><%=race.horse%></td>
@@ -50,7 +55,7 @@
 	</tbody>
 </table>
 <%end%>
-<h1>Previous Bets</h1>
+<h1>Previous Trades</h1>
  <div class="field">
     <p><b>From Date:</b>  <input type="text" id="datepicker" readonly="true"><b>  To Date:</b>  <input type="text" id="todatepicker" readonly="true"></p>
   </div>

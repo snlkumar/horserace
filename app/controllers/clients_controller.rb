@@ -121,11 +121,11 @@ class ClientsController < InheritedResources::Base
   def respond_way
     @client=current_user.client
     @reseller=@client.reseller
-    if request.put?
-      if @client.update_attributes(params[:client])
-      flash[:notice] = "Client Detail Successfully updated ."
+    if request.put?      
+        UserMailer.respond_via(@client,params[:client]).deliver
+      flash[:notice] = "Client Detail Successfully saved ."
       redirect_to respond_way_reseller_clients_path(@reseller)
-    end
+    
     end
   end
   
@@ -145,7 +145,28 @@ class ClientsController < InheritedResources::Base
     end
   end
   
-  
+  require 'rubygems'
+require 'pdfcrowd'
+
+def generatePdf
+  puts 'params#{params[:id]}'
+  id=params[:id]
+  begin
+    # create an API client instance
+    client = Pdfcrowd::Client.new("sunil_trigma", "bb499efc2a960fe6f70b85d0118d3e61")
+  url="http://radiant-plains-8678.herokuapp.com/clients/view_report/12"
+    # convert a web page and store the generated PDF to a variable
+    pdf = client.convertURI(url)
+
+    # send the generated PDF
+    send_data(pdf, 
+              :filename => "google_com.pdf",
+              :type => "application/pdf",
+              :disposition => "attachment")
+  rescue Pdfcrowd::Error => why
+    render :text => why
+  end
+end
   
   
   

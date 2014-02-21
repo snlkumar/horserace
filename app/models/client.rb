@@ -259,8 +259,13 @@ class Client < ActiveRecord::Base
   
   
   def b5
+    puts "i am in b5 with params#{self.total_profit_lost < 0}"
     unless self.total_profit_lost.blank?
-    self.total_profit_lost*5/100
+      if self.total_profit_lost > 0
+        self.total_profit_lost*5/100
+       else
+         0
+         end  
   end
   end
   
@@ -281,14 +286,38 @@ class Client < ActiveRecord::Base
     
   end
    
-   def total_fees_paid
+   def prev_monthly_fees_paid
      @total_fees=0.0
      @clien_fees=self.client_fees
      unless @clien_fees.blank?
-       @clien_fees.each do |cf|
-         @total_fees+=cf.fee unless cf.fee.nil?
-       end
+       # @clien_fees.each do |cf|
+         @total_fees=@clien_fees.last.fee 
+       # end
        return @total_fees
+     end
+   end
+   
+   def total_fees_paid
+      @total_fees=0.0
+     @clien_fees=self.client_fees
+     unless @clien_fees.blank?
+        @clien_fees.each do |cf|
+         @total_fees+=cf.fee unless cf.fee.blank? 
+        end
+       return @total_fees
+     end
+   end
+   
+   def fund_in_trades
+     @races= self.races.where(:status=>nil)
+     @funds=0.0
+     unless @races.blank?
+       @races.each do |race|
+         user_races=UsersRaces.find_by_race_id_and_client_id(race.id,self.id)
+         puts user_races.attributes
+         @funds+=user_races.bet_amount
+       end
+       return @funds
      end
    end
    

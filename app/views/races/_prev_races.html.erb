@@ -26,29 +26,28 @@
 <%else%>
 Sorry record not found.
 <%end%> -->
-<script src="../assets/jquery.dataTables.js"></script>
+
+<%unless @races.blank?%>
+<script src="/../assets/jquery.dataTables.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){	
     $('#sunil_datatable').dataTable();
 });
 </script>
-<%unless @races.blank?%>
    <table id="sunil_datatable">
-   	<thead>
+   	<thead>   		
    		<tr>
-   			
-   			
-   			</tr>
-   		<tr>
-   			<th>Bet Date/Time</th>
+   		    <th>Trade Date</th> 
    			<th>Ticket Number</th>
    			<th>Description</th>
-   			<th>Bet Amount</th>
-   			<th>Bet Type</th>
+   			<th>Trade Amount</th>
+   			<th>Trade Type</th>
+   			<th>Trade Info</th>
    			<th>Status</th>
    			<th>Win</th>
    			<th>Lost</th>
-   			<th>Processing Balance</th>
+   			<!-- <th>Processing Balance</th> -->
+   			<th>Balance After Trade</th>
    			
    		</tr>
    	</thead>
@@ -61,7 +60,8 @@ Sorry record not found.
    			<td><%=race.description%></td>
    			<td><%=number_to_currency(prev_race.bet_amount) unless prev_race.blank?%></td>
    			<td><%=race.race_type%></td>
-   			<td><%=race.status%></td>
+   			<td><%=race.info%></td>
+   			<td><%=race.status.capitalize unless race.status.blank?%></td>
  			<td><%=number_to_currency(prev_race.win) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.lost) unless prev_race.blank?%></td>
    			<td><%=number_to_currency(prev_race.processing_balance) unless prev_race.blank?%></td>

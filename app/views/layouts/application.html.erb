@@ -64,17 +64,17 @@
             	<h3>Categories</h3>
                <ul class="categorie_link2">
             	<li><% link_to "New Tier", "/tiers/new"  %></li>
-              <li><%= link_to "New Bet", "/races/new"  %></li>
-              <li><%= link_to "Past Bets", "/races/past_races"  %></li>
+              <li><%= link_to "New Trade", "/races/new"  %></li>
+              <li><%= link_to "Past Trades", "/races/past_races"  %></li>
               <li><%= link_to "View Login Activity", view_login_races_path  %></li>
-              <li><%= link_to "Current Bets", "/races/current_races"  %></li>
+              <li><%= link_to "Pending Trades", "/races/current_races"  %></li>
               <li><% link_to "New Client", "/clients/new"%></li>
               <li><%= link_to "New White Label", new_reseller_path%></li>
               <li><%= link_to "White Label List", resellers_path%></li>
               <li><%= link_to "Active Clients", "/user/view_clients"  %></li>
               <li><%= link_to "Inactive Clients", "/user/inactive_clients"  %></li>
               <li><%= link_to "Client Balances", view_clients_balance_races_path  %></li>
-              <li><%= link_to "Clients Fee", client_fees_path  %></li>
+              <li><%= link_to "Client Fees", client_fees_path  %></li>
               <li><% link_to "Contacts", contacts_races_path  %></li>
               <li><%= link_to "Change Password",edit_user_registration_path%></li>
               </ul> 
@@ -84,8 +84,9 @@
                	<li><%= link_to "New Client",new_reseller_client_path(current_user.reseller)%></li>
                <li><%= link_to "Client List",reseller_clients_path(current_user.reseller)%></li>
                 <li><% link_to "Client Balances", view_clients_balance_races_path  %></li>
+                <li><%= link_to "Client Login History", reseller_view_clients_login_history_path  %></li>
                <li><%= link_to "Change Password",edit_user_registration_path%></li>
-               <li><%= link_to "Current Bets", "/races/current_races"  %></li>
+               <li><%= link_to "Pending Trades", "/races/current_races"  %></li>
                </ul>
                <%else%>
                <h3>Settings</h3>

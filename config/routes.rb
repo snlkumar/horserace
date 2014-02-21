@@ -18,6 +18,7 @@ HorseRace::Application.routes.draw do
 
 
   resources :resellers do
+    get :view_clients_login_history
       resources :clients do
           collection do
             get :withdraw_request,:withdraw_history,:my_details,:respond_way
@@ -78,6 +79,8 @@ HorseRace::Application.routes.draw do
     post 'signin' => 'devise/sessions#create', :as => :user_session
     get  'user/view_clients' => 'users#view_clients'
     get  'user/edit_client' => 'users#edit_client'
+    delete  'user/delete_client' => 'users#delete_client'
+    delete  'user/delete_inactive_client' => 'users#delete_inactive_client'
     put  'user/update_client' => 'users#update_client'
     get  'user/inactive_clients' => 'users#inactive_clients'
     # post  'user/my_detail' => 'users#my_details'

@@ -36,7 +36,7 @@
  			<%end%>
  			<td><%=client.status%></td>
  			
- 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> </tr>
+ 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> | <%= link_to image_tag('../assets/delete_icon.png').html_safe, user_delete_inactive_client_path(:id=>client), confirm: 'Are you sure you want to delete?', method: :delete %></tr>
  		<%end%>
  	</tbody>
  </table>

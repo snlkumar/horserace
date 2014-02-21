@@ -1,6 +1,6 @@
 class ResellersController < InheritedResources::Base
   before_filter :login_required
-  before_filter :admin_required
+  before_filter :admin_required,except: :view_clients_login_history
   def new
      @reseller = Reseller.new
      @reseller.build_user
@@ -13,6 +13,9 @@ class ResellersController < InheritedResources::Base
     else
       render 'new'
     end    
+  end
+  def view_clients_login_history
+    @clients=current_user.reseller.clients
   end
   def update
     @reseller=Reseller.find params[:id]

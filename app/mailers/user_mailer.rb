@@ -11,4 +11,7 @@ class UserMailer < ActionMailer::Base
   def send_balance_deposit_mail(client,message)
      mail(:to => "gulshan.sharma@trigma.com", :subject =>"Deposit amount" ,:body=>"#{message}")
   end
+  def respond_via(client,message)
+    mail(:to => client.reseller.user.email, :subject =>"Enquiry" ,:body=>"#{message}")
+  end
 end

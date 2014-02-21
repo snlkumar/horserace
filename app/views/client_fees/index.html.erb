@@ -4,30 +4,27 @@
     <div class="change_password_form-field"><input type="text" name="month" id="fee_month" readonly="true" /></div>
     <div class="clr"></div>
   </div>
+  
 
  <div id="client_fee_report">
  	
  </div>  
   <script>
 $(function() {
-$( "#fee_month" ).datepicker({
-	dateFormat:"MM",
-	 changeMonth: true,
-        changeYear: false,        
-        showButtonPanel: false,
-	onSelect: function(date) {
-	   $.get("client_fees/clients_fee?month="+date,function(data){
-	   	 $("#client_fee_report").empty();
-	   	 $("#client_fee_report").html(data);
-	   	 
-	   });
-  },
-   
-});
 
+
+
+ $("#fee_month").monthpicker().bind('monthpicker-click-month', function (e, month) {
+	 e.preventDefault();
+	 $.get("client_fees/clients_fee?month="+month,function(data){
+	 	  $("#client_fee_report").empty();
+	   	  $("#client_fee_report").html(data);
+	   	});
+    
+ });
 });
 </script>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="../assets/jquery.mtz.monthpicker.js"></script>
+

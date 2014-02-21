@@ -11,10 +11,12 @@ class ClientFee < ActiveRecord::Base
          puts "i am in calculate balance"
          last_balance=client.client_fees.last.new_balance
          profit=client.balance-last_balance
+         unless profit < 0
          fee=profit*client.fee/100
          balance=client.balance-fee
          ClientFee.create(:client_id=>client.id,:month=>Date::MONTHNAMES[Date.today.month],:old_balance=>last_balance,:balance_before_fee=>client.balance,:new_balance=>balance,:profit=>profit,:fee=>fee)
-         # Client.update(client.id,:balance=>balance)       
+         Client.update(client.id,:balance=>balance)
+         end       
        end
      end
    end

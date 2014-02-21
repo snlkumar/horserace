@@ -81,4 +81,25 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
      render :partial=>'user_view_clients'
   end
   
+  def delete_client
+    puts "i am in delete client with paramser#{params}"
+    @client=Client.find(params[:id])
+    @client.destroy
+    @clients=Client.where(:status=>'Active').order('created_at DESC')
+    render 'view_clients'
+  end
+  def delete_inactive_client    
+    @client=Client.find(params[:id])
+    @client.destroy
+    @clients=Client.where(:status=>'Inactive').order('created_at DESC')
+    render 'inactive_clients'
+  end
+  # def delete_client
+    # puts "i am in delete client with paramser#{params}"
+    # @client=Client.find(params[:id])
+    # @client.destroy
+    # @clients=Client.where(:status=>'Active').order('created_at DESC')
+    # render 'view_clients'
+  # end
+  
  end

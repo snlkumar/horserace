@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    @win=Race.where("date=? AND status=?",Date.today.strftime("%Y-%m-%d"),'win').count
+    @lost=Race.where("date=? AND status=?",Date.today.strftime("%Y-%m-%d"),'lost').count
     if current_user.nil?
     render :layout =>false
     else if current_user.reseller

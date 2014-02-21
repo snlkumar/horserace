@@ -26,10 +26,14 @@
 	</div>
 	 <div id="withdraw_bank">
      <div class="change_password_fields">	
-     	<div class="change_password_names"></div>
+     	<div class="change_password_names">$</div>
      <div class="change_password_form-field"><%=t.text_field :withdraw%></div>    
      <div class="change_password_form-field"><%=t.text_field :deposit%></div>
      <div class="clr"></div></div> 
+     <div class="change_password_fields">	
+     	<div class="change_password_names">Mobile</div>
+     <div class="change_password_form-field"><%=text_field_tag 'phone',@user.phone%></div>    
+     <div class="clr"></div></div>
      <div class="change_password_fields">
 	<div class="change_password_names"><label>Bank</label></div>
      <div class="change_password_form-field"><input type="radio" name="bank_details" id="current" value="current"/><label>Current</label> <input type="radio" name="bank_details" value="alternate" id="alternate"/><label>Alternate</label></div>

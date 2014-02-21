@@ -1,4 +1,4 @@
-<h1>Current Bets</h1>
+<h1>Pending Trades</h1>
 <script src="../assets/jquery.dataTables.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){	
@@ -9,7 +9,7 @@
 <table id="sunil_datatable" class="table">
 	<thead>
 		<tr>
-			<th>Race Name</th>
+			<th>Trade Name</th>
 			<th>Description</th>
 			<th>Date</th>
 			<th>Time</th>
@@ -36,6 +36,6 @@
 	</tbody>
 </table>
 <%end%>
-<h1>Previous Bets</h1>
+<h1>Previous Trades</h1>
 <%@races=Race.where('status=? or status=?','win','lost')%>
 <%=render 'reseller_prev_races' %>

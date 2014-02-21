@@ -25,7 +25,7 @@
 		<%@total_withdraw=0%>
 		<%@user.transactions.where(:owner=>1).each_with_index do |t,index|%>
 	    <tr class="tr_bg_yellow">
-  	        <td><%=t.created_at.strftime("%y-%m-%d %H:%M")%></td>
+  	        <td><%=t.created_at.strftime("%d-%m-%y %H:%M")%></td>
 			<td><%=number_to_currency(t.balance_before)%></td>
 			<td><%=number_to_currency(t.deposit)%></td>
 			<td><%=number_to_currency(t.withdraw)%></td>
