@@ -50,13 +50,13 @@ $(document).ready(function(){
 });
 
 
-$(document).on("change","#user_is_this_trial",function(){
-	attr=$("#user_trail_duration").attr("disabled");
+$(document).on("change","#client_is_this_trial",function(){
 	
+	attr=$("#client_trail_duration").attr("disabled");	
 	if (attr=="disabled"){
-	$("#user_trail_duration").attr("disabled",false);
+	$("#client_trail_duration").attr("disabled",false);
 	}else{
-		$("#user_trail_duration").attr("disabled",true);
+		$("#client_trail_duration").attr("disabled",true);
 	}
 });
 		
