@@ -26,7 +26,12 @@
  		<%@reseller=client.reseller%>
  		<tr>
  			<td><%=client.client_number%></td>
- 			<td><%=client.client_name%></td>
+ 			<td><strong><%unless client.is_this_trial?%>
+				<%=client.client_name %>
+				<%else%>
+				<%=client.client_name %>(T)
+				<%end%></strong></td>
+ 			
  			<td><p class="tier_change" race=<%=client.id%>>					
            <a href="#"><%=client.tier.name unless client.tier.nil?%></a>
             </p> 
