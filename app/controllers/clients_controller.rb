@@ -1,5 +1,5 @@
 class ClientsController < InheritedResources::Base
-  before_filter :login_required
+  before_filter :login_required,:except=>[:generatePdf]
   before_filter :reseller_required ,:only=>[:new,:create,:destroy]
   before_filter :admin_or_reseller,:only=>[:edit,:update]
   def index
