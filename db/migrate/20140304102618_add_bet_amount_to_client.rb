@@ -1,5 +1,5 @@
 class AddBetAmountToClient < ActiveRecord::Migration
   def change
-    add_column :clients,:bet_amount,:float
+    add_column :clients,:bet,:float
   end
 end

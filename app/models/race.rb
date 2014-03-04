@@ -19,7 +19,8 @@ class Race < ActiveRecord::Base
       unless client.balance < 500 
     user_race=UsersRaces.create(:race_id=>self.id,:client_id=>client.id,:processing_balance=>client.balance)
     puts "i am with bet amount#{client.bet_amount(self)}"
-    UsersRaces.update(user_race.id,:bet_amount=>client.bet_amount(self))
+    # UsersRaces.update(user_race.id,:bet_amount=>client.bet_amount(self))
+    UsersRaces.update(user_race.id,:bet_amount=>client.bet)
     Client.update(client.id,:balance=>client.calculated_balance_after_bet(self))
     unless user_race.nil?
     ur=UsersRaces.find_by_id(user_race.id)

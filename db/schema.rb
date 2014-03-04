@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20140304102618) do
     t.float    "initial_balance"
     t.string   "horse_place"
     t.float    "fee"
-    t.float    "bet_amount"
+    t.float    "bet"
   end
 
   create_table "posts", :force => true do |t|
