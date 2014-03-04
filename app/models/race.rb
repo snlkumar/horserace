@@ -5,7 +5,7 @@ class Race < ActiveRecord::Base
   after_create :update_clients
   has_and_belongs_to_many :clients,:join_table => :users_races
   has_many :transactions
-  validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
+  # validates_format_of :name,:horse, :with => /^[a-zA-Z() ]+$/
   validates :ticket_number,:uniqueness=>true
   before_destroy :delete_users_races
   def update_clients 

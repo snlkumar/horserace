@@ -11,7 +11,7 @@
 
 <% @resellers.each do |reseller| %>
   <tr>
-    <td><%= reseller.name %></td>
+    <td><%=link_to reseller.name,reseller_path(reseller) %></td>
     <td><%= reseller.address %></td>
     <td><%=reseller.user.email%></td>
     <td><%=reseller.phone%></td>

@@ -7,8 +7,8 @@ class Client < ActiveRecord::Base
   validates :client_number,:uniqueness=>true
   validates :phone,:numericality =>true
   validates :balance,:presence=>true,:format => { :with => /^\d+??(?:\.\d{0,2})?$/ },:numericality =>{:greater_than => 0},:if =>:balance_changed?
-  validates :tier_id,:presence=>true,:if =>:tier_id_changed?
-  validates_format_of :client_name, :with => /^[a-zA-Z() ]+$/
+  # validates :tier_id,:presence=>true,:if =>:tier_id_changed?
+  # validates_format_of :client_name, :with => /^[a-zA-Z() ]+$/
   has_and_belongs_to_many :races,:join_table => :users_races
   has_many :bank_details
   has_many :withdraws
@@ -198,7 +198,8 @@ class Client < ActiveRecord::Base
       @tier_odd=race.default_odd
     end
     loss=@tier_odd*self.bet_amount(race)
-    actual_balance=self.balance-loss
+    # actual_balance=self.balance-loss
+    actual_balance=@user_races.processing_balance-loss
     if race.status=="lost"
       Client.update(self.id,:balance=>actual_balance)
       UsersRaces.update(@user_races.id,:lost=>loss,:bet_amount=>self.bet_amount(race))

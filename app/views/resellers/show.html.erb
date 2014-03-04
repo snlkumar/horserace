@@ -1,15 +1,60 @@
-<p id="notice"><%= notice %></p>
+<h1>Client List</h1>
+<script src="/../assets/jquery.dataTables.js"></script>
+<script src="/../assets/jquery.dataTables.min.js"></script>
 
-<p>
-  <b>Name:</b>
-  <%= @reseller.name %>
-</p>
+<script type="text/javascript">
+	$(document).ready(function(){			
+    $('#sunil_datatable').dataTable();
+});
+</script>
+<%unless @client.blank?%>
+<% if @client.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @client.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+   <%end%> 
+  <% end %>
 
-<p>
-  <b>Address:</b>
-  <%= @reseller.address %>
-</p>
+  <%unless @clients.empty?%>
+  
+<table class="client_table" id="sunil_datatable">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Password</th>
+			<th>Balance</th>			
+			<th>Email</th>
+			<th>Phone</th>			
+			<th>Status</th>
+			<th>Profit/Lost(%)</th>			
+		</tr>
+	</thead>
+	<tbody>
+		
+		<%@clients.each_with_index do |client,index|%>
+	  <%@class="tr_bg_yellow"%>
+		<tr class="<%=@class%>">
+			<td><strong><%unless client.is_this_trial?%>
+				<%=client.client_name %>
+				<%else%>
+				<%=client.client_name %>(T)
+				<%end%></strong></td>
+				<td><%=client.custom_password%></td>
+			<td><%=number_to_currency(client.balance)%></td>			
+			<td><%=client.user.email%></td>
+			<td><%=client.phone%></td>
+			<td><%=client.status%></td>
+			<td>%<%=client.profit_lost.round(2) unless client.profit_lost.blank?%></td>
+			
+		</tr>
+		<%end%>
+		
+	</tbody>	
+</table>
+<%else%>
+Sorry record not found.
+<%end%>	
 
 
-<%= link_to 'Edit', edit_reseller_path(@reseller) %> |
-<%= link_to 'Back', resellers_path %>

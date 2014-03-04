@@ -193,14 +193,10 @@ $(document).on("focusout","#deposit_messages",function(){
      // });
 // });
 // 
-// $(document).on("focusout","#horse_no",function(){
-	// var phone=$(this).val();	
-	// var race = $(this).attr("race");
-	// if (phone.length>0){		
-		// $('ul.alert-error li').empty();
-		// var i = ("#race_"+race);	    	
-	       // $(i).parent("p").attr("class","editme3");
-// 		
-	// }
-// 	
-// });
+$(document).on("click","#search_client",function(){
+		var input=$("#seach_client").val();	
+			$.get("/users/search_clients/"+input,function(data){
+				$("#user_view_client").empty();
+				$("#user_view_client").html(data);
+			});
+		});

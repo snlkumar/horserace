@@ -28,7 +28,7 @@
   <div class="clr"></div></div>
  <div class="change_password_fields">
   	<div class="change_password_names"><%= f.label :tier_id %></div>
-  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => 'Select'},:required=>true,:class=>"tier_select") %></div>
+  	<div class="change_password_form-field"><%= f.collection_select(:tier_id, Tier.all, :id, :name, {:include_blank => 'Default Odd'},:class=>"tier_select") %></div>
   <!-- <%= f.text_field :tier_id%></div> -->
   <div class="clr"></div></div>
   <div class="change_password_fields">

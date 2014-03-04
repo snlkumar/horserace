@@ -17,7 +17,7 @@
  			<th>White Label</th>
  			<th>Balance</th>
  			<th>Status</th>
- 			<th>Trades</th>
+ 			<!-- <th>Trades</th> -->
  			<th>Action</th>
  		</tr>
  	</thead>
@@ -33,7 +33,13 @@
 				<%end%></strong></td>
  			
  			<td><p class="tier_change" race=<%=client.id%>>					
-           <a href="#"><%=client.tier.name unless client.tier.nil?%></a>
+           <a href="#">
+           	<%unless client.tier.nil?%>
+           	<%=client.tier.name%>
+           	<%else%>
+           	Default Odd
+           	<%end%>
+           </a>
             </p> 
  			</td>
  			<td>%<%=client.profit_lost.round(2)%></td>
@@ -46,12 +52,14 @@
  			<%end%>
  			<td><%=client.status%></td>
  			<%@races="No trade exist for this user" if @races.blank?%>
- 			<td><%=@races%></td>
- 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> | <%= link_to image_tag('../assets/delete_icon.png').html_safe, user_delete_client_path(:id=>client), confirm: 'Are you sure you want to delete?', method: :delete %> | <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>|<%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(client.reseller,{:id=>client})%></td>
+ 			<!-- <td><%=@races%></td> -->
+ 			<td><%= link_to image_tag('../assets/edit_icon.png').html_safe,  user_edit_client_path(:id=>client) %> <% link_to image_tag('../assets/delete_icon.png').html_safe, user_delete_client_path(:id=>client), confirm: 'Are you sure you want to delete?', method: :delete %> | <%= link_to "View_report",:controller=>'clients',:action=>'view_report',:id=>client.id %>|<%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(client.reseller,{:id=>client})%></td>
  		</tr>
  		<%end%>
  	</tbody>
  </table>
+ <%else%>
+ <p>Sorry,record not found</p>
 <%end%>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
@@ -72,7 +80,7 @@ var data={
 	$(".tier_change").editInPlace({
 		url: '/users/update_tier?',
 		field_type: "select",
-		select_options: "T1, T2,T3,T4,T5",	
+		select_options: "Default Odd,T1,T2,T3,T4,T5",	
 		params: data,
 		success: function(response) {
         $("#user_view_client").empty();

@@ -14,6 +14,11 @@ class ResellersController < InheritedResources::Base
       render 'new'
     end    
   end
+  
+  def show
+    @reseller=Reseller.find(params[:id])
+    @clients=@reseller.clients
+  end
   def view_clients_login_history
     @clients=current_user.reseller.clients
   end

@@ -76,7 +76,11 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     @clients=Client.where(:status=>'Active').order('created_at DESC') 
     @client=Client.find(params[:element_id])
     tier=Tier.find_by_name(params[:update_value])
+    unless tier.nil?
     Client.update(@client.id,:tier_id=>tier.id)
+    else
+      Client.update(@client.id,:tier_id=>"")
+    end
     flash[:notice] = "Tier successfully updated ."
      render :partial=>'user_view_clients'
   end
@@ -94,12 +98,11 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     @clients=Client.where(:status=>'Inactive').order('created_at DESC')
     render 'inactive_clients'
   end
-  # def delete_client
-    # puts "i am in delete client with paramser#{params}"
-    # @client=Client.find(params[:id])
-    # @client.destroy
-    # @clients=Client.where(:status=>'Active').order('created_at DESC')
-    # render 'view_clients'
-  # end
-  
+  def search_clients
+    input=params[:id]
+    @clients=Client.where("client_name LIKE ?", "%#{input}%")
+    puts @clients
+    # @clients=[]
+    render :partial=> 'user_view_clients'
+  end
  end
