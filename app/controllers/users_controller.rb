@@ -33,25 +33,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     if @user.update_with_password(params[:user])
       flash[:notice]="Password has been changed successfully" 
    end
-    render 'edit'
-   
-   
+    render 'edit'  
   end
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   #change
  def update_balance
@@ -132,7 +115,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   def search_clients
     input=params[:id]
     @clients=Client.where("client_name LIKE ?", "%#{input}%")
-    puts @clients
+    puts "@clients with #{@clients.count}"
     # @clients=[]
     render :partial=> 'user_view_clients'
   end
