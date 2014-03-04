@@ -72,7 +72,8 @@ HorseRace::Application.routes.draw do
     
     get 'admin/signin' => 'devise/sessions#new', :as => :admin_new_user_session
     get 'signin' => 'devise/sessions#new', :as => :new_user_session
-    get 'edit_user'=>'devise/registrations#edit',:as=>:edit_user_registration
+    # get 'user/edit'=>'users#edit',:as=>:change_password
+    # get 'edit_user'=>'devise/registrations#edit',:as=>:edit_user_registration
     get 'reset_password'=>'users#reset_password',:as=>:reset_password_users
     get 'confirm_password'=>'users#confirm_password'
     # get 'sign_up'=>'devise/registrations#new',:as=>:new_user_registration

@@ -1,0 +1,31 @@
+<%= form_for(@user) do |f| %>
+	<div class="clr"></div>
+<% if @user.errors.any? %>   
+      <ul class="alert fade in alert-error">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    
+  <% end %>
+<div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></div>
+    <div class="change_password_form-field"><%= f.password_field :current_password,:required=>true %></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :password, "Password" %></div>
+    <div class="change_password_form-field"><%= f.password_field :password, :autocomplete => "off",:required=>true  %></div>
+  <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+   <div class="change_password_names"><%= f.label :password_confirmation %></div>
+    <div class="change_password_form-field"><%= f.password_field :password_confirmation,:required=>true %></div>
+    <div class="clr"></div>
+  </div>
+  <div class="change_password_fields">
+  	<div class="change_password_names">&nbsp;</div>
+  	<div class="login_button"><%= f.submit %></div>
+  	<div class="clr"></div>
+  </div>
+<% end %>

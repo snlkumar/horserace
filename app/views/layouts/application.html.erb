@@ -76,7 +76,7 @@
               <li><%= link_to "Client Balances", view_clients_balance_races_path  %></li>
               <li><%= link_to "Client Fees", client_fees_path  %></li>
               <li><% link_to "Contacts", contacts_races_path  %></li>
-              <li><%= link_to "Change Password",edit_user_registration_path%></li>
+              <li><%= link_to "Change Password",edit_user_path(current_user)%></li>
               </ul> 
               <%else if current_user.reseller%>
                <h3>Settings</h3>

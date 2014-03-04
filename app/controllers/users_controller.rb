@@ -23,6 +23,37 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
      format.json { render :json => {:valid=>true,:html=>@html} }
    end
   end
+  def edit
+    @user = User.find params[:id]
+  end
+  #change
+  def update
+    @user = User.find(current_user.id)
+   
+    if @user.update_with_password(params[:user])
+      flash[:notice]="Password has been changed successfully" 
+   end
+    render 'edit'
+   
+   
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #change
  def update_balance
    @user=User.find params[:id] 
    @balance=params[:user][:balance]
