@@ -84,7 +84,7 @@
                	<li><%= link_to "New Client",new_reseller_client_path(current_user.reseller)%></li>
                <li><%= link_to "Client List",reseller_clients_path(current_user.reseller)%></li>
                 <li><% link_to "Client Balances", view_clients_balance_races_path  %></li>
-                <li><%= link_to "Client Login History", reseller_view_clients_login_history_path  %></li>
+                <li><%= link_to "Client Login History", reseller_view_clients_login_history_path(current_user.reseller)%></li>
                <li><%= link_to "Change Password",edit_user_registration_path%></li>
                <li><%= link_to "Pending Trades", "/races/current_races"  %></li>
                </ul>
