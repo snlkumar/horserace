@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :client_name,:balance,:fee,:balance_after_bet,:tier_id,
+  attr_accessible :client_name,:balance,:fee,:balance_after_bet,:tier_id,:bet_amount,
   :phone,:is_this_trial,:initial_balance,:status,:enquiry,:trading_start_date,:trail_duration,:address,:reseller_id,:custom_password,:ticket_number,:respond_via, :dob, :consultant_name, :consultant_contact_number,:client_number,:withdraws_attributes,:user_attributes, :bank_details_attributes
   belongs_to :tier
   validates :client_name,:presence=>true,:if =>:client_name_changed?
@@ -77,6 +77,16 @@ class Client < ActiveRecord::Base
     end
   end
   
+  
+  def self.update_daily_bet_amount    
+    clients=Client.where(:status=>"Active")   
+    clients.each do |client|
+      bet=client.set_daily_bet_amount
+      Client.update(client.id,:bet_amount=>bet)
+    end
+  end
+  
+  
   def inactivate
     Client.update(self.id,:status=>'inactive',:is_this_trial=>false)
     
@@ -98,63 +108,86 @@ class Client < ActiveRecord::Base
   def bet_amount(race)
     processing_amount=UsersRaces.find_by_race_id_and_client_id(race.id,self.id).processing_balance
     unless self.is_this_trial?
-    case processing_amount
-    when 500.0..999.0
-      return 5
-    when 1000.0..1999.0
-      return 10
-    when 2000.0..2999.0
-      return 20   
-    when 3000.0..3999.0
-      return 30
-    when 4000.0..4999.0
-      return 40
-    when 5000.0..7499.0
-      return 50
-    when 7500.0..9999.0
-      return 75
-    when 10000.0..14999.0
-      return 100
-    when 15000.0..19999.0
-      return 150
-    when 20000.0..24999.0
-      return 200
-    else
-      
-     bet = 200 
-     after_diff=processing_amount-25000
-     puts "the calculated value is#{(after_diff/5000).floor}"
-   reminder=(after_diff/5000).floor+1
- 
-   return bet+reminder*50
-    # case reminder
-    # when 0.0..0.9
-      # return bet+50*1
-    # when 1.0..1.9
-      # return bet+50*2  
-    # when 2.0..2.9
-      # return bet+50*3
-    # when 3.0..3.9
-      # return bet+50*4
-    # when 4.0..4.9
-      # return bet+50*5
-    # when 5.0..5.9
-      # return bet+50*6
-    # when 6.0..6.9
-      # return bet+50*7
-    # when 7.0..7.9
-      # return bet+50*8
-    # when 8.0..8.9
-      # return bet+50*9
-    # when 9.0..9.9
-      # return bet+50*10
-     # end               
-     end
+        case processing_amount
+        when 500.0..999.0
+          return 5
+        when 1000.0..1999.0
+          return 10
+        when 2000.0..2999.0
+          return 20   
+        when 3000.0..3999.0
+          return 30
+        when 4000.0..4999.0
+          return 40
+        when 5000.0..7499.0
+          return 50
+        when 7500.0..9999.0
+          return 75
+        when 10000.0..14999.0
+          return 100
+        when 15000.0..19999.0
+          return 150
+        when 20000.0..24999.0
+          return 200
+        else  
+             bet = 200 
+             after_diff=processing_amount-25000
+             puts "the calculated value is#{(after_diff/5000).floor}"
+             reminder=(after_diff/5000).floor+1
+             return bet+reminder*50            
+         end
     else
       return 5
     end
     
   end
+  #change betamount method
+  def set_daily_bet_amount
+    processing_amount=self.balance
+    unless self.is_this_trial?
+        case processing_amount
+        when 500.0..999.0
+          return 5
+        when 1000.0..1999.0
+          return 10
+        when 2000.0..2999.0
+          return 20   
+        when 3000.0..3999.0
+          return 30
+        when 4000.0..4999.0
+          return 40
+        when 5000.0..7499.0
+          return 50
+        when 7500.0..9999.0
+          return 75
+        when 10000.0..14999.0
+          return 100
+        when 15000.0..19999.0
+          return 150
+        when 20000.0..24999.0
+          return 200
+        else  
+             bet = 200 
+             after_diff=processing_amount-25000
+             puts "the calculated value is#{(after_diff/5000).floor}"
+             reminder=(after_diff/5000).floor+1
+             return bet+reminder*50            
+         end
+    else
+      return 5
+    end
+    
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #change betamount method
   def calculated_balance_after_bet(race)
   
     processing_amount=UsersRaces.find_by_race_id_and_client_id(race.id,self.id).processing_balance

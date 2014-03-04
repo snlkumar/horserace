@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131053101) do
+ActiveRecord::Schema.define(:version => 20140304102618) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20140131053101) do
     t.float    "initial_balance"
     t.string   "horse_place"
     t.float    "fee"
+    t.float    "bet_amount"
   end
 
   create_table "posts", :force => true do |t|

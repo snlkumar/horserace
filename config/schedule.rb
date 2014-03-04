@@ -5,7 +5,7 @@
 
 # Example:
 #
-   set :environment, 'development'
+   set :environment, 'production'
  # set :output,'/home/Documents/cron_log/cron_log.log'
   # job_type :runner,  "cd :path && rails runner -e :development ':task' :output"
  # /home/sunil/.rvm/gems/ruby-1.9.3-p484/bin
@@ -21,7 +21,10 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 every 1.day ,:at=>'04:15pm' do
-   runner "User.check_trail_duration"
+   runner "Client.check_trail_duration"
+end
+every 1.day, :at => '12:01 am' do
+  runner "Client.update_daily_bet_amount"
 end
 
 every 9.minutes do
