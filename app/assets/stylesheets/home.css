@@ -779,15 +779,25 @@ zoom: 1;
 {
 	margin-left:34.4%;
 }
-.home_nav ul li a
+/*.home_nav ul li a
 {
 	color:#f2b855;
-	font-size:16px!important;
+	font-size:13px!important;
+	text-decoration:none;
+    font-family: 'BikoRegular';
+	text-transform:uppercase;
+	display:block;
+}*/
+.home_nava ul li a
+{
+	color:#f2b855;
+	font-size:13px!important;
 	text-decoration:none;
     font-family: 'BikoRegular';
 	text-transform:uppercase;
 	display:block;
 }
+
 .home_nav ul li.active, .home_nav ul li:hover
 {
 	background:#262525;
