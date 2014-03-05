@@ -195,6 +195,9 @@ $(document).on("focusout","#deposit_messages",function(){
 // 
 $(document).on("click","#search_client",function(){
 		var input=$("#seach_client").val();	
+		if (input.length==0){
+			input="empty";
+		}
 			$.get("/users/search_clients/"+input,function(data){
 				$("#user_view_client").empty();
 				$("#user_view_client").html(data);

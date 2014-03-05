@@ -114,10 +114,12 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   def search_clients
     input=params[:id]
-    # @clients=Client.find(:all, :conditions => ["client_name ilike ?", "%#{input.downcase}%"])
-     @clients=Client.where("client_name ilike '%#{input}%' ")
-    puts "@clients with #{@clients.count}"
-   
+    unless input=="empty"
+    # @clients=Client.find(:all, :conditions => ["client_name like ? AND status=?", "%#{input.downcase}%",'Active'])
+    @clients=Client.where("client_name ilike ? AND status=?","%#{input}%","Active")
+    else
+       @clients=Client.where(:status=>'Active').order('created_at DESC')
+    end
     render :partial=> 'user_view_clients'
   end
  end
