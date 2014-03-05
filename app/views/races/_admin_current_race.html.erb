@@ -70,4 +70,5 @@
 <%end%>
 <h1>Previous Trades</h1>
 <%@races=Race.where('status=? or status=?','win','lost')%>
+<div class="clr"></div>
 <%=render 'admin_prev_races' %>
