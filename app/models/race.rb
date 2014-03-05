@@ -33,7 +33,7 @@ class Race < ActiveRecord::Base
     
   
   def self.bet_reminder
-    puts "i am in bet reminder"
+    
     current_time=Time.now
     @races= Race.where(:date=>Date.today,:time=>(Time.now-10.minutes).strftime("%H:%M"))
     unless @races.blank?      

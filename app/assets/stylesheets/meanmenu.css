@@ -9,7 +9,7 @@
 ####################################################################### */
 
 /* hide the link until viewport size is reached */
-a.meanmenu-reveal {
+a.meanmenu-reveal{
 	display: none;
 }
 

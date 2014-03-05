@@ -23,6 +23,7 @@
 	<thead>
 		<tr>
 			<th>Client Name</th>
+			<th>Client's Bet Amount For Today'</th>
 			<th>Password</th>
 			<th>Balance</th>			
 			<th>Email</th>
@@ -44,6 +45,7 @@
 				<%else%>
 				<%=client.client_name %>(T)
 				<%end%></strong></td>
+				<td><%=number_to_currency(client.bet)%></td>
 				<td><%=client.custom_password%></td>
 			<td><%=number_to_currency(client.balance)%></td>			
 			<td><%=client.user.email%></td>
