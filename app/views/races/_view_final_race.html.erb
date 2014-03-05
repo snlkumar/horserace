@@ -21,7 +21,8 @@
 			<td><%=user.client_name%></td>
 			<td><%=number_to_currency(user.balance)%></td>
 			<td><%=user.tier_id%></td>
-			<td><%=number_to_currency(user.bet_amount(@race)) unless user.balance.nil?%></td>				
+			<!-- <td><%=number_to_currency(user.bet_amount(@race)) unless user.balance.nil?%></td>	 -->
+			<td><%=number_to_currency(user.bet)%></td>				
 			<%if @race.status=='lost'%>
 			<td><%=number_to_currency(user.potential_loss_and_update(@race)) unless user.balance.nil?%></td>	
 			<%else%>

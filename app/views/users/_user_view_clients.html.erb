@@ -11,6 +11,7 @@
  		<tr>
  			<th>Client Number</th>
  			<th>Client Name</th>
+ 			<th>Client Bet For Today</th>
  			<th>Client Tier</th>
  			<th>Profit %</th>
  			<th>Profit/lost</th>
@@ -31,7 +32,7 @@
 				<%else%>
 				<%=client.client_name %>(T)
 				<%end%></strong></td>
- 			
+ 			<td><%=number_to_currency(client.bet)%></td>
  			<td><p class="tier_change" race=<%=client.id%>>					
            <a href="#">
            	<%unless client.tier.nil?%>

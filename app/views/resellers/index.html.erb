@@ -1,6 +1,7 @@
 <h1>Listing white labels</h1>
 
-<table class="sunil-prev-races">
+<table class="table">
+<thead>
   <tr>
     <th>Name</th>
     <th>Address</th>
@@ -8,7 +9,8 @@
     <th>Phone Number</th>
     <th>Action</th>
   </tr>
-
+  </thead>
+<tbody>
 <% @resellers.each do |reseller| %>
   <tr>
     <td><%=link_to reseller.name,reseller_path(reseller) %></td>
@@ -18,8 +20,9 @@
     <td><%= link_to 'Edit', edit_reseller_path(reseller) %> | <%= link_to image_tag('../assets/delete_icon.png'), reseller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
-<% link_to 'New white label', new_reseller_path %>
+
