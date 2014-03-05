@@ -114,8 +114,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   def search_clients
     input=params[:id]
-    @clients=Client.find(:all, :conditions => ["client_name LIKE ?", "%#{input.downcase}%"])
-    # @clients=Client.where("client_name LIKE ?", "%#{input}%")
+    # @clients=Client.find(:all, :conditions => ["client_name ilike ?", "%#{input.downcase}%"])
+     @clients=Client.where("client_name ilike '%#{input}%' ")
     puts "@clients with #{@clients.count}"
    
     render :partial=> 'user_view_clients'
