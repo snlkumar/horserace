@@ -85,14 +85,14 @@
                <li><%= link_to "Client List",reseller_clients_path(current_user.reseller)%></li>
                 <li><% link_to "Client Balances", view_clients_balance_races_path  %></li>
                 <li><%= link_to "Client Login History", reseller_view_clients_login_history_path(current_user.reseller)%></li>
-               <li><%= link_to "Change Password",edit_user_registration_path%></li>
+               <li><%= link_to "Change Password",edit_user_path(current_user)%></li>
                <li><%= link_to "Pending Trades", "/races/current_races"  %></li>
                </ul>
                <%else%>
                <h3>Settings</h3>
                <ul class="categorie_link2">
                	<li><%= link_to "Trading History",current_races_races_path%></li>
-               <li><%= link_to "Change Password",edit_user_registration_path%></li>
+               <li><%= link_to "Change Password",edit_user_path(current_user)%></li>
                <li><%= link_to "Deposit/Withdraw Funds",withdraw_request_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "My Details",my_details_reseller_clients_path(current_user.client.reseller)%></li>
