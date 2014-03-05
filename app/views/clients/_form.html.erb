@@ -48,7 +48,7 @@
      <%=f.hidden_field :custom_password%>
      <%f.hidden_field :is_admin,:value=>false%>
  <div class="change_password_fields">
- 	<div class="change_password_names"><%= u.label :password_confirmation %></div>
+ 	<div class="change_password_names"><%= u.label :password_confirmation,"Confirm Password" %></div>
   <div class="change_password_form-field"><%= u.password_field :password_confirmation ,:required=>true%></div>
 <div class="clr"></div></div>
  <%end%>
