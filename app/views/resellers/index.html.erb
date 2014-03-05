@@ -1,6 +1,14 @@
+
+<script src="../assets/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $('#sunil_datatable').dataTable();
+});
+</script>
+
 <h1>Listing white labels</h1>
 
-<table class="table">
+<table class="table" id="sunil_datatable">
 <thead>
   <tr>
     <th>Name</th>
@@ -17,7 +25,7 @@
     <td><%= reseller.address %></td>
     <td><%=reseller.user.email%></td>
     <td><%=reseller.phone%></td>
-    <td><%= link_to 'Edit', edit_reseller_path(reseller) %> | <%= link_to image_tag('../assets/delete_icon.png'), reseller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_reseller_path(reseller) %>  <% link_to image_tag('../assets/delete_icon.png'), reseller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>
