@@ -46,6 +46,8 @@ $(document).ready(function(){
     $("#deposit_form").hide();
     $("#withdraw_bank").hide();
      $(".deposit_error").hide();
+     $("#loading").hide();
+     
     
 });
 
@@ -195,10 +197,12 @@ $(document).on("focusout","#deposit_messages",function(){
 // 
 $(document).on("click","#search_client",function(){
 		var input=$("#seach_client").val();	
+		$("#loading").show();
 		if (input.length==0){
 			input="empty";
 		}
 			$.get("/users/search_clients/"+input,function(data){
+				$("#loading").hide();
 				$("#user_view_client").empty();
 				$("#user_view_client").html(data);
 			});
