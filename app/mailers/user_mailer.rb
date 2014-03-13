@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
   default :from => "snlkumar1313@gmail.com"
   
   def race_reminder_mail
-    mail(:to => "sunil.kumar@trigma.co.in", :subject => "Race Reminder",:body=>"This is heroku server")
+    mail(:to => "sunil.kumar@trigma.co.in", :subject => "Race Reminder",:body=>"This is heroku server from local")
   end
    def protest_mail(race,client)
     mail(:to => client.user.email, :subject => "Race {race.name} has been protested")
