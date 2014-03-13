@@ -8,7 +8,7 @@ class ClientFee < ActiveRecord::Base
    unless @clients.blank?
      @clients.each do |client|
        unless client.client_fees.last.blank?
-         puts "i am in calculate balance"
+         puts "i am in calculate balance change"
          last_balance=client.client_fees.last.new_balance
          profit=client.balance-last_balance
          unless profit < 0
