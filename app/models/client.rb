@@ -179,18 +179,8 @@ class Client < ActiveRecord::Base
     end
     
   end
-  
-  
-  
-  
-  
-  
-  
-  
-  
   #change betamount method
-  def calculated_balance_after_bet(race)
-  
+  def calculated_balance_after_bet(race)  
     processing_amount=UsersRaces.find_by_race_id_and_client_id(race.id,self.id).processing_balance
     # return processing_amount.to_f-self.bet_amount(race).to_f
     return processing_amount.to_f-self.bet.to_f
