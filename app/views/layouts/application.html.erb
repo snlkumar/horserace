@@ -40,7 +40,7 @@
   <body>
  <div id="header">
 <div class="inner">
-<a href="#" id="logo"><img src="/../assets/logo.png" alt="" border="0"></a>
+
 
 <%unless current_user%>
   <%=render 'shared/top_nav'%>
@@ -64,17 +64,22 @@
             	<h3>Categories</h3>
                <ul class="categorie_link2">
             	<li><% link_to "New Tier", "/tiers/new"  %></li>
+            	<li class="master-list"><b>Trades</b></strong></li>
               <li><%= link_to "New Trade", "/races/new"  %></li>
-              <li><%= link_to "Past Trades", "/races/past_races"  %></li>
-              <li><%= link_to "View Login Activity", view_login_races_path  %></li>
               <li><%= link_to "Pending Trades", "/races/current_races"  %></li>
-              <li><% link_to "New Client", "/clients/new"%></li>
-              <li><%= link_to "New White Label", new_reseller_path%></li>
-              <li><%= link_to "White Label List", resellers_path%></li>
-              <li><%= link_to "Active Clients", "/user/view_clients"  %></li>
+              <li><%= link_to "Past Trades", "/races/past_races"  %></li>
+              <li class="master-list"><b>Clients</b></li>
+               <li><%= link_to "Active Clients", "/user/view_clients"  %></li>
               <li><%= link_to "Inactive Clients", "/user/inactive_clients"  %></li>
               <li><%= link_to "Client Balances", view_clients_balance_races_path  %></li>
               <li><%= link_to "Client Fees", client_fees_path  %></li>
+              <li><%= link_to "View Login Activity", view_login_races_path  %></li>
+              <li class="master-list"><b>White Labels</b></li>
+              <li><% link_to "New Client", "/clients/new"%></li>
+              <li><%= link_to "New White Label", new_reseller_path%></li>
+              <li><%= link_to "White Label List", resellers_path%></li>
+             <li class="master-list"><b>Others</b></li>
+              
               <li><% link_to "Contacts", contacts_races_path  %></li>
               <li><%= link_to "Change Password",edit_user_path(current_user)%></li>
               </ul> 
@@ -93,6 +98,7 @@
                <ul class="categorie_link2">
                	<li><%= link_to "Trading History",current_races_races_path%></li>
                <li><%= link_to "Change Password",edit_user_path(current_user)%></li>
+               <li><%= link_to "Paid Fee",client_fees_path%></li>
                <li><%= link_to "Deposit/Withdraw Funds",withdraw_request_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "View Withdraw/Deposit history",withdraw_history_reseller_clients_path(current_user.client.reseller)%></li>
                <li><%= link_to "My Details",my_details_reseller_clients_path(current_user.client.reseller)%></li>

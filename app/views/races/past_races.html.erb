@@ -2,7 +2,10 @@
 <script src="../assets/jquery.dataTables.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){	
-    $('#sunil_datatable').dataTable();
+    $('#sunil_datatable').dataTable({
+        /* Disable initial sort */
+        "aaSorting": []
+    });
 });
 </script>
 

@@ -60,10 +60,10 @@ class RacesController < InheritedResources::Base
   end
   def past_races
     today= Date.today
-    @races=Race.where('status=? OR status=?','win','lost')
-    @races.each do |race|
-    puts race.horse_place  
-    end
+    @races=Race.where('status=? OR status=?','win','lost').order('updated_at DESC')
+    # @races.each do |race|
+    # puts race.horse_place  
+    # end
   end
   
   def view_login
@@ -91,7 +91,7 @@ class RacesController < InheritedResources::Base
        @balance=@balance-userrace.win
        UsersRaces.update(userrace.id,:win=>nil)
     else      
-       @balance=@balance+userrace.lost
+       @balance=@balance+userrace.lost unless userrace.blank?
        UsersRaces.update(userrace.id,:lost=>nil)
     end
     Race.update(@race.id,:status=>nil)
@@ -103,7 +103,20 @@ class RacesController < InheritedResources::Base
   
  def update_horse_place
    @race=Race.find(params[:element_id])
-   if @race.update_attributes(:horse_place=>params[:update_value])
+   horse_place=params[:update_value]
+   @status="win"
+   if horse_place=="1"
+     @status="lost"
+   end
+   if @race.update_attributes(:horse_place=>horse_place,:status=>@status)     
+     @race.clients.each do |user|
+       if @race.status=='lost'
+         user.potential_loss_and_update(@race)
+       else
+         user.potential_win_and_update(@race)
+       end
+     end
+     
    render :text=>"updating..."   
    end
  end 

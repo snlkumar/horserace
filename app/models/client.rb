@@ -197,7 +197,7 @@ class Client < ActiveRecord::Base
       @tier_odd=race.default_odd
     end 
     # loss=(@tier_odd).round(2)*self.bet_amount(race)
-    loss=(@tier_odd).round(2)*self.bet
+    loss=(@tier_odd).round(2)*self.bet-self.bet
      return loss   
   end
   
@@ -227,9 +227,10 @@ class Client < ActiveRecord::Base
       @tier_odd=race.default_odd
     end
     # loss=@tier_odd*self.bet_amount(race)
-    loss=@tier_odd*self.bet
+    
+    loss=(@tier_odd).round(2)*self.bet-self.bet
     # actual_balance=self.balance-loss
-    actual_balance=@user_races.processing_balance-loss
+    actual_balance=self.balance-loss
     if race.status=="lost"
       Client.update(self.id,:balance=>actual_balance)
       # UsersRaces.update(@user_races.id,:lost=>loss,:bet_amount=>self.bet_amount(race))
