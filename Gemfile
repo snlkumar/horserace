@@ -8,9 +8,11 @@ gem 'pdfcrowd'
 gem 'pg'
 gem 'devise'
 gem 'activeadmin'
+gem 'rufus-scheduler'
+
 gem 'mysql2'
 gem 'execjs'
-gem 'therubyracer'
+
 gem 'whenever'
 gem "less-rails"
 gem "nested_form"
