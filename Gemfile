@@ -10,7 +10,7 @@ gem 'devise'
 gem 'activeadmin'
 # gem 'rufus-scheduler'
 gem 'rack-handlers'
-gem "heroku-forward"
+# gem "heroku-forward"
 gem 'unicorn'
 gem 'mysql2'
 gem 'execjs'
