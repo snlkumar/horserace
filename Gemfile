@@ -8,7 +8,7 @@ gem 'pdfcrowd'
 gem 'pg'
 gem 'devise'
 gem 'activeadmin'
-# gem 'rufus-scheduler'
+gem 'rufus-scheduler'
 gem 'rack-handlers'
 # gem "heroku-forward"
 gem 'unicorn'
