@@ -37,23 +37,23 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   
   #change
- def update_balance
-   @user=User.find params[:id] 
-   @balance=params[:user][:balance]
-   @balance_before_update=@user.balance
-   @transaction=Transaction.new(:user_id=>@user.id)
-   @user.update_attributes(params[:user])
-   if @user.balance > @balance_before_update
-   @transaction.deposit=@balance
-   else
-      @transaction.withdraw=@balance
-   end
-   @transaction.total=@user.balance
-   @transaction.owner=current_user.id
-   @transaction.save
-   flash[:notice] = "User Successfully updated."
-   redirect_to view_clients_balance_races_path
-  end
+ # def update_balance
+   # @user=User.find params[:id] 
+   # @balance=params[:user][:balance]
+   # @balance_before_update=@user.balance
+   # @transaction=Transaction.new(:user_id=>@user.id)
+   # @user.update_attributes(params[:user])
+   # if @user.balance > @balance_before_update
+   # @transaction.deposit=@balance
+   # else
+      # @transaction.withdraw=@balance
+   # end
+   # @transaction.total=@user.balance
+   # @transaction.owner=current_user.id
+   # @transaction.save
+   # flash[:notice] = "User Successfully updated."
+   # redirect_to view_clients_balance_races_path
+  # end
   
   def view_clients
    @clients=Client.where(:status=>'Active').order('created_at DESC')  
@@ -76,7 +76,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     else
     @withdraw=before_balance-balance.to_f  
     end
-   if @client.update_attributes(params[:client])
+   if @client.update_attributes(:balance=>balance,:initial_balance=>balance)
       @transaction=Transaction.new(:client_id=>@client.id,:balance_before=>before_balance,:deposit=>@deposit,:owner=>current_user.id,:withdraw=>@withdraw,:balance_after=>@client.balance)
       @transaction.save
       flash[:notice] = "Client Successfully updated ."

@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rufus/scheduler'  
 scheduler = Rufus::Scheduler.new
-scheduler.every("9m") do
+scheduler.every("10m") do
    Race.bet_reminder
 end
 # scheduler.every 1.day ,:at=>'04:15pm' do
