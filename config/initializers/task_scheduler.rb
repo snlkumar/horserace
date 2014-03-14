@@ -21,9 +21,9 @@ end
   # runner "Race.bet_reminder"
 # end
 
-# scheduler.every '0 0 1 * * ' do
- # ClinetFee.calculate_fee
-# end
+scheduler.cron '0 0 1 * * ' do
+ ClinetFee.calculate_fee
+end
 # scheduler.every 1.month do
   # runner 'ClinetFee.calculate_fee'
 # end
