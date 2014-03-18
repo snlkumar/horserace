@@ -80,8 +80,10 @@ class Client < ActiveRecord::Base
   
   
   def self.update_daily_bet_amount    
+   
     clients=Client.where(:status=>"Active")   
     clients.each do |client|
+       puts "i am in update daily bet amoubt with#{client.client_name}"
       bet=client.set_daily_bet_amount
       Client.update(client.id,:bet=>bet)
     end

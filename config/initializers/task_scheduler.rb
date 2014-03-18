@@ -1,14 +1,15 @@
 require 'rubygems'
 require 'rufus/scheduler'  
 scheduler = Rufus::Scheduler.new
-scheduler.every("10m") do
+scheduler.every("10s") do
    Race.bet_reminder
+   
 end
 # scheduler.every 1.day ,:at=>'04:15pm' do
    # runner "Client.check_trail_duration"
 # end
 scheduler.cron '15 16 * * *' do
-  Client.update_daily_bet_amount
+  Client.check_trail_duration
 end
 scheduler.cron '1 0 * * *' do
   Client.update_daily_bet_amount
