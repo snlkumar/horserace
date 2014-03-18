@@ -83,6 +83,7 @@ HorseRace::Application.routes.draw do
     delete  'user/delete_client' => 'users#delete_client'
     delete  'user/delete_inactive_client' => 'users#delete_inactive_client'
     put  'user/update_client' => 'users#update_client'
+    put  'user/update_balance' => 'users#update_balance'
     get  'user/inactive_clients' => 'users#inactive_clients'
     # post  'user/my_detail' => 'users#my_details'
     # get  'user/withdraw_history' => 'users#withdraw_history'

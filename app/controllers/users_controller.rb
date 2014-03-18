@@ -37,23 +37,16 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
   end
   
   #change
- # def update_balance
-   # @user=User.find params[:id] 
-   # @balance=params[:user][:balance]
-   # @balance_before_update=@user.balance
-   # @transaction=Transaction.new(:user_id=>@user.id)
-   # @user.update_attributes(params[:user])
-   # if @user.balance > @balance_before_update
-   # @transaction.deposit=@balance
-   # else
-      # @transaction.withdraw=@balance
-   # end
-   # @transaction.total=@user.balance
-   # @transaction.owner=current_user.id
-   # @transaction.save
-   # flash[:notice] = "User Successfully updated."
-   # redirect_to view_clients_balance_races_path
-  # end
+  def update_balance
+    puts "i am in update client with params#{params}"
+   @client=Client.find(params[:id])
+   if @client.update_attributes(params[:client])
+     flash[:notice] = "Client Successfully updated ."
+      redirect_to user_view_clients_path
+    else
+      render 'edit_client'
+   end
+   end
   
   def view_clients
    @clients=Client.where(:status=>'Active').order('created_at DESC')  

@@ -101,8 +101,7 @@ class ClientsController < InheritedResources::Base
    redirect_to view_clients_balance_races_path
   end
   
-  def view_report
-    puts "i am in view report"
+  def view_report    
     @client=Client.find params[:id]       
   end
   
