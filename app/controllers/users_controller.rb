@@ -46,7 +46,7 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     else
       render 'edit_client'
    end
-   end
+  end
   
   def view_clients
    @clients=Client.where(:status=>'Active').order('created_at DESC')  
