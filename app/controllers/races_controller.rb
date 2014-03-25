@@ -24,7 +24,7 @@ class RacesController < InheritedResources::Base
   
   def current_races
      @races=Race.order('date ASC')
-     @current_races=Race.where(:status=>nil).order('date ASC')
+     @current_races=Race.where(:status=>nil).order('updated_at DESC')
     
      @tiers=Tier.all
      @user=User.where(:admin => false).order('client_name ASC')

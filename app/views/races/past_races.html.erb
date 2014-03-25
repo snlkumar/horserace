@@ -20,7 +20,10 @@
 			<th>Horse No</th>
 			<th>Horse Place</th>
 			<th>Status</th>
-			<th>Default Odds</th>	
+			<th>Default Odds</th>
+			<%Tier.all.each do |tier|%>
+			<th><%=tier.name%></th>
+				<%end%> 	
 			<th>protest</th>	
 		</tr>
 	</thead>
@@ -35,6 +38,9 @@
 			<td><%=race.horse_place%></td>
 			<td><%=race.status%></td>
 			<td>$<%=race.default_odd%></td>
+			<%Tier.all.each do |tier|%>
+			<td><%=tier.weight%> %</td>
+				<%end%> 	
 			<td><%=link_to 'Protest',protest_races_path(:id=>race.id),confirm: 'Do you want to rescind this race?'%></td>			
 			</tr>
 		<%end%>		

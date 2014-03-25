@@ -10,6 +10,18 @@
       </ul>
     
   <% end %>    
+  <%= f.fields_for :user do |u| %>  
+    <div class="change_password_fields">
+   <div class="change_password_names"><%=u.label :email%></div>
+    <div class="change_password_form-field"><%= u.email_field :email, :required => true, :autofocus => true,:class=>"text_class" %></div>
+    <div class="clr"></div>
+   </div>
+   <div class="change_password_fields">
+   <div class="change_password_names"><%=u.label :password%></div>
+    <div class="change_password_form-field"><%= u.password_field :password, :required => true %></div>
+    <div class="clr"></div>
+    </div>
+   <%end%>
   <div class="change_password_fields">
    <div class="change_password_names"><%= f.label :name %></div>
     <div class="change_password_form-field"><%= f.text_field :name %></div>
