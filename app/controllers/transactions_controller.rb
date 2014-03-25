@@ -12,9 +12,12 @@ class TransactionsController < InheritedResources::Base
       @transaction=Transaction.new(params[:transaction])
    if current_user.valid_password?(params[:password])
         if params[:amount_to]=="deposit"
-         UserMailer.send_balance_deposit_mail(@user,params[:deposit_messages]).deliver
-                format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Request received successfully.' }
-                format.json { render json: @transaction, status: :created, location: @user }
+              if  UserMailer.send_balance_deposit_mail(@user,params[:deposit_messages]).deliver
+                  format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Request received successfully.' }
+             else
+                  format.html { redirect_to withdraw_request_reseller_clients_path(current_user.client.reseller), notice: 'Failed to Send Emails, try again.' }
+             end
+          format.json { render json: @transaction, status: :created, location: @user }
         else
           if params[:transaction][:bank_detail_id].blank? && !account_name.blank?
               bank_id= Transaction.create_bank(@transaction,bsb,acount,bank_name,account_name,current_user.client.id)
