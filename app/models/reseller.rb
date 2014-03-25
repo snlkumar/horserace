@@ -15,6 +15,7 @@ class Reseller < ActiveRecord::Base
   def delete_user
     unless self.clients.blank?
       self.clients.each do |client|
+        client.user.delete
         client.delete
       end
     end
