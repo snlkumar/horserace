@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
     mail(:to => client.user.email, :subject => "Race {race.name} has been protested")
   end
   def send_balance_deposit_mail(client,message)
-     mail(:to => "gulshan.sharma@trigma.com", :subject =>"Deposit amount" ,:body=>"#{message}")
+     mail(:to => "sunil.kumar@trigma.co.in", :subject =>"Deposit amount" ,:body=>"#{message}")
   end
   def respond_via(client,message)
     mail(:to => client.reseller.user.email, :subject =>"Enquiry" ,:body=>"#{message}")
