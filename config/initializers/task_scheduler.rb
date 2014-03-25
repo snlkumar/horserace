@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rufus/scheduler'  
 scheduler = Rufus::Scheduler.new
-scheduler.every("10m") do
+scheduler.every("5m") do
    Race.bet_reminder
    
 end

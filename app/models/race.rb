@@ -33,14 +33,15 @@ class Race < ActiveRecord::Base
     
   
   def self.bet_reminder
-    puts "i am in bet reminder with params"
-     current_time=Time.now
-     @races= Race.where(:date=>Date.today,:time=>(Time.now-10.minutes).strftime("%H:%M"))
-     unless @races.blank?      
-       @races.each do |race|
-        (UserMailer.race_reminder_mail).deliver
-       end
-     end
+    (UserMailer.race_reminder_mail).deliver
+    # puts "i am in bet reminder with params"
+     # current_time=Time.now
+     # @races= Race.where(:date=>Date.today,:time=>(Time.now-10.minutes).strftime("%H:%M"))
+     # unless @races.blank?      
+       # @races.each do |race|
+        # (UserMailer.race_reminder_mail).deliver
+       # end
+     # end
   end
    
   def delete_users_races
