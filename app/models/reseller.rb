@@ -3,17 +3,21 @@ class Reseller < ActiveRecord::Base
   has_many :clients
   has_one :user
   accepts_nested_attributes_for :user
-  before_destroy :check_clients
+  # before_destroy :check_clients
   after_destroy :delete_user
   
-  def check_clients
-    puts "i am in check client wwith #{self.clients.count}"
+  def check_clients    
     if self.clients.count>0
       self.errors[:base] << "Reseller can not be delete while it's clients exist"
       return false
     end
   end
   def delete_user
+    unless self.clients.blank?
+      self.clients.each do |client|
+        client.delete
+      end
+    end
    self.user.delete
   end
 end

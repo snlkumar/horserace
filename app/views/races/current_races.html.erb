@@ -27,7 +27,8 @@ var data={
 	});
 	$(".change_horse_place").editInPlace({
 		url: '/races/update_horse_place?',
-		field_type: "text",
+		field_type: "select",
+		select_options: "1,2,3,4,DNP",
 		params: data,
 		success: function(response) {
 	       if (response=="updating..."){
