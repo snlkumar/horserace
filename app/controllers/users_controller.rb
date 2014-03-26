@@ -71,7 +71,8 @@ skip_before_filter :authenticate_user! , :only => [:reset_password]
     end
    if @client.update_attributes(:balance=>balance,:initial_balance=>balance)
       @transaction=Transaction.new(:client_id=>@client.id,:balance_before=>before_balance,:deposit=>@deposit,:owner=>current_user.id,:withdraw=>@withdraw,:balance_after=>@client.balance)
-      @transaction.save
+      @transaction.save      
+      UserMailer.send_balance_updated_mail(@client).deliver
       flash[:notice] = "Client Successfully updated ."
       redirect_to user_view_clients_path
     else       
